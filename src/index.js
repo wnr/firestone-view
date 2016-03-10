@@ -3,7 +3,7 @@ var React = require("react");
 
 function HelloWorld() {
     return (
-        <p>Hello World</p>
+        <p>Hello World :)</p>
     );
 }
 

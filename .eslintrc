@@ -3,9 +3,12 @@
         "browser": true,
         "es6": true
     },
+    "plugins": [
+        "react"
+    ],
     "ecmaFeatures": {
-        "jsx": true,
-        "arrowFunctions": true
+        "arrowFunctions": true,
+        modules: true
     },
     "rules": {
         "curly": 2,
@@ -37,5 +40,11 @@
         "beforeEach": true,
         "xit": true,
         "xdescribe": true
+    },
+    parserOptions: {
+        sourceType: "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     }
 }

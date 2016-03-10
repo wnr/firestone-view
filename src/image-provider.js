@@ -104,18 +104,22 @@ export default function ImageProvider(options) {
 
                 context.drawImage(descriptionImage, 130, 340, descriptionImageWidth, descriptionImageHeight);
 
-                context.font = "80px belwe";
-                context.fillStyle = "white";
-
                 drawScaledImage(context, mana, 1, 65, 10);
-                context.fillText(minionCard.manaCost, 93, 80);
+                context.strokeStyle = "black";
+                context.fillStyle = "white";
+                context.lineWidth = 3;
+                context.font = "80px belwe";
+                context.fillText(minionCard.manaCost, 95, 80);
+                context.strokeText(minionCard.manaCost, 95, 80);
 
                 context.font = "70px belwe";
                 drawScaledImage(context, attack, 0.3, -150, 230);
                 context.fillText(minionCard.attack, 92, 510);
+                context.strokeText(minionCard.attack, 92, 510);
 
                 drawScaledImage(context, health, 0.3, 150, 228);
                 context.fillText(minionCard.health, 388, 510);
+                context.strokeText(minionCard.health, 388, 510);
 
                 callback(canvas);
             });

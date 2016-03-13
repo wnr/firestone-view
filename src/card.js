@@ -3,19 +3,17 @@ var ReactDOM = require("react-dom");
 
 export default React.createClass({
     propTypes: {
-        imageProvider: React.PropTypes.object.isRequired
+        imageProvider: React.PropTypes.object.isRequired,
+        card: React.PropTypes.object.isRequired
     },
     componentWillMount: function () {
-        this.loadCanvas({
-            name: "Imp",
-            description: "Ugly little thing",
-            manaCost: 1,
-            attack: 1,
-            health: 1
-        });
+        this.loadCanvas(this.props.card);
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.loadCanvas(nextProps.card);
     },
     render: function () {
-        return <div ref="canvasContainer">Loading...</div>;
+        return <div ref="canvasContainer"></div>;
     },
     loadCanvas: function (card) {
         this.props.imageProvider.getMinionCard(card, (canvas) => {

@@ -5,6 +5,8 @@ import AssetLoader from "./asset-loader";
 import ImageProvider from "./image-provider";
 
 import Card from "./card";
+import Hand from "./hand";
+import Game from "./game";
 
 var assetLoader = AssetLoader({
     assetBaseUrl: "../asset/"
@@ -15,7 +17,7 @@ var imageProvider = ImageProvider({
 
 function HelloWorld() {
     return (
-        <Card imageProvider={imageProvider} name="Imp" />
+        <Game imageProvider={imageProvider} />
     );
 }
 

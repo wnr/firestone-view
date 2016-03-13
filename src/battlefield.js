@@ -6,8 +6,8 @@ import Minion from "./minion";
 export default function Battlefield(props) {
     return (
         <div className="battlefield">
-            <Side imageProvider={props.imageProvider} minions={props.minions1} />
-            <Side imageProvider={props.imageProvider} minions={props.minions2} />
+            <Side imageProvider={props.imageProvider} minions={props.topMinions} />
+            <Side imageProvider={props.imageProvider} minions={props.bottomMinions} />
         </div>
     );
 }

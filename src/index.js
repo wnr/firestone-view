@@ -3,6 +3,7 @@ var ReactDOM = require("react-dom");
 
 import AssetLoader from "./asset-loader";
 import ImageProvider from "./image-provider";
+import AudioHandler from "./audio-handler";
 
 import Card from "./card";
 import Hand from "./hand";
@@ -14,10 +15,13 @@ var assetLoader = AssetLoader({
 var imageProvider = ImageProvider({
     assetLoader: assetLoader
 });
+var audioHandler = AudioHandler({
+    assetProvider: assetLoader
+});
 
 function HelloWorld() {
     return (
-        <Game imageProvider={imageProvider} />
+        <Game imageProvider={imageProvider} audioHandler={audioHandler} />
     );
 }
 

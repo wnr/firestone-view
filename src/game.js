@@ -10,9 +10,7 @@ import { getPlayerById } from "./game-state-utils";
 export default React.createClass({
     getInitialState: function () {
         return {
-            game: null,
-            friendlyPlayerId: null,
-            opponentPlayerId: null
+            game: null
         };
     },
     componentDidMount: function () {
@@ -20,9 +18,7 @@ export default React.createClass({
 
         api.createGame(function (game) {
             thisComponent.setState({
-                game: game,
-                friendlyPlayerId: game.players[0].id,
-                opponentPlayerId: game.players[1].id
+                game: game
             });
         });
     },
@@ -35,8 +31,8 @@ export default React.createClass({
             return <div></div>;
         }
 
-        var friendlyPlayer = getPlayerById(game, this.state.friendlyPlayerId);
-        var opponentPlayer = getPlayerById(game, this.state.opponentPlayerId);
+        var friendlyPlayer = game.players[0];
+        var opponentPlayer = game.players[1];
 
         return (
             <div className="container">
@@ -51,10 +47,25 @@ export default React.createClass({
                         <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand} />
                     </div>
                     <div className="end-turn-container">
-                        <button className="end-turn">End turn</button>
+                        <button className="end-turn" onClick={this.endTurn}>End turn</button>
                     </div>
                 </div>
             </div>
         );
+    },
+    endTurn: function () {
+        this.props.audioHandler.play("ALERT_YourTurn_0v2.ogg");
+
+        var game = this.state.game;
+        var data = {
+            gameId: game.id,
+            playerId: game.playerInTurn
+        };
+
+        api.endTurn(data, (game) => {
+            this.setState({
+                game: game
+            });
+        });
     }
 });

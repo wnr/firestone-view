@@ -44,7 +44,7 @@ body {
             justify-content: center;
 
 
-            .left-container, .right-container {
+            .left-container, .right-container, {
                 display: inline-block;
                 width: 100px;
             }
@@ -52,12 +52,12 @@ body {
             .left-container {
                 text-align: right;
 
-                .mana {
+                .mana canvas {
                     height: 60%;
                 }
             }
 
-            .face {
+            .face canvas {
                 height: 100%;
             }
         }

@@ -11,7 +11,7 @@ export default function Hand(props) {
             className += " playable";
         }
 
-        if (props.selectedCardId === card.id) {
+        if (props.selectedCard && props.selectedCard.id === card.id) {
             className += " focused"
         }
 

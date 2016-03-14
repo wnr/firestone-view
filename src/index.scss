@@ -98,20 +98,16 @@ body {
             align-items: center;
             justify-content: center;
 
-            &.positions-enabled {
-	            .position {
-	                background-color: red;
-	                height: 100%;
-	                width: 20px;
-	                margin: 0px 10px 0px 10px;
+            .position {
+                background-color: red;
+                height: 100%;
+                width: 20px;
+                margin: 0px 10px 0px 10px;
 
-	                &.marked {
-            			background-color: green;
-            		}
-            	}
-
-
-            }
+                &.marked {
+        			background-color: green;
+        		}
+        	}
 
             .minion {
                 position: relative;

@@ -10,13 +10,10 @@ export function attack(data, callback) {
     ajax("attack", data, callback);
 }
 
-export function playMinionCard(gameId, cardId, position, targetId, callback) {
-    var data = {
-        gameId: gameId,
-        cardId: cardId,
-        position: position
-    };
-    if (targetId) { data.targetId = targetId; }
+/**
+ * data: {gameId, cardId, position, [targetId]}
+ */
+export function playMinionCard(data, callback) {
     ajax("playMinionCard", data, callback);
 }
 

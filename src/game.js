@@ -10,9 +10,11 @@ import { getPlayerById } from "./game-state-utils";
 export default React.createClass({
     getInitialState: function () {
         return {
+            error: false,
             game: null,
-            selectedCardId: null,
-            error: false
+            selectedCard: null,
+            selectedPosition: null,
+            bottomPlayerInTurn: true
         };
     },
     componentDidMount: function () {
@@ -51,13 +53,20 @@ export default React.createClass({
             <div className="container">
                 <div className="game">
                     <div className="side opponent">
-                        <Hand imageProvider={imageProvider} cards={opponentPlayer.hand} onCardClick={this.onCardClick} selectedCardId={this.state.selectedCardId} />
+                        <Hand imageProvider={imageProvider} cards={opponentPlayer.hand} onCardClick={this.onCardClick} selectedCard={this.state.selectedCard} />
                         <Hero imageProvider={imageProvider} hero={opponentPlayer.hero} />
                     </div>
-                    <Battlefield imageProvider={imageProvider} topMinions={opponentPlayer.activeMinions} bottomMinions={friendlyPlayer.activeMinions} />
+                    <Battlefield
+                        showPositions={this.state.selectedCard}
+                        bottomPlayerInTurn={this.state.bottomPlayerInTurn}
+                        imageProvider={imageProvider}
+                        topMinions={opponentPlayer.activeMinions}
+                        bottomMinions={friendlyPlayer.activeMinions}
+                        onPositionClick={this.onPositionClick}
+                    />
                     <div className="side friendly">
                         <Hero imageProvider={imageProvider} hero={friendlyPlayer.hero} />
-                        <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand} onCardClick={this.onCardClick} selectedCardId={this.state.selectedCardId} />
+                        <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand} onCardClick={this.onCardClick} selectedCard={this.state.selectedCard} />
                     </div>
                     <div className="end-turn-container">
                         <button className="end-turn" onClick={this.endTurn}>End turn</button>
@@ -75,7 +84,7 @@ export default React.createClass({
             playerId: game.playerInTurn
         };
 
-        api.endTurn(data, (game) => {
+        api.endTurn(data, (err, game) => {
             this.setState({
                 game: game
             });
@@ -87,16 +96,35 @@ export default React.createClass({
             return;
         }
 
-        var cardId = card.id;
-
-        if (this.state.selectedCardId === cardId) {
+        if (this.state.selectedCard && this.state.selectedCard.id === card.id) {
             this.setState({
-                selectedCardId: null
+                selectedCard: null,
+                selectedPosition: null
             });
         } else {
             this.setState({
-                selectedCardId: cardId
+                selectedCard: card,
+                selectedPosition: null
             });
         }
+    },
+    onPositionClick: function (position) {
+        var data = {
+            gameId: this.state.game.id,
+            cardId: this.state.selectedCard.id,
+            position: position
+        };
+
+        // if (targetId) {
+        //     data.targetId = targetId;
+        // }
+
+        api.playMinionCard(data, (err, game) => {
+            this.setState({
+                game: game,
+                selectedCard: null,
+                selectedPosition: null
+            })
+        });
     }
 });

@@ -10,13 +10,22 @@ import { getPlayerById } from "./game-state-utils";
 export default React.createClass({
     getInitialState: function () {
         return {
-            game: null
+            game: null,
+            selectedCardId: null,
+            error: false
         };
     },
     componentDidMount: function () {
         var thisComponent = this;
 
-        api.createGame(function (game) {
+        api.createGame((err, game) => {
+            if (err) {
+                this.setState({
+                    error: true
+                });
+                return;
+            }
+
             thisComponent.setState({
                 game: game
             });
@@ -28,6 +37,10 @@ export default React.createClass({
         var game = this.state.game;
 
         if (!game) {
+            if (this.state.error) {
+                return <strong>Failed to connect to game server</strong>;
+            }
+
             return <div></div>;
         }
 
@@ -38,13 +51,13 @@ export default React.createClass({
             <div className="container">
                 <div className="game">
                     <div className="side opponent">
-                        <Hand imageProvider={imageProvider} cards={opponentPlayer.hand} />
+                        <Hand imageProvider={imageProvider} cards={opponentPlayer.hand} onCardClick={this.onCardClick} selectedCardId={this.state.selectedCardId} />
                         <Hero imageProvider={imageProvider} hero={opponentPlayer.hero} />
                     </div>
                     <Battlefield imageProvider={imageProvider} topMinions={opponentPlayer.activeMinions} bottomMinions={friendlyPlayer.activeMinions} />
                     <div className="side friendly">
                         <Hero imageProvider={imageProvider} hero={friendlyPlayer.hero} />
-                        <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand} />
+                        <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand} onCardClick={this.onCardClick} selectedCardId={this.state.selectedCardId} />
                     </div>
                     <div className="end-turn-container">
                         <button className="end-turn" onClick={this.endTurn}>End turn</button>
@@ -67,5 +80,23 @@ export default React.createClass({
                 game: game
             });
         });
+    },
+    onCardClick: function (card) {
+        if (!card.playable) {
+            console.log("Card not playable");
+            return;
+        }
+
+        var cardId = card.id;
+
+        if (this.state.selectedCardId === cardId) {
+            this.setState({
+                selectedCardId: null
+            });
+        } else {
+            this.setState({
+                selectedCardId: cardId
+            });
+        }
     }
 });

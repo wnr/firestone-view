@@ -28,14 +28,15 @@ export function playCard(gameId, cardId, targetId, callback) {
     }, callback);
 }
 
-function ajax(action, data, success) {
+function ajax(action, data, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function(){
         if (httpRequest.readyState === 4) {
             if (httpRequest.status === 200) {
-                success(JSON.parse(httpRequest.responseText));
+                callback(null, JSON.parse(httpRequest.responseText));
             } else {
                 console.error("failed.");
+                callback(new Error("Status code " + httpRequest.status));
             }
         }
     };

@@ -11,8 +11,12 @@ export default function Hand(props) {
             className += " playable";
         }
 
+        if (props.selectedCardId === card.id) {
+            className += " focused"
+        }
+
         return (
-            <li key={card.id} className={className}>
+            <li key={card.id} className={className} onClick={props.onCardClick.bind(null, card)}>
                 <Card imageProvider={props.imageProvider} card={card} />
             </li>
         );

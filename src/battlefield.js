@@ -26,6 +26,10 @@ function Side(props) {
     var minions = props.minions.map(function (minion, position) {
         var className = "minion";
 
+        if (minion.canAttack) {
+            className += " can-attack";
+        }
+
         var firstPosition;
         if (props.showPositions) {
             firstPosition = <li key={minion.position} className="position" onClick={() => props.onPositionClick(position)}></li>;

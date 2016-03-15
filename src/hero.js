@@ -1,5 +1,7 @@
-var React = require("react");
-var ReactDOM = require("react-dom");
+import React from "react";
+import ReactDOM from "react-dom";
+
+import { updateElement } from "./dom-utils";
 
 export default React.createClass({
     propTypes: {
@@ -32,10 +34,5 @@ export default React.createClass({
 
         this.props.imageProvider.getHero(hero, updateElement.bind(null, portraitCanvasContainer));
         this.props.imageProvider.getManaStone(manaString, updateElement.bind(null, manaCanvasContainer));
-
-        function updateElement(el, canvas) {
-            el.innerHTML = "";
-            el.appendChild(canvas);
-        }
     }
 });

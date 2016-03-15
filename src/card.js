@@ -1,5 +1,7 @@
-var React = require("react");
-var ReactDOM = require("react-dom");
+import React from "react";
+import ReactDOM from "react-dom";
+
+import { updateElement } from "./dom-utils";
 
 export default React.createClass({
     propTypes: {
@@ -16,10 +18,19 @@ export default React.createClass({
         return <div ref="canvasContainer"></div>;
     },
     loadCanvas: function (card) {
-        this.props.imageProvider.getMinionCard(card, (canvas) => {
-            var el = ReactDOM.findDOMNode(this);
-            el.innerHTML = "";
-            el.appendChild(canvas);
-        });
+        if (card.type === "MINION") {
+            this.props.imageProvider.getMinionCard(card, (canvas) => {
+                var el = ReactDOM.findDOMNode(this);
+                updateElement(el, canvas);
+            });
+        } else if (card.type === "SPELL") {
+            this.props.imageProvider.getSpellCard(card, (canvas) => {
+                var el = ReactDOM.findDOMNode(this);
+                updateElement(el, canvas);
+            });
+        } else {
+            console.error("Invalid card type.", card);
+        }
+
     }
 });

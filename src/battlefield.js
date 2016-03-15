@@ -1,5 +1,5 @@
-var React = require("react");
-var ReactDOM = require("react-dom");
+import React from "react";
+import ReactDOM from "react-dom";
 
 import Minion from "./minion";
 
@@ -11,12 +11,16 @@ export default function Battlefield(props) {
                 minions={props.topMinions}
                 showPositions={!props.bottomPlayerInTurn && props.showPositions}
                 onPositionClick={props.onPositionClick}
+                onMinionClick={props.onMinionClick}
+                selectedMinion={props.selectedMinion}
             />
             <Side
                 imageProvider={props.imageProvider}
                 minions={props.bottomMinions}
                 showPositions={props.bottomPlayerInTurn && props.showPositions}
                 onPositionClick={props.onPositionClick}
+                onMinionClick={props.onMinionClick}
+                selectedMinion={props.selectedMinion}
             />
         </div>
     );
@@ -30,6 +34,10 @@ function Side(props) {
             className += " can-attack";
         }
 
+        if (minion.id === props.selectedMinion && props.selectedMinion.id) {
+            className += " focused";
+        }
+
         var firstPosition;
         if (props.showPositions) {
             firstPosition = <li key={minion.position} className="position" onClick={() => props.onPositionClick(position)}></li>;
@@ -40,13 +48,13 @@ function Side(props) {
             var lastPosition = <li key={position + 1} className="position" onClick={() => props.onPositionClick(position + 1)}></li>;
         }
 
-        var minion = (
-            <li key={minion.id} className={className}>
+        var minionLi = (
+            <li key={minion.id} className={className} onClick={() => props.onMinionClick(minion)}>
                 <Minion imageProvider={props.imageProvider} minion={minion} />
             </li>
         );
 
-        return [firstPosition].concat(minion).concat(lastPosition);
+        return [firstPosition].concat(minionLi).concat(lastPosition);
     });
 
     return (

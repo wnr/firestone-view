@@ -1,5 +1,5 @@
-var React = require("react");
-var ReactDOM = require("react-dom");
+import React from "react";
+import ReactDOM from "react-dom";
 
 import Hand from "./hand";
 import Hero from "./hero";
@@ -12,6 +12,7 @@ export default React.createClass({
         return {
             error: false,
             game: null,
+            selectedMinion: null,
             selectedCard: null,
             selectedPosition: null,
             bottomPlayerInTurn: true
@@ -63,6 +64,8 @@ export default React.createClass({
                         topMinions={opponentPlayer.activeMinions}
                         bottomMinions={friendlyPlayer.activeMinions}
                         onPositionClick={this.onPositionClick}
+                        onMinionClick={this.onMinionClick}
+                        selectedMinion={this.state.selectedMinion}
                     />
                     <div className="side friendly">
                         <Hero imageProvider={imageProvider} hero={friendlyPlayer.hero} />
@@ -126,5 +129,25 @@ export default React.createClass({
                 selectedPosition: null
             })
         });
+    },
+    onMinionClick: function (minion) {
+        if (this.state.selectedMinion) {
+            api.attack({
+                gameId: this.state.game.id,
+                attackerId: this.state.selectedMinion.id,
+                targetId: minion.id
+            }, (err, game) => {
+                this.setState({
+                    game: game,
+                    selectedMinion: null
+                });
+            });
+        } else {
+            this.setState({
+                selectedMinion: minion,
+                selectedCard: null,
+                selectedPosition: null
+            });
+        }
     }
 });

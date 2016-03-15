@@ -18,8 +18,6 @@ function mix(coll1, coll2) {
         }
     }
 
-    console.log(output);
-
     return output;
 }
 
@@ -33,6 +31,7 @@ export default function Battlefield(props) {
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}
+                selectedPosition={props.selectedPosition}
             />
             <Side
                 imageProvider={props.imageProvider}
@@ -41,6 +40,7 @@ export default function Battlefield(props) {
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}
+                selectedPosition={props.selectedPosition}
             />
         </div>
     );
@@ -67,10 +67,21 @@ function Side(props) {
 
     var positions = [];
     if (props.showPositions) {
+        function Position(props) {
+            var className = "position";
+
+            if (props.selectedPosition === props.position) {
+                className += " marked";
+            }
+
+            return <li className={className} onClick={() => props.onClick(props.position)}></li>;
+        }
+
         positions =
-            [<li key={"position-" + 0} className="position" onClick={() => props.onPositionClick(0)}></li>]
+            [<Position key={"position-0"} position={0} onClick={props.onPositionClick} selectedPosition={props.selectedPosition} />]
             .concat(props.minions.map((m) => {
-                return <li key={"position-" + m.position + 1} className="position" onClick={() => props.onPositionClick(m.position + 1)}></li>;
+                var pos = m.position + 1;
+                return <Position key={"position-" + pos} position={pos} onClick={props.onPositionClick} selectedPosition={props.selectedPosition} />;
             }));
     }
 

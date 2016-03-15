@@ -66,6 +66,7 @@ export default React.createClass({
                         onPositionClick={this.onPositionClick}
                         onMinionClick={this.onMinionClick}
                         selectedMinion={this.state.selectedMinion}
+                        selectedPosition={this.state.selectedPosition}
                     />
                     <div className="side friendly">
                         <Hero imageProvider={imageProvider} hero={friendlyPlayer.hero} />
@@ -112,26 +113,27 @@ export default React.createClass({
         }
     },
     onPositionClick: function (position) {
-        var data = {
-            gameId: this.state.game.id,
-            cardId: this.state.selectedCard.id,
-            position: position
-        };
-
-        // if (targetId) {
-        //     data.targetId = targetId;
-        // }
-
-        api.playMinionCard(data, (err, game) => {
+        if (this.state.selectedCard.isTargeting) {
             this.setState({
-                game: game,
-                selectedCard: null,
-                selectedPosition: null
-            })
-        });
+                selectedPosition: position
+            });
+        } else {
+            api.playMinionCard({
+                gameId: this.state.game.id,
+                cardId: this.state.selectedCard.id,
+                position: position
+            }, (err, game) => {
+                this.setState({
+                    game: game,
+                    selectedCard: null,
+                    selectedPosition: null
+                });
+            });
+        }
     },
     onMinionClick: function (minion) {
         if (this.state.selectedMinion) {
+            // Minion attacks a minion
             api.attack({
                 gameId: this.state.game.id,
                 attackerId: this.state.selectedMinion.id,
@@ -142,7 +144,22 @@ export default React.createClass({
                     selectedMinion: null
                 });
             });
+        } else if (this.state.selectedCard && this.state.selectedPosition !== null) {
+            // Targeting card is being played on the given minion as target.
+            api.playMinionCard({
+                gameId: this.state.game.id,
+                cardId: this.state.selectedCard.id,
+                position: this.state.selectedPosition,
+                targetId: minion.id
+            }, (err, game) => {
+                this.setState({
+                    game: game,
+                    selectedCard: null,
+                    selectedPosition: null
+                });
+            });
         } else {
+            // Minions is selected for attacking
             this.setState({
                 selectedMinion: minion,
                 selectedCard: null,

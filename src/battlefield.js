@@ -37,7 +37,7 @@ export default function Battlefield(props) {
             <Side
                 imageProvider={props.imageProvider}
                 minions={props.topMinions}
-                showPositions={!props.bottomPlayerInTurn && props.showPositions}
+                showPositions={!props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}
@@ -47,7 +47,7 @@ export default function Battlefield(props) {
             <Side
                 imageProvider={props.imageProvider}
                 minions={props.bottomMinions}
-                showPositions={props.bottomPlayerInTurn && props.showPositions}
+                showPositions={props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}

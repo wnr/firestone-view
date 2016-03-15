@@ -17,12 +17,8 @@ export function playMinionCard(data, callback) {
     ajax("playMinionCard", data, callback);
 }
 
-export function playCard(gameId, cardId, targetId, callback) {
-    ajax("playCard", {
-        gameId: gameId,
-        cardId: cardId,
-        targetId: targetId
-    }, callback);
+export function playCard(data, callback) {
+    ajax("playCard", data, callback);
 }
 
 function ajax(action, data, callback) {

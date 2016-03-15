@@ -114,7 +114,7 @@ export default React.createClass({
         }
     },
     onPositionClick: function (position) {
-        if (this.state.selectedCard.isTargeting) {
+        if (this.state.selectedCard.isTargeting && this.state.selectedCard.validTargetIds.length) {
             this.setState({
                 selectedPosition: position
             });

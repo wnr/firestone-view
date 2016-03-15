@@ -22,6 +22,16 @@ function mix(coll1, coll2) {
 }
 
 export default function Battlefield(props) {
+    var validTargetIds = [];
+
+    if (props.selectedCard) {
+        if (props.selectedCard.type === "SPELL" || props.selectedPosition !== null) {
+            validTargetIds = props.selectedCard.validTargetIds;
+        }
+    } else if (props.selectedMinion) {
+        validTargetIds = props.selectedMinion.validTargetIds;
+    }
+
     return (
         <div className="battlefield">
             <Side
@@ -32,6 +42,7 @@ export default function Battlefield(props) {
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
+                validTargetIds={validTargetIds}
             />
             <Side
                 imageProvider={props.imageProvider}
@@ -41,6 +52,7 @@ export default function Battlefield(props) {
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
+                validTargetIds={validTargetIds}
             />
         </div>
     );
@@ -56,6 +68,10 @@ function Side(props) {
 
         if (minion.id === props.selectedMinion && props.selectedMinion.id) {
             className += " focused";
+        }
+
+        if (props.validTargetIds.indexOf(minion.id) !== -1) {
+            className += " valid-target";
         }
 
         return (

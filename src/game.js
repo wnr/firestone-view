@@ -66,6 +66,7 @@ export default React.createClass({
                         onPositionClick={this.onPositionClick}
                         onMinionClick={this.onMinionClick}
                         selectedMinion={this.state.selectedMinion}
+                        selectedCard={this.state.selectedCard}
                         selectedPosition={this.state.selectedPosition}
                     />
                     <div className="side friendly">

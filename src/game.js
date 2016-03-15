@@ -90,9 +90,7 @@ export default React.createClass({
         };
 
         api.endTurn(data, (err, game) => {
-            this.setState({
-                game: game
-            });
+            this.resetState({ game: game });
         });
     },
     onCardClick: function (card) {
@@ -102,11 +100,10 @@ export default React.createClass({
         }
 
         if (this.state.selectedCard && this.state.selectedCard.id === card.id) {
-            this.reset();
+            this.resetState();
         } else {
-            this.setState({
-                selectedCard: card,
-                selectedPosition: null
+            this.resetState({
+                selectedCard: card
             });
         }
     },
@@ -121,7 +118,7 @@ export default React.createClass({
                 cardId: this.state.selectedCard.id,
                 position: position
             }, (err, game) => {
-                this.resetWithGame(game);
+                this.resetState({ game: game });
             });
         }
     },
@@ -133,7 +130,7 @@ export default React.createClass({
                 attackerId: this.state.selectedMinion.id,
                 targetId: minion.id
             }, (err, game) => {
-                this.resetWithGame(game);
+                this.resetState({ game: game });
             });
         } else if (this.state.selectedCard) {
             if (this.state.selectedPosition !== null) {
@@ -144,7 +141,7 @@ export default React.createClass({
                     position: this.state.selectedPosition,
                     targetId: minion.id
                 }, (err, game) => {
-                    this.resetWithGame(game);
+                    this.resetState({ game: game });
                 });
             } else if (this.state.selectedCard.type === "SPELL" && this.state.selectedCard.isTargeting) {
                 api.playCard({
@@ -152,29 +149,31 @@ export default React.createClass({
                     cardId: this.state.selectedCard.id,
                     targetId: minion.id
                 }, (err, game) => {
-                    this.resetWithGame(game);
+                    this.resetState({ game: game });
                 });
             } else {
                 console.error("Invalid state");
             }
         } else {
             // Minions is selected for attacking
-            this.setState({
-                selectedMinion: minion,
-                selectedCard: null,
-                selectedPosition: null
+            this.resetState({
+                selectedMinion: minion
             });
         }
     },
-    resetWithGame: function(game) {
-        this.setState({
-            game: game,
+    resetState: function (state) {
+        var newState = {
             selectedMinion: null,
             selectedCard: null,
             selectedPosition: null
-        });
-    },
-    reset: function () {
-        this.resetWithGame(null);
+        };
+
+        for (var prop in state) {
+            if (state.hasOwnProperty(prop)) {
+                newState[prop] = state[prop];
+            }
+        }
+
+        this.setState(newState);
     }
 });

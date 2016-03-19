@@ -58,7 +58,7 @@ export default React.createClass({
         var cardArtObj = cards[card.name];
 
         if (!cardArtObj || !cardArtObj.art) {
-            console.error("Failed to find card art for minion", card.name);
+            return console.error("Failed to find card art for minion", card.name);
         }
 
         var art = cardArtObj.art;

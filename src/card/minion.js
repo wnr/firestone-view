@@ -186,6 +186,10 @@ function Race(props) {
         textShadow: "1.5px 1.5px 0 #000, -1.5px -1px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000"
     };
 
+    if (!props.race) {
+        return <div></div>;
+    }
+
     return (
         <div style={frameStyle}>
             <div style={textStyle}>{props.race}</div>

@@ -45,7 +45,7 @@ export default React.createClass({
                     <Mana value={card.manaCost} />
                     <Attack value={card.attack} />
                     <Health value={card.health} />
-                    <Gem />
+                    <Gem rarity={card.rarity} />
                     <Swirl />
                     <Race race={card.race} />
                     <Name name={card.name} />
@@ -142,7 +142,7 @@ function Gem(props) {
         height: "34px",
         top: "3px",
         left: "11px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/gem_common.png\")"
+        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/gem_" + props.rarity + ".png\")"
     };
 
     return (
@@ -166,6 +166,10 @@ function Swirl(props) {
 }
 
 function Race(props) {
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     var frameStyle = {
         position: "absolute",
         width: "156px",
@@ -192,7 +196,7 @@ function Race(props) {
 
     return (
         <div style={frameStyle}>
-            <div style={textStyle}>{props.race}</div>
+            <div style={textStyle}>{capitalizeFirstLetter(props.race)}</div>
         </div>
     );
 }

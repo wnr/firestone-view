@@ -10,8 +10,8 @@ export default function AssetLoader(options) {
                 callback(image);
             };
             image.onerror = function () {
-                throw new Error("Failed to load asset: " + url);
-                //callback();
+                console.error("Failed to load asset: " + url);
+                callback();
             }
             image.src = url;
         }

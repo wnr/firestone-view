@@ -8,6 +8,7 @@ import AudioHandler from "./audio-handler";
 import Card from "./card";
 import Hand from "./hand";
 import Game from "./game";
+import CardNew from "./card-new";
 
 var assetLoader = AssetLoader({
     assetBaseUrl: "../asset/"
@@ -20,9 +21,11 @@ var audioHandler = AudioHandler({
 });
 
 function Root() {
-    return (
-        <Game imageProvider={imageProvider} audioHandler={audioHandler} />
-    );
+    return (<CardNew />);
+
+    // return (
+    //     <Game imageProvider={imageProvider} audioHandler={audioHandler} />
+    // );
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {

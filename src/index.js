@@ -19,7 +19,7 @@ var audioHandler = AudioHandler({
     assetProvider: assetLoader
 });
 
-function HelloWorld() {
+function Root() {
     return (
         <Game imageProvider={imageProvider} audioHandler={audioHandler} />
     );
@@ -27,5 +27,5 @@ function HelloWorld() {
 
 document.addEventListener("DOMContentLoaded", function (event) {
     var mainContainer = document.getElementById("main");
-    ReactDOM.render(<HelloWorld />, mainContainer);
+    ReactDOM.render(<Root />, mainContainer);
 });

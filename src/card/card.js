@@ -1,9 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { updateElement } from "./dom-utils";
+import { updateElement } from "../dom-utils";
+import MinionCard from "./minion";
 
 export default React.createClass({
+    render: function () {
+        if (this.props.card.type === "MINION") {
+            return <div className="new"><MinionCard card={this.props.card} /></div>;
+        } else {
+            return <SpellCard card={this.props.card} imageProvider={this.props.imageProvider} />;
+        }
+    }
+});
+
+var SpellCard = React.createClass({
     propTypes: {
         imageProvider: React.PropTypes.object.isRequired,
         card: React.PropTypes.object.isRequired
@@ -15,7 +26,7 @@ export default React.createClass({
         this.loadCanvas(nextProps.card);
     },
     render: function () {
-        return <div ref="canvasContainer"></div>;
+        return <div className="old" ref="canvasContainer"></div>;
     },
     loadCanvas: function (card) {
         if (card.type === "MINION") {

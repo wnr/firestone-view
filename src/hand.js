@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Card from "./card";
+import Card from "./card/card";
 
 export default function Hand(props) {
     var cards = props.cards.map(function (card) {

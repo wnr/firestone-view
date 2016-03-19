@@ -5,10 +5,9 @@ import AssetLoader from "./asset-loader";
 import ImageProvider from "./image-provider";
 import AudioHandler from "./audio-handler";
 
-import Card from "./card";
+import Card from "./card/card";
 import Hand from "./hand";
 import Game from "./game";
-import CardNew from "./card-new";
 
 var assetLoader = AssetLoader({
     assetBaseUrl: "../asset/"
@@ -21,11 +20,19 @@ var audioHandler = AudioHandler({
 });
 
 function Root() {
-    return (<CardNew />);
+    // return <Card imageProvider={imageProvider} card={{
+    //     name: "Imp Gang Boss",
+    //     description: "Whenever this minion takes damage, summon a 1/1 Imp.",
+    //     attack: 2,
+    //     health: 4,
+    //     mana: 4,
+    //     race: "Demon",
+    //     type: "MINION"
+    // }} />;
 
-    // return (
-    //     <Game imageProvider={imageProvider} audioHandler={audioHandler} />
-    // );
+    return (
+        <Game imageProvider={imageProvider} audioHandler={audioHandler} />
+    );
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {

@@ -1,36 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { updateElement } from "./dom-utils";
+import { updateElement } from "../dom-utils";
 
 var cards = require("./card-art.json");
 
 export default React.createClass({
-    render: function () {
-        return <MinionCard />;
-    }
-});
-
-var MinionCard = React.createClass({
-    getDefaultProps: function () {
-        return {
-            card: {
-                name: "Imp Gang Boss",
-                description: "Whenever this minion takes damage, summon a 1/1 Imp.",
-                attack: 2,
-                health: 4,
-                mana: 4,
-                race: "Demon"
-            }
-        };
-    },
     componentDidMount: function () {
         this.draw(this.props.card);
     },
     render: function () {
         var cardWrapperStyle = {
-            position: "absolute",
-            height: "400px"
+            position: "relative",
+            width: "312px",
+            height: "400px",
+            transform: "scale(0.65)",
+            transformOrigin: "top left"
         };
 
         var canvasStyle = {
@@ -38,9 +23,10 @@ var MinionCard = React.createClass({
             left: "0px"
         };
 
-        var portraitStyle = {
+        var frameStyle = {
             position: "absolute",
-            width: "312px"
+            width: "312px",
+            left: "0px"
         };
 
         var overlayStyle = {
@@ -54,9 +40,9 @@ var MinionCard = React.createClass({
         return (
             <div ref="cardWrapper" style={cardWrapperStyle}>
                 <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
-                <img src="http://www.hearthcards.net/card_js_templates/card_minion_warlock.png" style={portraitStyle} />
+                <img src="http://www.hearthcards.net/card_js_templates/card_minion_warlock.png" style={frameStyle} />
                 <div style={overlayStyle}>
-                    <Mana value={card.mana} />
+                    <Mana value={card.manaCost} />
                     <Attack value={card.attack} />
                     <Health value={card.health} />
                     <Gem />

@@ -37,23 +37,21 @@ export default React.createClass({
 
         var card = this.props.card;
 
-        var classType = "neutral";
+        var classType = card.class;
 
-        if (card.class) {
-            classType = card.class;
+        if (!classType) {
+            console.warn("Unknown class type for card ", card.name);
+            classType = "mage";
         }
 
         return (
             <div ref="cardWrapper" style={cardWrapperStyle}>
                 <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
-                <img src={"http://www.hearthcards.net/card_js_templates/card_minion_" + classType + ".png"} style={frameStyle} />
+                <img src={"http://www.hearthcards.net/card_js_templates/card_spell_" + classType + ".png"} style={frameStyle} />
                 <div style={overlayStyle}>
                     <Mana value={card.manaCost} />
-                    <Attack value={card.attack} />
-                    <Health value={card.health} />
                     <Gem rarity={card.rarity} />
                     <Swirl />
-                    <Race race={card.race} />
                     <Name name={card.name} />
                     <Description description={card.description} />
                 </div>
@@ -64,7 +62,7 @@ export default React.createClass({
         var cardArtObj = cards[card.name];
 
         if (!cardArtObj || !cardArtObj.art) {
-            return console.error("Failed to find card art for minion", card.name);
+            return console.error("Failed to find card art for spell", card.name);
         }
 
         var art = cardArtObj.art;
@@ -77,25 +75,20 @@ export default React.createClass({
         img.src = "http://www.hearthcards.net/art/" + art + ".png";
 
         function drawMinion(img) {
-            ctx.restore();
-
-            // clear the canvas
-
             ctx.save();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath();
-            ctx.moveTo(157, 4);
-            ctx.bezierCurveTo(52, 4, 52, 240, 157, 240);
-            ctx.bezierCurveTo(280, 240, 280, 4, 157, 4);
+            ctx.rect(30, 32, 250, 200);
             ctx.closePath();
+
             ctx.clip();
 
-            var zoom = 48;
+            var zoom = 43;
             var imageWidth = img.width * zoom / 100;
             var imageHeight = img.height * zoom / 100;
 
-            var imageX = 40;
-            var imageY = 4;
+            var imageX = 47;
+            var imageY = 23;
 
             // draw the image
             ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
@@ -124,30 +117,22 @@ function Mana(props) {
     return <div style={getStatsBaseStyle("-4px", "-5px")}>{props.value}</div>;
 }
 
-function Attack(props) {
-    return <div style={getStatsBaseStyle("332px")}>{props.value}</div>;
-}
-
-function Health(props) {
-    return <div style={getStatsBaseStyle("334px", "221px")}>{props.value}</div>;
-}
-
 function Gem(props) {
     var bracketsStyle = {
         position: "absolute",
         width: "61px",
         height: "20px",
-        top: "240px",
-        left: "129px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/minion_gem_brackets.png\")"
+        top: "235px",
+        left: "115px",
+        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/spell_gem_brackets.png\")"
     };
 
     var gemStyle = {
         position: "absolute",
         width: "29px",
         height: "34px",
-        top: "3px",
-        left: "11px",
+        top: "9px",
+        left: "19px",
         backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/gem_" + props.rarity + ".png\")"
     };
 
@@ -163,48 +148,12 @@ function Swirl(props) {
         position: "absolute",
         width: "137px",
         height: "108px",
-        left: "84px",
-        top: "271px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/on_card_swirl_blackrock_minion.png\")"
+        left: "81px",
+        top: "272px",
+        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/on_card_swirl_basic_spell.png\")"
     };
 
     return <div style={style}></div>;
-}
-
-function Race(props) {
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    var frameStyle = {
-        position: "absolute",
-        width: "156px",
-        height: "36px",
-        left: "73px",
-        top: "363px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/card_race.png\")"
-    };
-
-    var textStyle = {
-        position: "absolute",
-        width: "156px",
-        textAlign: "center",
-        top: "7px",
-        color: "white",
-        fontSize: "20px",
-        fontFamily: "Belwe",
-        textShadow: "1.5px 1.5px 0 #000, -1.5px -1px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000"
-    };
-
-    if (!props.race) {
-        return <div></div>;
-    }
-
-    return (
-        <div style={frameStyle}>
-            <div style={textStyle}>{capitalizeFirstLetter(props.race)}</div>
-        </div>
-    );
 }
 
 var Name = React.createClass({
@@ -218,13 +167,13 @@ var Name = React.createClass({
             left: "-14px"
         };
 
-        var textPath = "<textPath xlink:href=\"#minionCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
+        var textPath = "<textPath xlink:href=\"#spellCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
 
         return (
             <div style={style}>
                 <svg width="312" height="424" viewBox="0 0 400 543">
                     <defs>
-                        <path id="minionCardNamePath" d="m 56.336299,307.51481 c 0,0 3.8284,6.45932 52.003431,0.99221 28.84576,-3.27354 57.87325,-12.4128 107.80271,-18.66988 36.69487,-4.59854 72.68333,-5.86349 97.95307,-1.16154 27.31819,5.0831 43.46829,12.47526 43.46829,12.47526"></path>
+                        <path id="spellCardNamePath" d="m 72.083772,305.1818 c 0,0 138.390898,-53.03301 268.195498,-1.01015"></path>
                     </defs>
                     <text ref="name" fontFamily="Belwe" fontSize="30" fill="white" stroke="black" strokeWidth="5" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
                     <text ref="nameShadow" fontFamily="Belwe" fontSize="30" fill="white" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
@@ -261,9 +210,9 @@ var Description = React.createClass({
         var style = {
             position: "absolute",
             display: "table",
-            top: "269px",
-            left: "38.5px",
-            width: "215px",
+            top: "278px",
+            left: "46.5px",
+            width: "196px",
             height: "100px",
             textAlign: "center",
             boxSizing: "border-box",

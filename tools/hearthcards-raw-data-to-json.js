@@ -16,7 +16,7 @@ process.stdin.on("end", () => {
     var lines = data.split("\n");
 
     var objs = lines.map((l) => {
-        var re = /[^\w{}:\", \\\d/\-_']/gi;
+        var re = /[^\w{}:\", \\\d/\-_'\(\)]/gi;
         var strippedLine = l.replace(re, "");
         if (strippedLine) {
             return JSON.parse(strippedLine);

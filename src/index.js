@@ -21,13 +21,12 @@ var audioHandler = AudioHandler({
 
 function Root() {
     // return <Card imageProvider={imageProvider} card={{
-    //     name: "Imp Gang Boss",
-    //     description: "Whenever this minion takes damage, summon a 1/1 Imp.",
-    //     attack: 2,
-    //     health: 4,
-    //     mana: 4,
-    //     race: "Demon",
-    //     type: "MINION"
+    //     name: "Pyroblast",
+    //     description: "Deal 10 damage.",
+    //     manaCost: 10,
+    //     type: "SPELL",
+    //     class: "mage",
+    //     rarity: "epic"
     // }} />;
 
     return (

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 
 import { updateElement } from "./dom-utils";
 
+var cards = require("./card-art.json");
+
 export default React.createClass({
     render: function () {
         return <MinionCard />;
@@ -10,6 +12,18 @@ export default React.createClass({
 });
 
 var MinionCard = React.createClass({
+    getDefaultProps: function () {
+        return {
+            card: {
+                name: "Imp Gang Boss",
+                description: "Whenever this minion takes damage, summon a 1/1 Imp.",
+                attack: 2,
+                health: 4,
+                mana: 4,
+                race: "Demon"
+            }
+        };
+    },
     componentDidMount: function () {
         this.draw(this.props.card);
     },
@@ -35,30 +49,40 @@ var MinionCard = React.createClass({
             top: "-3px"
         };
 
+        var card = this.props.card;
+
         return (
             <div ref="cardWrapper" style={cardWrapperStyle}>
                 <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
                 <img src="http://www.hearthcards.net/card_js_templates/card_minion_warlock.png" style={portraitStyle} />
                 <div style={overlayStyle}>
-                    <Mana value={3} />
-                    <Attack value={2} />
-                    <Health value={4} />
+                    <Mana value={card.mana} />
+                    <Attack value={card.attack} />
+                    <Health value={card.health} />
                     <Gem />
                     <Swirl />
-                    <Race race="Demon" />
-                    <Name name="Imp Gang Boss" />
-                    <Description description="Whenever this minion takes damage, summon a 1/1 Imp." />
+                    <Race race={card.race} />
+                    <Name name={card.name} />
+                    <Description description={card.description} />
                 </div>
             </div>
         );
     },
     draw: function (card) {
+        var cardArtObj = cards[card.name];
+
+        if (!cardArtObj || !cardArtObj.art) {
+            console.error("Failed to find card art for minion", card.name);
+        }
+
+        var art = cardArtObj.art;
+
         var canvas = this.refs.portraitCanvas;
         var ctx = canvas.getContext("2d");
 
         var img = new Image();
         img.onload = () => drawMinion(img)
-        img.src = "http://www.hearthcards.net/art/w17_a190_d.png";
+        img.src = "http://www.hearthcards.net/art/" + art + ".png";
 
         function drawMinion(img) {
             ctx.restore();
@@ -105,8 +129,7 @@ function getStatsBaseStyle(top, left) {
 }
 
 function Mana(props) {
-
-    return <div style={getStatsBaseStyle("-4px")}>{props.value}</div>;
+    return <div style={getStatsBaseStyle("-4px", "-5px")}>{props.value}</div>;
 }
 
 function Attack(props) {

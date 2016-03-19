@@ -38,6 +38,7 @@
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.1",
     "parallelshell": "^2.0.0",
+    "request": "^2.69.0",
     "rimraf": "^2.5.2",
     "uglify-js": "^2.6.2",
     "watchify": "^3.7.0"

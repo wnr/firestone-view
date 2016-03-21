@@ -70,7 +70,7 @@ function Side(props) {
             className += " focused";
         }
 
-        if (props.validTargetIds.indexOf(minion.id) !== -1) {
+        if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(minion.id) !== -1) {
             className += " valid-target";
         }
 

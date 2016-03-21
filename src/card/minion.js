@@ -52,6 +52,7 @@ export default React.createClass({
                     <Attack value={card.attack} />
                     <Health value={card.health} />
                     <Gem rarity={card.rarity} />
+                    <Dragon rarity={card.rarity} />
                     <Swirl />
                     <Race race={card.race} />
                     <Name name={card.name} />
@@ -156,6 +157,25 @@ function Gem(props) {
             <div style={gemStyle}></div>
         </div>
     );
+}
+
+function Dragon(props) {
+    if (props.rarity !== "legendary") {
+        return <div></div>;
+    } else {
+        var dragonTopStyle = {
+            position: "absolute",
+            width: "234px",
+            height: "174px",
+            top: "-19px",
+            left: "65px",
+            backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/card_minion_legendary_dragon_bracket.png\")"
+        };
+
+        return (
+            <div style={dragonTopStyle}></div>
+        );
+    }
 }
 
 function Swirl(props) {

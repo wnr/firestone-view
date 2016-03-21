@@ -34,6 +34,8 @@ function ajax(action, data, callback) {
         }
     };
 
-    httpRequest.open("POST", "http://" + document.domain + ":8001/" + action, true);
+    var domain = document.domain || "localhost";
+
+    httpRequest.open("POST", "http://" + domain + ":8001/" + action, true);
     httpRequest.send(JSON.stringify(data));
 }

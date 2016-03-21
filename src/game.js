@@ -52,7 +52,7 @@ export default React.createClass({
 
         return (
             <div className="container">
-                <div className="game">
+                <div className="game" style={{paddingTop: "16px"}}>
                     <div className="side opponent">
                         <Hand imageProvider={imageProvider} cards={opponentPlayer.hand} onCardClick={this.onCardClick} selectedCard={this.state.selectedCard} />
                         <Hero imageProvider={imageProvider} hero={opponentPlayer.hero} />

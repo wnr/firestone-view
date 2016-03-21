@@ -118,6 +118,9 @@ function Mana(props) {
 }
 
 function Gem(props) {
+    if (!props.rarity) {
+        return (<div></div>);
+    }
     var bracketsStyle = {
         position: "absolute",
         width: "61px",

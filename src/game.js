@@ -59,7 +59,7 @@ export default React.createClass({
                     </div>
                     <Battlefield
                         showPositions={this.state.selectedCard}
-                        bottomPlayerInTurn={this.state.bottomPlayerInTurn}
+                        bottomPlayerInTurn={this.state.game.playerInTurn === friendlyPlayer.id}
                         imageProvider={imageProvider}
                         topMinions={opponentPlayer.activeMinions}
                         bottomMinions={friendlyPlayer.activeMinions}

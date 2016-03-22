@@ -40,6 +40,7 @@ export default function Battlefield(props) {
                 showPositions={!props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
+                onDeselectMinion={props.onDeselectMinion}
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
                 validTargetIds={validTargetIds}
@@ -50,6 +51,7 @@ export default function Battlefield(props) {
                 showPositions={props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
+                onDeselectMinion={props.onDeselectMinion}
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
                 validTargetIds={validTargetIds}
@@ -66,12 +68,17 @@ function Side(props) {
             className += " can-attack";
         }
 
-        if (minion.id === props.selectedMinion && props.selectedMinion.id) {
-            className += " focused";
-        }
-
         if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(minion.id) !== -1) {
             className += " valid-target";
+        }
+
+        if (props.selectedMinion && props.selectedMinion.id === minion.id) {
+            className += " focused";
+            return (
+                <li key={minion.id} className={className} onClick={() => props.onDeselectMinion(minion)}>
+                    <Minion imageProvider={props.imageProvider} minion={minion} />
+                </li>
+            );
         }
 
         return (
@@ -79,6 +86,7 @@ function Side(props) {
                 <Minion imageProvider={props.imageProvider} minion={minion} />
             </li>
         );
+
     });
 
     var positions = [];

@@ -15,12 +15,20 @@ export default React.createClass({
         this.loadCanvas(nextProps.hero);
     },
     render: function () {
+        var props = this.props;
+
+        var heroClassName = "face";
+
+        if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(props.hero.id) !== -1) {
+            heroClassName += " valid-target";
+        }
+
         return (
             <div className="hero-container">
                 <div className="left-container">
                     <div ref="manaCanvasContainer" className="mana"></div>
                 </div>
-                <div ref="portraitCanvasContainer" className="face"></div>
+                <div ref="portraitCanvasContainer" className={heroClassName} onClick={() => props.onHeroClick(props.hero)}></div>
                 <div className="right-container">
                 </div>
             </div>

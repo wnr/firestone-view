@@ -62,8 +62,15 @@ body {
                 }
             }
 
-            .face canvas {
-                height: 100%;
+            .face {
+
+                canvas {
+                    height: 100%;
+                }
+
+                &.valid-target {
+                	border: 1px solid red;
+				}
             }
         }
 

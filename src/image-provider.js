@@ -41,6 +41,7 @@ export default function ImageProvider(options) {
             context.drawImage(frame, 0, 60, 512, 512);
 
             context.font = "100px belwe";
+            context.lineWidth = 3;
 
             drawScaledImage(context, attack, 0.5, -120, 200);
 
@@ -51,6 +52,7 @@ export default function ImageProvider(options) {
             }
 
             context.fillText(minion.attack, 118, 490);
+            context.strokeText(minion.attack, 118, 490);
 
             drawScaledImage(context, health, 0.5, 120, 200);
 
@@ -63,6 +65,7 @@ export default function ImageProvider(options) {
             }
 
             context.fillText(minion.health, 350, 490);
+            context.strokeText(minion.health, 350, 490);
 
             if (minion.states.indexOf("DIVINE_SHIELD") >= 0) {
                 context.save();
@@ -153,10 +156,12 @@ export default function ImageProvider(options) {
             context.drawImage(frame, 0, 0, 512, 512);
 
             context.font = "70px belwe";
+            context.lineWidth = 2;
 
             if (hero.attack) {
                 drawScaledImage(context, attack, 0.3, -150, 230);
                 context.fillText(hero.attack, 92, 510);
+                context.strokeText(hero.attack, 92, 510);
             }
 
             drawScaledImage(context, health, 0.4, 175, 200);
@@ -167,6 +172,7 @@ export default function ImageProvider(options) {
                 context.fillStyle = "red";
             }
             context.fillText(hero.health, 390, 485);
+            context.strokeText(hero.health, 390, 485);
 
             callback(canvas);
         });
@@ -191,9 +197,11 @@ export default function ImageProvider(options) {
             }
 
             context.fillStyle = "white";
+            context.lineWidth = 2;
+
             var size = context.measureText(text);
             context.fillText(text, 50 - size.width / 2, 50 + fontSize / 4);
-
+            context.strokeText(text, 50 - size.width / 2, 50 + fontSize / 4);
             callback(canvas);
         });
     }

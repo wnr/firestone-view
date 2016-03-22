@@ -54,8 +54,16 @@ export default React.createClass({
             <div className="container">
                 <div className="game" style={{paddingTop: "16px"}}>
                     <div className="side opponent">
-                        <Hand imageProvider={imageProvider} cards={opponentPlayer.hand} onCardClick={this.onCardClick} selectedCard={this.state.selectedCard} />
-                        <Hero imageProvider={imageProvider} hero={opponentPlayer.hero} />
+                        <Hand imageProvider={imageProvider}
+                              cards={opponentPlayer.hand}
+                              onCardClick={this.onCardClick}
+                              selectedCard={this.state.selectedCard}
+                        />
+                        <Hero imageProvider={imageProvider}
+                              hero={opponentPlayer.hero}
+                              selectedMinion={this.state.selectedMinion}
+                              onHeroClick={this.onHeroClick}
+                        />
                     </div>
                     <Battlefield
                         showPositions={this.state.selectedCard}
@@ -65,13 +73,21 @@ export default React.createClass({
                         bottomMinions={friendlyPlayer.activeMinions}
                         onPositionClick={this.onPositionClick}
                         onMinionClick={this.onMinionClick}
+                        onDeselectMinion={this.onDeselectMinion}
                         selectedMinion={this.state.selectedMinion}
                         selectedCard={this.state.selectedCard}
                         selectedPosition={this.state.selectedPosition}
                     />
                     <div className="side friendly">
-                        <Hero imageProvider={imageProvider} hero={friendlyPlayer.hero} />
-                        <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand} onCardClick={this.onCardClick} selectedCard={this.state.selectedCard} />
+                        <Hero imageProvider={imageProvider}
+                              hero={friendlyPlayer.hero}
+                              selectedMinion={this.state.selectedMinion}
+                              onHeroClick={this.onHeroClick}
+                        />
+                        <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand}
+                              onCardClick={this.onCardClick}
+                              selectedCard={this.state.selectedCard}
+                        />
                     </div>
                     <div className="end-turn-container">
                         <button className="end-turn" onClick={this.endTurn}>End turn</button>
@@ -107,6 +123,9 @@ export default React.createClass({
             });
         }
     },
+    onDeselectMinion: function (minion) {
+        this.resetState();
+    },
     onPositionClick: function (position) {
         if (this.state.selectedCard.isTargeting && this.state.selectedCard.validTargetIds.length) {
             this.setState({
@@ -117,6 +136,17 @@ export default React.createClass({
                 gameId: this.state.game.id,
                 cardId: this.state.selectedCard.id,
                 position: position
+            }, (err, game) => {
+                this.resetState({ game: game });
+            });
+        }
+    },
+    onHeroClick: function (hero) {
+        if (this.state.selectedMinion) {
+            api.attack({
+                gameId: this.state.game.id,
+                attackerId: this.state.selectedMinion.id,
+                targetId: hero.id
             }, (err, game) => {
                 this.resetState({ game: game });
             });

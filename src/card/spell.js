@@ -14,7 +14,7 @@ export default React.createClass({
             position: "relative",
             width: "312px",
             height: "400px",
-            transform: "scale(0.65)",
+            transform: "scale(0.5)",
             transformOrigin: "top left"
         };
 

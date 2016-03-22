@@ -18,7 +18,7 @@ export default function ImageProvider(options) {
     }
 
     function getMinionInPlay(minion, callback) {
-        assetLoader.loadImages([getPortraitUrl(minion), "image/card/taunt.png", "image/card/Minion_Frame.png", "image/card/attack.png", "image/card/health.png"], function createMinionInPlayCanvas(portrait, tauntFrame, frame, attack, health) {
+        assetLoader.loadImages([getPortraitUrl(minion), "image/card/effect.png", "image/card/deathrattle.png", "image/card/taunt.png", "image/card/Minion_Frame.png", "image/card/attack.png", "image/card/health.png"], function createMinionInPlayCanvas(portrait, effect, deathrattle, tauntFrame, frame, attack, health) {
             var canvas = document.createElement("canvas");
             canvas.width = 512;
             canvas.height = 650;
@@ -75,6 +75,14 @@ export default function ImageProvider(options) {
                 context.fillStyle = "rgba(255, 200, 0, 0.4)";
                 context.fill();
                 context.restore();
+            }
+
+            if (minion.states.indexOf("DEATHRATTLE") >= 0) {
+                drawScaledImage(context, deathrattle, 0.5, 132, 400);
+            }
+
+            if (minion.states.indexOf("EFFECT") >= 0) {
+                drawScaledImage(context, effect, 1, 210, 480);
             }
 
             callback(canvas);

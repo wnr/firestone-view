@@ -18,9 +18,10 @@ export default function ImageProvider(options) {
     }
 
     function getMinionInPlay(minion, callback) {
-        assetLoader.loadImages([getPortraitUrl(minion), "image/card/effect.png", "image/card/deathrattle.png", "image/card/taunt.png", "image/card/Minion_Frame.png", "image/card/attack.png", "image/card/health.png"], function createMinionInPlayCanvas(portrait, effect, deathrattle, tauntFrame, frame, attack, health) {
+        assetLoader.loadImages([getPortraitUrl(minion), "image/card/dragon.png", "image/card/effect.png", "image/card/deathrattle.png", "image/card/taunt.png", "image/card/Minion_Frame.png", "image/card/attack.png", "image/card/health.png"], function createMinionInPlayCanvas(portrait, dragon, effect, deathrattle, tauntFrame, frame, attack, health) {
             var canvas = document.createElement("canvas");
-            canvas.width = 512;
+            //canvas.width = 512;
+            canvas.width = 530;
             canvas.height = 650;
             var context = canvas.getContext("2d");
 
@@ -83,6 +84,10 @@ export default function ImageProvider(options) {
 
             if (minion.states.indexOf("EFFECT") >= 0) {
                 drawScaledImage(context, effect, 1, 210, 480);
+            }
+
+            if (minion.rarity === "legendary") {
+                drawScaledImage(context, dragon, 1.8, 205, 115);
             }
 
             callback(canvas);

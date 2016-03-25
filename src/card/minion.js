@@ -142,7 +142,7 @@ function Gem(props) {
         height: "34px",
         top: "3px",
         left: "11px",
-        backgroundImage: "url(\"asset/image/card/minion gem " + props.rarity + "\")"
+        backgroundImage: "url(\"asset/image/card/gem " + props.rarity + "\")"
     };
 
     return (

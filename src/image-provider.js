@@ -2,7 +2,7 @@ export default function ImageProvider(options) {
     var assetLoader = options.assetLoader;
 
     function getPortraitUrl(minion) {
-        return "image/card/portrait/" + minion.name.replace(/ /g, "") + ".png";
+        return "image/card/minion/" + minion.name;
     }
 
     function drawScaledImage(context, image, scale, offsetX, offsetY) {
@@ -18,7 +18,7 @@ export default function ImageProvider(options) {
     }
 
     function getMinionInPlay(minion, callback) {
-        assetLoader.loadImages([getPortraitUrl(minion), "image/card/dragon.png", "image/card/effect.png", "image/card/deathrattle.png", "image/card/taunt.png", "image/card/Minion_Frame.png", "image/card/attack.png", "image/card/health.png"], function createMinionInPlayCanvas(portrait, dragon, effect, deathrattle, tauntFrame, frame, attack, health) {
+        assetLoader.loadImages([getPortraitUrl(minion), "image/dragon.png", "image/effect.png", "image/deathrattle.png", "image/taunt.png", "image/Minion_Frame.png", "image/attack.png", "image/health.png"], function createMinionInPlayCanvas(portrait, dragon, effect, deathrattle, tauntFrame, frame, attack, health) {
             var canvas = document.createElement("canvas");
             //canvas.width = 512;
             canvas.width = 530;
@@ -143,7 +143,7 @@ export default function ImageProvider(options) {
     }
 
     function getHero(hero, callback) {
-        assetLoader.loadImages(["image/hero/jaina.png", "image/HeroFrame.png", "image/card/attack.png", "image/card/health.png"], function (portrait, frame, attack, health) {
+        assetLoader.loadImages(["image/hero/jaina.png", "image/HeroFrame.png", "image/attack.png", "image/health.png"], function (portrait, frame, attack, health) {
             var canvas = document.createElement("canvas");
             canvas.width = 512;
             canvas.height = 550;

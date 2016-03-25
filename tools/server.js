@@ -4,17 +4,19 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const cardArts = require("../src/card/card-art.json");
+const cardArts = require("./card-art.json");
 
 const assetPath = "asset-cache/";
 const imagePath = assetPath + "image/";
 const cardImagePath = imagePath + "card/";
 const minionCardImagePath = cardImagePath + "minion/";
+const spellCardImagePath = cardImagePath + "spell/";
 
 createDir(assetPath);
 createDir(imagePath);
 createDir(cardImagePath);
 createDir(minionCardImagePath);
+createDir(spellCardImagePath);
 
 function createDir(path) {
     if (!fs.existsSync(path)){
@@ -110,6 +112,32 @@ const routes = {
             });
         }
     }, {
+        url: /^\/asset\/image\/card\/spell\//,
+        fn: function (req, res) {
+            const url = req.url;
+            const name = decodeURIComponent(url.split("asset/image/card/spell/")[1]);
+            const filename = path.join(process.cwd(), spellCardImagePath, name + ".png");
+
+            fs.exists(filename, function (exists) {
+                if (exists) {
+                    console.log("cache hit", filename);
+                    serveFile(res, "image/png", filename);
+                } else {
+                    console.log("cache miss", filename);
+                    const url = getHearthcardsPortraitImageUrl(name);
+
+                    if (!url) {
+                        console.log("Cannot find art for", name);
+                        res.statusCode = 404;
+                        res.end();
+                        return;
+                    }
+
+                    download(url, filename, serveFile.bind(null, res, "image/png"));
+                }
+            });
+        }
+    }, {
         url: /^\/asset\/image\/card\//,
         fn: function (req, res) {
             function getHearthcardUrl(name) {
@@ -125,13 +153,25 @@ const routes = {
                     "minion frame rogue": "card_js_templates/card_minion_rogue.png",
                     "minion frame shaman": "card_js_templates/card_minion_shaman.png",
                     "minion gem brackets": "card_js_templates/minion_gem_brackets.png",
-                    "minion gem common": "card_js_templates/gem_common.png",
-                    "minion gem rare": "card_js_templates/gem_rare.png",
-                    "minion gem epic": "card_js_templates/gem_epic.png",
-                    "minion gem legendary": "card_js_templates/gem_legendary.png",
+                    "gem common": "card_js_templates/gem_common.png",
+                    "gem rare": "card_js_templates/gem_rare.png",
+                    "gem epic": "card_js_templates/gem_epic.png",
+                    "gem legendary": "card_js_templates/gem_legendary.png",
                     "minion frame dragon bracket": "card_js_templates/card_minion_legendary_dragon_bracket.png",
                     "minion swirl blackrock": "card_js_templates/on_card_swirl_blackrock_minion.png",
-                    "minion race": "card_js_templates/card_race.png"
+                    "minion race": "card_js_templates/card_race.png",
+                    "spell frame neutral": "card_js_templates/card_spell_neutral.png",
+                    "spell frame paladin": "card_js_templates/card_spell_paladin.png",
+                    "spell frame warlock": "card_js_templates/card_spell_warlock.png",
+                    "spell frame hunter": "card_js_templates/card_spell_hunter.png",
+                    "spell frame mage": "card_js_templates/card_spell_mage.png",
+                    "spell frame priest": "card_js_templates/card_spell_priest.png",
+                    "spell frame druid": "card_js_templates/card_spell_druid.png",
+                    "spell frame warrior": "card_js_templates/card_spell_warrior.png",
+                    "spell frame rogue": "card_js_templates/card_spell_rogue.png",
+                    "spell frame shaman": "card_js_templates/card_spell_shaman.png",
+                    "spell gem brackets": "card_js_templates/spell_gem_brackets.png",
+                    "spell swirl basic": "card_js_templates/on_card_swirl_basic_spell.png"
                 }
 
                 var suburl = mapper[name];
@@ -171,6 +211,12 @@ const routes = {
         fn: function (req, res) {
             const filename = path.join(process.cwd(), req.url);
             serveFile(res, "application/font-woff", filename);
+        }
+    }, {
+        url: /[.]ogg$/,
+        fn: function (req, res) {
+            const filename = path.join(process.cwd(), req.url);
+            serveFile(res, "application/audio/ogg", filename);
         }
     }, {
         url: /[.]png$/,
@@ -225,3 +271,5 @@ http.createServer(function onRequest(request, response) {
 
     route.fn(request, response);
 }).listen(8000);
+
+console.log("Listening on http://localhost:8000/");

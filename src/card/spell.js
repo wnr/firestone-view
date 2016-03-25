@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 
 import { updateElement } from "../dom-utils";
 
-var cards = require("./card-art.json");
-
 export default React.createClass({
     componentDidMount: function () {
         this.draw(this.props.card);
@@ -47,7 +45,7 @@ export default React.createClass({
         return (
             <div ref="cardWrapper" style={cardWrapperStyle}>
                 <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
-                <img src={"http://www.hearthcards.net/card_js_templates/card_spell_" + classType + ".png"} style={frameStyle} />
+                <img src={"asset/image/card/spell frame " + classType} style={frameStyle} />
                 <div style={overlayStyle}>
                     <Mana value={card.manaCost} />
                     <Gem rarity={card.rarity} />
@@ -59,20 +57,12 @@ export default React.createClass({
         );
     },
     draw: function (card) {
-        var cardArtObj = cards[card.name];
-
-        if (!cardArtObj || !cardArtObj.art) {
-            return console.error("Failed to find card art for spell", card.name);
-        }
-
-        var art = cardArtObj.art;
-
         var canvas = this.refs.portraitCanvas;
         var ctx = canvas.getContext("2d");
 
         var img = new Image();
         img.onload = () => drawMinion(img)
-        img.src = "http://www.hearthcards.net/art/" + art + ".png";
+        img.src = "/asset/image/card/spell/" + card.name;
 
         function drawMinion(img) {
             ctx.save();
@@ -127,7 +117,7 @@ function Gem(props) {
         height: "20px",
         top: "235px",
         left: "115px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/spell_gem_brackets.png\")"
+        backgroundImage: "url(\"asset/image/card/spell gem brackets\")"
     };
 
     var gemStyle = {
@@ -136,7 +126,7 @@ function Gem(props) {
         height: "34px",
         top: "9px",
         left: "19px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/gem_" + props.rarity + ".png\")"
+        backgroundImage: "url(\"asset/image/card/gem " + props.rarity + "\")"
     };
 
     return (
@@ -153,7 +143,7 @@ function Swirl(props) {
         height: "108px",
         left: "81px",
         top: "272px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/on_card_swirl_basic_spell.png\")"
+        backgroundImage: "url(\"asset/image/card/spell swirl basic\")"
     };
 
     return <div style={style}></div>;

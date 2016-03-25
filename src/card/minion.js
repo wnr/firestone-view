@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 
 import { updateElement } from "../dom-utils";
 
-var cards = require("./card-art.json");
-
 export default React.createClass({
     componentDidMount: function () {
         this.draw(this.props.card);
@@ -62,20 +60,12 @@ export default React.createClass({
         );
     },
     draw: function (card) {
-        var cardArtObj = cards[card.name];
-
-        if (!cardArtObj || !cardArtObj.art) {
-            return console.error("Failed to find card art for minion", card.name);
-        }
-
-        var art = cardArtObj.art;
-
         var canvas = this.refs.portraitCanvas;
         var ctx = canvas.getContext("2d");
 
         var img = new Image();
         img.onload = () => drawMinion(img)
-        img.src = "http://www.hearthcards.net/art/" + art + ".png";
+        img.src = "/asset/card/minion/" + card.name;
 
         function drawMinion(img) {
             ctx.restore();

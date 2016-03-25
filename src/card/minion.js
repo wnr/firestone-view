@@ -44,7 +44,7 @@ export default React.createClass({
         return (
             <div ref="cardWrapper" style={cardWrapperStyle}>
                 <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
-                <img src={"http://www.hearthcards.net/card_js_templates/card_minion_" + classType + ".png"} style={frameStyle} />
+                <img src={"/asset/image/card/minion frame " + classType} style={frameStyle} />
                 <div style={overlayStyle}>
                     <Mana value={card.manaCost} />
                     <Attack value={card.attack} />
@@ -65,7 +65,7 @@ export default React.createClass({
 
         var img = new Image();
         img.onload = () => drawMinion(img)
-        img.src = "/asset/card/minion/" + card.name;
+        img.src = "/asset/image/card/minion/" + card.name;
 
         function drawMinion(img) {
             ctx.restore();
@@ -133,7 +133,7 @@ function Gem(props) {
         height: "20px",
         top: "240px",
         left: "129px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/minion_gem_brackets.png\")"
+        backgroundImage: "url(\"asset/image/card/minion gem brackets\")"
     };
 
     var gemStyle = {
@@ -142,7 +142,7 @@ function Gem(props) {
         height: "34px",
         top: "3px",
         left: "11px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/gem_" + props.rarity + ".png\")"
+        backgroundImage: "url(\"asset/image/card/minion gem " + props.rarity + "\")"
     };
 
     return (
@@ -162,7 +162,7 @@ function Dragon(props) {
             height: "174px",
             top: "-19px",
             left: "65px",
-            backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/card_minion_legendary_dragon_bracket.png\")"
+            backgroundImage: "url(\"asset/image/card/minion frame dragon bracket\")"
         };
 
         return (
@@ -178,7 +178,7 @@ function Swirl(props) {
         height: "108px",
         left: "84px",
         top: "271px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/on_card_swirl_blackrock_minion.png\")"
+        backgroundImage: "url(\"asset/image/card/minion swirl blackrock\")"
     };
 
     return <div style={style}></div>;
@@ -195,7 +195,7 @@ function Race(props) {
         height: "36px",
         left: "73px",
         top: "363px",
-        backgroundImage: "url(\"http://www.hearthcards.net/card_js_templates/card_race.png\")"
+        backgroundImage: "url(\"asset/image/card/minion race\")"
     };
 
     var textStyle = {

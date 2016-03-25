@@ -84,10 +84,10 @@ const routes = {
             serveFile(res, "text/javascript; charset=UTF-8", filename);
         }
     }, {
-        url: /^\/asset\/card\/minion\//,
+        url: /^\/asset\/image\/card\/minion\//,
         fn: function (req, res) {
             const url = req.url;
-            const name = decodeURIComponent(url.split("asset/card/minion/")[1]);
+            const name = decodeURIComponent(url.split("asset/image/card/minion/")[1]);
             const filename = path.join(process.cwd(), minionCardImagePath, name + ".png");
 
             fs.exists(filename, function (exists) {
@@ -106,6 +106,63 @@ const routes = {
                     }
 
                     download(url, filename, serveFile.bind(null, res, "image/png"));
+                }
+            });
+        }
+    }, {
+        url: /^\/asset\/image\/card\//,
+        fn: function (req, res) {
+            function getHearthcardUrl(name) {
+                var mapper = {
+                    "minion frame neutral": "card_js_templates/card_minion_neutral.png",
+                    "minion frame paladin": "card_js_templates/card_minion_paladin.png",
+                    "minion frame warlock": "card_js_templates/card_minion_warlock.png",
+                    "minion frame hunter": "card_js_templates/card_minion_hunter.png",
+                    "minion frame mage": "card_js_templates/card_minion_mage.png",
+                    "minion frame priest": "card_js_templates/card_minion_priest.png",
+                    "minion frame druid": "card_js_templates/card_minion_druid.png",
+                    "minion frame warrior": "card_js_templates/card_minion_warrior.png",
+                    "minion frame rogue": "card_js_templates/card_minion_rogue.png",
+                    "minion frame shaman": "card_js_templates/card_minion_shaman.png",
+                    "minion gem brackets": "card_js_templates/minion_gem_brackets.png",
+                    "minion gem common": "card_js_templates/gem_common.png",
+                    "minion gem rare": "card_js_templates/gem_rare.png",
+                    "minion gem epic": "card_js_templates/gem_epic.png",
+                    "minion gem legendary": "card_js_templates/gem_legendary.png",
+                    "minion frame dragon bracket": "card_js_templates/card_minion_legendary_dragon_bracket.png",
+                    "minion swirl blackrock": "card_js_templates/on_card_swirl_blackrock_minion.png",
+                    "minion race": "card_js_templates/card_race.png"
+                }
+
+                var suburl = mapper[name];
+
+                if(!suburl) {
+                    return null;
+                }
+
+                return "http://www.hearthcards.net/" + suburl;
+            }
+
+            const url = req.url;
+            const name = decodeURIComponent(url.split("asset/image/card/")[1]);
+            const hearthcardsUrl = getHearthcardUrl(name);
+
+            if (!hearthcardsUrl) {
+                console.log("Unknown card image:", name);
+                res.statusCode = 404;
+                res.end();
+                return;
+            }
+
+            const filename = path.join(process.cwd(), cardImagePath, name + ".png");
+
+            fs.exists(filename, function (exists) {
+                if (exists) {
+                    console.log("cache hit", filename);
+                    serveFile(res, "image/png", filename);
+                } else {
+                    console.log("cache miss", filename);
+                    download(hearthcardsUrl, filename, serveFile.bind(null, res, "image/png"));
                 }
             });
         }

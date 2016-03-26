@@ -221,7 +221,7 @@ const routes = {
     }, {
         url: /[.]png$/,
         fn: function (req, res) {
-            const filename = path.join(process.cwd(), req.url);
+            const filename = path.join(process.cwd(), decodeURIComponent(req.url));
             serveFile(res, "image/png", filename);
         }
     }]

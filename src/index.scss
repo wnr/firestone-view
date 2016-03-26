@@ -63,13 +63,9 @@ body {
             }
 
             .face {
-
-                canvas {
-                    height: 100%;
-                }
-
                 &.valid-target {
                 	border: 1px solid red;
+                    padding: 5px;
 				}
             }
         }

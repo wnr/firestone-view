@@ -18,7 +18,7 @@ export default function ImageProvider(options) {
     }
 
     function getMinionInPlay(minion, callback) {
-        assetLoader.loadImages([getPortraitUrl(minion), "image/dragon.png", "image/effect.png", "image/deathrattle.png", "image/taunt.png", "image/Minion_Frame.png", "image/attack.png", "image/health.png"], function createMinionInPlayCanvas(portrait, dragon, effect, deathrattle, tauntFrame, frame, attack, health) {
+        assetLoader.loadImages([getPortraitUrl(minion), "image/dragon.png", "image/effect.png", "image/deathrattle.png", "image/taunt.png", "image/Minion_Frame.png", "image/attack.png", "image/health old.png"], function createMinionInPlayCanvas(portrait, dragon, effect, deathrattle, tauntFrame, frame, attack, health) {
             var canvas = document.createElement("canvas");
             //canvas.width = 512;
             canvas.width = 530;

@@ -36,3 +36,5 @@ build/
 
 # Mac files
 .DS_Store
+
+asset-cache/

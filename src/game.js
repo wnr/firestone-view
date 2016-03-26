@@ -71,6 +71,7 @@ export default React.createClass({
                         imageProvider={imageProvider}
                         topMinions={opponentPlayer.activeMinions}
                         bottomMinions={friendlyPlayer.activeMinions}
+                        onBattlefieldClick={this.onBattlefieldClick}
                         onPositionClick={this.onPositionClick}
                         onMinionClick={this.onMinionClick}
                         selectedMinion={this.state.selectedMinion}
@@ -117,18 +118,20 @@ export default React.createClass({
         if (this.state.selectedCard && this.state.selectedCard.id === card.id) {
             this.resetState();
         } else {
-            if (!card.isTargeting && card.type === "SPELL") {
-                api.playCard({
-                    gameId: this.state.game.id,
-                    cardId: card.id
-                }, (err, game) => {
-                    this.resetState({ game: game });
-                });
-            } else {
-                this.resetState({
-                    selectedCard: card
-                });
-            }
+            this.resetState({
+                selectedCard: card
+            });
+        }
+    },
+    onBattlefieldClick: function () {
+        var card = this.state.selectedCard;
+        if (card && !card.isTargeting && card.type === "SPELL") {
+            api.playCard({
+                gameId: this.state.game.id,
+                cardId: card.id
+            }, (err, game) => {
+                this.resetState({ game: game });
+            });
         }
     },
     onPositionClick: function (position) {
@@ -147,10 +150,11 @@ export default React.createClass({
         }
     },
     onHeroClick: function (hero) {
-        if (this.state.selectedMinion) {
+        var selectedMinion = this.state.selectedMinion;
+        if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
             api.attack({
                 gameId: this.state.game.id,
-                attackerId: this.state.selectedMinion.id,
+                attackerId: selectedMinion.id,
                 targetId: hero.id
             }, (err, game) => {
                 this.resetState({ game: game });
@@ -161,7 +165,7 @@ export default React.createClass({
         if (this.state.selectedMinion) {
             if (this.state.selectedMinion.id === minion.id) {
                 this.resetState();
-            } else {
+            } else if ((this.state.selectedMinion.validAttackIds.indexOf(minion.id) >= 0)) {
                 // Minion attacks a minion
                 api.attack({
                     gameId: this.state.game.id,

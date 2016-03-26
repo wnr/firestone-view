@@ -104,6 +104,10 @@ body {
     }
 
     & .battlefield {
+        &.targeting {
+            border: 1px solid red;
+        }
+
         .side {
             height: 15%;
             display: flex;

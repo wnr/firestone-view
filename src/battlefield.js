@@ -32,8 +32,13 @@ export default function Battlefield(props) {
         validTargetIds = props.selectedMinion.validTargetIds;
     }
 
+    var className = "battlefield";
+    if (props.selectedCard && !props.selectedCard.isTargeting && (props.selectedCard.type === "SPELL")) {
+        className = className + " targeting";
+    }
+
     return (
-        <div className="battlefield">
+        <div className={className} onClick={() => props.onBattlefieldClick()}>
             <Side
                 imageProvider={props.imageProvider}
                 minions={props.topMinions}

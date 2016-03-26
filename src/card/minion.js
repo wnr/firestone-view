@@ -9,9 +9,14 @@ export default React.createClass({
     },
     render: function () {
         var cardWrapperStyle = {
+            height: "210px",
+            width: "156px"
+        };
+
+        var cardStyle = {
             position: "relative",
             width: "312px",
-            height: "400px",
+            height: "420px",
             transform: "scale(0.5)",
             transformOrigin: "top left"
         };
@@ -41,20 +46,33 @@ export default React.createClass({
             classType = card.class;
         }
 
+        var className = "card minion ";
+
+        if (card.playable) {
+            className += " playable";
+        }
+
+        if (this.props.selectedCard && this.props.selectedCard.id === card.id) {
+            className += " focused"
+        }
+
         return (
-            <div ref="cardWrapper" style={cardWrapperStyle}>
-                <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
-                <img src={"/asset/image/card/minion frame " + classType} style={frameStyle} />
-                <div style={overlayStyle}>
-                    <Mana value={card.manaCost} />
-                    <Attack value={card.attack} />
-                    <Health value={card.health} />
-                    <Gem rarity={card.rarity} />
-                    <Dragon rarity={card.rarity} />
-                    <Swirl />
-                    <Race race={card.race} />
-                    <Name name={card.name} />
-                    <Description description={card.description} />
+            <div className={className} style={cardWrapperStyle}>
+                <div style={cardStyle}>
+                    <Outline card={card} selectedCard={this.props.selectedCard} />
+                    <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
+                    <img src={"/asset/image/card/minion frame " + classType} style={frameStyle} />
+                    <div style={overlayStyle}>
+                        <Mana value={card.manaCost} />
+                        <Attack value={card.attack} />
+                        <Health value={card.health} />
+                        <Gem rarity={card.rarity} />
+                        <Dragon rarity={card.rarity} />
+                        <Swirl />
+                        <Race race={card.race} />
+                        <Name name={card.name} />
+                        <Description description={card.description} />
+                    </div>
                 </div>
             </div>
         );
@@ -93,6 +111,36 @@ export default React.createClass({
         }
     }
 });
+
+function Outline(props) {
+    var blur = 0;
+    var spread = 0;
+    var color = "rgb(0,0,0)";
+
+    if (props.card.playable) {
+        if (props.selectedCard && props.selectedCard.id === props.card.id) {
+            blur = "20px";
+            spread = "16px";
+            color = "rgb(0,255,0)";
+        } else {
+            blur = "20px";
+            spread = "8px";
+            color = "rgb(0,200,0)";
+        }
+    }
+
+    var outlineStyle = {
+        width: "85%",
+        height: "88%",
+        position: "absolute",
+        left: "9%",
+        top: "8%",
+        boxShadow: `0 0 ${blur} ${spread} ${color}`,
+        backgroundColor: color
+    };
+
+    return <div style={outlineStyle}></div>;
+}
 
 function getStatsBaseStyle(top, left) {
     return {

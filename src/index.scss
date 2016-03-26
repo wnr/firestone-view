@@ -80,17 +80,7 @@ body {
             margin-right: auto;
 
             .card {
-                height: 210px;
-                width: 156px;
                 margin: 0px 5px 0 5px;
-
-                &.playable {
-                    border: 4px solid green;
-                }
-
-                &.focused {
-                    background-color: rgba(0, 255, 0, 0.3);
-                }
             }
         }
     }

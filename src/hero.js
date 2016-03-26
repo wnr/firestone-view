@@ -21,6 +21,8 @@ export default React.createClass({
 
         if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(props.hero.id) !== -1) {
             heroClassName += " valid-target";
+        } else if (props.selectedCard && props.selectedCard.isTargeting && props.selectedCard.validTargetIds.indexOf(props.hero.id) !== -1) {
+            heroClassName += " valid-target";
         }
 
         return (

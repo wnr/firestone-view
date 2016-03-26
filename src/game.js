@@ -63,6 +63,7 @@ export default React.createClass({
                               hero={opponentPlayer.hero}
                               selectedMinion={this.state.selectedMinion}
                               onHeroClick={this.onHeroClick}
+                              selectedCard={this.state.selectedCard}
                         />
                     </div>
                     <Battlefield
@@ -83,6 +84,7 @@ export default React.createClass({
                               hero={friendlyPlayer.hero}
                               selectedMinion={this.state.selectedMinion}
                               onHeroClick={this.onHeroClick}
+                              selectedCard={this.state.selectedCard}
                         />
                         <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand}
                               onCardClick={this.onCardClick}
@@ -151,10 +153,19 @@ export default React.createClass({
     },
     onHeroClick: function (hero) {
         var selectedMinion = this.state.selectedMinion;
+        var selectedCard = this.state.selectedCard;
         if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
             api.attack({
                 gameId: this.state.game.id,
                 attackerId: selectedMinion.id,
+                targetId: hero.id
+            }, (err, game) => {
+                this.resetState({ game: game });
+            });
+        } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(hero.id) !== -1) {
+            api.playCard({
+                gameId: this.state.game.id,
+                cardId: selectedCard.id,
                 targetId: hero.id
             }, (err, game) => {
                 this.resetState({ game: game });

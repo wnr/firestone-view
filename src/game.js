@@ -98,6 +98,18 @@ export default React.createClass({
             </div>
         );
     },
+    minionAttack: function (data) {
+        this.props.audioHandler.playMinionAttack(this.state.selectedMinion.name);
+        api.attack(data, (err, game) => {
+            this.resetState({ game: game });
+        });
+    },
+    playMinionCard: function (data) {
+        this.props.audioHandler.playMinionPlayedToBoard(this.state.selectedCard.name);
+        api.playMinionCard(data, (err, game) => {
+            this.resetState({ game: game });
+        });
+    },
     endTurn: function () {
         this.props.audioHandler.play("ALERT_YourTurn_0v2.ogg");
 
@@ -142,12 +154,10 @@ export default React.createClass({
                 selectedPosition: position
             });
         } else {
-            api.playMinionCard({
+            this.playMinionCard({
                 gameId: this.state.game.id,
                 cardId: this.state.selectedCard.id,
                 position: position
-            }, (err, game) => {
-                this.resetState({ game: game });
             });
         }
     },
@@ -155,13 +165,11 @@ export default React.createClass({
         var selectedMinion = this.state.selectedMinion;
         var selectedCard = this.state.selectedCard;
         if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
-            api.attack({
-                gameId: this.state.game.id,
-                attackerId: selectedMinion.id,
-                targetId: hero.id
-            }, (err, game) => {
-                this.resetState({ game: game });
-            });
+            this.minionAttack({
+                        gameId: this.state.game.id,
+                        attackerId: selectedMinion.id,
+                        targetId: hero.id
+                    });
         } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(hero.id) !== -1) {
             api.playCard({
                 gameId: this.state.game.id,
@@ -178,24 +186,20 @@ export default React.createClass({
                 this.resetState();
             } else if ((this.state.selectedMinion.validAttackIds.indexOf(minion.id) >= 0)) {
                 // Minion attacks a minion
-                api.attack({
+                this.minionAttack({
                     gameId: this.state.game.id,
                     attackerId: this.state.selectedMinion.id,
                     targetId: minion.id
-                }, (err, game) => {
-                    this.resetState({ game: game });
                 });
             }
         } else if (this.state.selectedCard) {
             if (this.state.selectedPosition !== null) {
                 // Targeting card is being played on the given minion as target.
-                api.playMinionCard({
+                this.playMinionCard({
                     gameId: this.state.game.id,
                     cardId: this.state.selectedCard.id,
                     position: this.state.selectedPosition,
                     targetId: minion.id
-                }, (err, game) => {
-                    this.resetState({ game: game });
                 });
             } else if (this.state.selectedCard.type === "SPELL" && this.state.selectedCard.isTargeting) {
                 api.playCard({

@@ -11,12 +11,16 @@ const imagePath = assetPath + "image/";
 const cardImagePath = imagePath + "card/";
 const minionCardImagePath = cardImagePath + "minion/";
 const spellCardImagePath = cardImagePath + "spell/";
+const soundPath = assetPath + "sound/"
+const minionSoundPath = soundPath + "minion/"
 
 createDir(assetPath);
 createDir(imagePath);
 createDir(cardImagePath);
 createDir(minionCardImagePath);
 createDir(spellCardImagePath);
+createDir(soundPath);
+createDir(minionSoundPath);
 
 function createDir(path) {
     if (!fs.existsSync(path)){
@@ -32,6 +36,34 @@ function getHearthcardsPortraitImageUrl(minion) {
     }
 
     return "http://www.hearthcards.net/art/" + cardArtObj.art + ".png";
+}
+
+function getHearthheadSoundUrl(audioFileName) {
+    if (audioFileName.indexOf("Play.ogg") >= 0) {
+        var minionName = audioFileName.split("Play.ogg")[0];
+        var cardData = cardArts[minionName];
+        if (!cardData || !cardData.id) {
+            console.log('No card data for', minionName);
+            return null;
+        }
+        // Target Dummy has        sounds/GVG_093_TargetDummy_EnterPlay.ogg
+        // Ironbeak Owl has        sounds/SFX_CS2_203_EnterPlay.ogg
+        // Flesheating Ghoul has   sounds/tt_004_FleshEating_Ghoul_EnterPlay1.ogg
+        var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Play_01.ogg";
+        return url;
+    } else if (audioFileName.indexOf("Attack.ogg") >= 0) {
+        console.log("audioFile:", audioFileName);
+        var minionName = audioFileName.split("Attack.ogg")[0];
+        console.log("key:", minionName);
+        var cardData = cardArts[minionName];
+        if (!cardData || !cardData.id) {
+            console.log('No card data for', minionName);
+            return null;
+        }
+        var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Attack_02.ogg";
+        console.log('Getting url from: ', url);
+        return url;
+    }
 }
 
 function serveFile(res, mime, filename) {
@@ -53,7 +85,7 @@ function download(url, filename, done) {
     console.log("Downloading", url);
     http.get(url, function (hearthcardsResponse) {
         if (hearthcardsResponse.statusCode !== 200) {
-            console.log("Failed to get image from hearthcards.net for ", url);
+            console.log("Failed to get asset from hearthcards.net for ", url);
         } else {
             var targetFile = fs.createWriteStream(filename);
             hearthcardsResponse.pipe(targetFile);
@@ -176,7 +208,7 @@ const routes = {
 
                 var suburl = mapper[name];
 
-                if(!suburl) {
+                if (!suburl) {
                     return null;
                 }
 
@@ -211,6 +243,33 @@ const routes = {
         fn: function (req, res) {
             const filename = path.join(process.cwd(), req.url);
             serveFile(res, "application/font-woff", filename);
+        }
+    }, {
+        url: /^\/asset\/sound\/minion\//,
+        fn: function (req, res) {
+            const url = req.url;
+            const name = decodeURIComponent(url.split("asset/sound/minion/")[1]);
+            console.log("NAME: ", name);
+            const filename = path.join(process.cwd(), minionSoundPath, name);
+
+            fs.exists(filename, function (exists) {
+                if (exists) {
+                    console.log("cache hit", filename);
+                    serveFile(res, "application/audio/ogg", filename);
+                } else {
+                    console.log("cache miss", filename);
+                    const url = getHearthheadSoundUrl(name);
+
+                    if (!url) {
+                        console.log("Cannot find sound for", name);
+                        res.statusCode = 404;
+                        res.end();
+                        return;
+                    }
+
+                    download(url, filename, serveFile.bind(null, res, "application/audio/ogg"));
+                }
+            });
         }
     }, {
         url: /[.]ogg$/,

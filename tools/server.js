@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const cardArts = require("./card-art.json");
+const soundData = require("./sound-data.json");
 
 const assetPath = "asset-cache/";
 const imagePath = assetPath + "image/";
@@ -40,35 +41,72 @@ function getHearthcardsPortraitImageUrl(minion) {
 
 function getHearthheadSoundUrl(audioFileName) {
     if (audioFileName.indexOf("Play.ogg") >= 0) {
-        var minionName = audioFileName.split("Play.ogg")[0];
-        var cardData = cardArts[minionName];
-        if (!cardData || !cardData.id) {
-            console.log('No card data for', minionName);
-            return null;
-        }
-        // Target Dummy has        sounds/GVG_093_TargetDummy_EnterPlay.ogg
-        // Ironbeak Owl has        sounds/SFX_CS2_203_EnterPlay.ogg
-        // Flesheating Ghoul has   sounds/tt_004_FleshEating_Ghoul_EnterPlay1.ogg
-        var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Play_01.ogg";
-        return url;
+         var minionName = audioFileName.split("Play.ogg")[0];
+         var soundUrl = soundData.filter(function (data) {
+             return data.name === minionName;
+         })[0].playSoundUrl;
+         return "http://" + soundUrl;
     } else if (audioFileName.indexOf("Attack.ogg") >= 0) {
-        console.log("audioFile:", audioFileName);
         var minionName = audioFileName.split("Attack.ogg")[0];
-        console.log("key:", minionName);
-        var cardData = cardArts[minionName];
-        if (!cardData || !cardData.id) {
-            console.log('No card data for', minionName);
-            return null;
-        }
-        var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Attack_02.ogg";
-        console.log('Getting url from: ', url);
-        return url;
+        var soundUrl = soundData.filter(function (data) {
+            return data.name === minionName;
+        })[0].attackSoundUrl;
+        return "http://" + soundUrl;
     }
+    //     if (!cardData || !cardData.id) {
+    //         console.log('No card data for', minionName);
+    //         return null;
+    //     }
+    //     // Target Dummy has        sounds/GVG_093_TargetDummy_EnterPlay.ogg
+    //     // Ironbeak Owl has        sounds/SFX_CS2_203_EnterPlay.ogg
+    //     // Flesheating Ghoul has   sounds/tt_004_FleshEating_Ghoul_EnterPlay1.ogg
+    //     var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Play_01.ogg";
+    //     return url;
+    // } else if (audioFileName.indexOf("Attack.ogg") >= 0) {
+    //     console.log("audioFile:", audioFileName);
+    //     var minionName = audioFileName.split("Attack.ogg")[0];
+    //     console.log("key:", minionName);
+    //     var cardData = cardArts[minionName];
+    //     if (!cardData || !cardData.id) {
+    //         console.log('No card data for', minionName);
+    //         return null;
+    //     }
+    //     var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Attack_02.ogg";
+    //     console.log('Getting url from: ', url);
+    //     return url;
+    // }
+
+
+    // if (audioFileName.indexOf("Play.ogg") >= 0) {
+    //     var minionName = audioFileName.split("Play.ogg")[0];
+    //     var cardData = cardArts[minionName];
+    //     if (!cardData || !cardData.id) {
+    //         console.log('No card data for', minionName);
+    //         return null;
+    //     }
+    //     // Target Dummy has        sounds/GVG_093_TargetDummy_EnterPlay.ogg
+    //     // Ironbeak Owl has        sounds/SFX_CS2_203_EnterPlay.ogg
+    //     // Flesheating Ghoul has   sounds/tt_004_FleshEating_Ghoul_EnterPlay1.ogg
+    //     var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Play_01.ogg";
+    //     return url;
+    // } else if (audioFileName.indexOf("Attack.ogg") >= 0) {
+    //     console.log("audioFile:", audioFileName);
+    //     var minionName = audioFileName.split("Attack.ogg")[0];
+    //     console.log("key:", minionName);
+    //     var cardData = cardArts[minionName];
+    //     if (!cardData || !cardData.id) {
+    //         console.log('No card data for', minionName);
+    //         return null;
+    //     }
+    //     var url = "http://wow.zamimg.com/hearthhead/sounds/VO_" + cardData.id + "_Attack_02.ogg";
+    //     console.log('Getting url from: ', url);
+    //     return url;
+    // }
 }
 
 function serveFile(res, mime, filename) {
     fs.exists(filename, function(exists) {
-        if(!exists) {
+        if (!exists) {
             console.log("File does not exist: " + filename);
             res.statusCode = 404;
             res.end();
@@ -250,7 +288,6 @@ const routes = {
         fn: function (req, res) {
             const url = req.url;
             const name = decodeURIComponent(url.split("asset/sound/minion/")[1]);
-            console.log("NAME: ", name);
             const filename = path.join(process.cwd(), minionSoundPath, name);
 
             fs.exists(filename, function (exists) {

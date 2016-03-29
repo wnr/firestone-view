@@ -1,5 +1,7 @@
 var http = require("http");
 
+var ids = require("./ids");
+
 function getMinionSoundData(id, done) {
     http.get("http://www.hearthhead.com/card=" + id, function (response) {
         var body = "";
@@ -55,31 +57,31 @@ function getMinionSoundData(id, done) {
 
 // getMinionSoundData(374, (m) => console.log(m));
 
-var id = 0;
-var idLimit = 3000;
+var index = 0;
+var idLimit = ids.length;
 
 var cards = [];
 
 function handleResponse(data) {
     if (!data) {
-        console.error("ID: " + id + " does not exist.");
+        console.error("ID: " + ids[index] + " does not exist.");
     } else {
         cards.push(data);
     }
 
-    console.error("Read " + id);
+    console.error("Read " + ids[index]);
 
-    id++;
+    index++;
 
-    if (id === idLimit) {
+    if (index === idLimit) {
         console.log(JSON.stringify(cards));
         return;
     }
 
-    getMinionSoundData(id, handleResponse);
+    getMinionSoundData(ids[index], handleResponse);
 }
 
-getMinionSoundData(id, handleResponse);
+getMinionSoundData(ids[index], handleResponse);
 
 
 // <source src="//wow.zamimg.com/hearthhead/sounds/GVG_093_TargetDummy_EnterPlay.ogg" type="audio/ogg; codecs=&quot;vorbis&quot;">

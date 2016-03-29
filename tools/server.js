@@ -96,6 +96,7 @@ function download(url, filename, done) {
         }
     }).on("error", function (err) {
         console.log(err);
+        done(null);
     });
 }
 
@@ -267,7 +268,15 @@ const routes = {
                         return;
                     }
 
-                    download(url, filename, serveFile.bind(null, res, "application/audio/ogg"));
+                    download(url, filename, function (filename) {
+                        if (!filename) {
+                            res.statusCode = 404;
+                            res.end();
+                            return;
+                        }
+
+                        serveFile(res, filename, "application/audio/ogg")
+                    });
                 }
             });
         }

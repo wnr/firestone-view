@@ -1,6 +1,6 @@
 var http = require("http");
 
-var ids = require("./ids");
+var ids = require("./ids-extra");
 
 function getMinionSoundData(id, done) {
     http.get("http://www.hearthhead.com/card=" + id, function (response) {

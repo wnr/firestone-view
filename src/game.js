@@ -171,13 +171,22 @@ export default React.createClass({
                         targetId: hero.id
                     });
         } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(hero.id) !== -1) {
-            api.playCard({
-                gameId: this.state.game.id,
-                cardId: selectedCard.id,
-                targetId: hero.id
-            }, (err, game) => {
-                this.resetState({ game: game });
-            });
+            if (selectedCard.type === "SPELL") {
+                api.playCard({
+                    gameId: this.state.game.id,
+                    cardId: selectedCard.id,
+                    targetId: hero.id
+                }, (err, game) => {
+                    this.resetState({ game: game });
+                });
+            } else {
+                this.playMinionCard({
+                    gameId: this.state.game.id,
+                    cardId: selectedCard.id,
+                    position: this.state.selectedPosition,
+                    targetId: hero.id
+                });
+            }
         }
     },
     onMinionClick: function (minion) {

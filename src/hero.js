@@ -15,7 +15,7 @@ export default React.createClass({
         this.draw(nextProps.hero);
     },
     render: function () {
-        var props = this.props;
+        const props = this.props;
 
         var heroClassName = "face";
 
@@ -25,16 +25,16 @@ export default React.createClass({
             heroClassName += " valid-target";
         }
 
-        var scale = 0.3;
-        var width = 391;
-        var height = 452;
+        const scale = 0.3;
+        const width = 391;
+        const height = 452;
 
-        var faceWrapperStyle = {
+        const faceWrapperStyle = {
             width: `${scale * width}px`,
             height: `${scale * height}px`
         };
 
-        var faceStyle = {
+        const faceStyle = {
             position: "relative",
             width: `${width}px`,
             height: `${height}px`,
@@ -42,7 +42,7 @@ export default React.createClass({
             transformOrigin: "top left"
         }
 
-        var frameStyle = {
+        const frameStyle = {
             position: "absolute",
             width: "391px",
             left: "452px",
@@ -68,12 +68,12 @@ export default React.createClass({
         );
     },
     draw: function (hero) {
-        var props = this.props;
+        const props = this.props;
 
         function drawFace(canvas) {
-            var ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d");
 
-            var img = new Image();
+            const img = new Image();
             img.onload = () => drawPortrait(img)
             img.src = "/asset/image/hero/jaina.png";
 
@@ -96,7 +96,7 @@ export default React.createClass({
         }
 
         function drawMana(canvas) {
-            var manaString = hero.mana + "/" + hero.maxMana;
+            const manaString = hero.mana + "/" + hero.maxMana;
 
             props.imageProvider.getManaStone(manaString, updateElement.bind(null, canvas));
         }
@@ -107,7 +107,7 @@ export default React.createClass({
 });
 
 function Health(props) {
-    var style = {
+    const style = {
         position: "absolute",
         transform: "scale(0.45)",
         bottom: "-120px",
@@ -123,7 +123,7 @@ function Health(props) {
         healthColor = "red";
     }
 
-    var textStyle = {
+    const textStyle = {
         position: "relative",
         display: "block",
         top: "35px",
@@ -134,7 +134,7 @@ function Health(props) {
         WebkitTextStrokeWidth: "8px",
         WebkitTextStrokeColor: "black",
         textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
-    }
+    };
 
     return (
         <div style={style}>
@@ -148,7 +148,7 @@ function Armor(props) {
         return <div></div>;
     }
 
-    var style = {
+    const style = {
         position: "absolute",
         transform: "scale(1.1)",
         bottom: "93px",
@@ -158,7 +158,7 @@ function Armor(props) {
         backgroundImage: "url(\"/asset/image/armor.png\")"
     };
 
-    var textStyle = {
+    const textStyle = {
         position: "relative",
         display: "block",
         top: "0px",

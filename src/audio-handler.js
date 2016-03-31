@@ -1,5 +1,5 @@
 export default function AudioHandler(config) {
-    var assetProvider = config.assetProvider;
+    const assetProvider = config.assetProvider;
 
     function playMinionAttack(name) {
         assetProvider.loadAudio("sound/minion/" + name + "Attack.ogg", function (audio) {

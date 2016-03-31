@@ -17,7 +17,7 @@ export default React.createClass({
     },
     loadCanvas: function (minion) {
         this.props.imageProvider.getMinionInPlay(minion, (canvas) => {
-            var el = ReactDOM.findDOMNode(this);
+            const el = ReactDOM.findDOMNode(this);
             el.innerHTML = "";
             el.appendChild(canvas);
         });

@@ -47,6 +47,7 @@ export default function Battlefield(props) {
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
+                selectedCard={props.selectedCard}
                 validTargetIds={validTargetIds}
             />
             <Side
@@ -57,6 +58,7 @@ export default function Battlefield(props) {
                 onMinionClick={props.onMinionClick}
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
+                selectedCard={props.selectedCard}
                 validTargetIds={validTargetIds}
             />
         </div>
@@ -72,6 +74,10 @@ function Side(props) {
         }
 
         if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(minion.id) !== -1) {
+            className += " valid-target";
+        }
+
+        if (props.selectedCard && props.selectedPosition && props.selectedCard.validTargetIds.indexOf(minion.id) !== -1) {
             className += " valid-target";
         }
 

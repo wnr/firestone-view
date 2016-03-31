@@ -210,7 +210,9 @@ export default React.createClass({
                     position: this.state.selectedPosition,
                     targetId: minion.id
                 });
-            } else if (this.state.selectedCard.type === "SPELL" && this.state.selectedCard.isTargeting) {
+            } else if (this.state.selectedCard.type === "SPELL"
+                        && this.state.selectedCard.isTargeting
+                        && (this.state.selectedCard.validTargetIds.indexOf(minion.id) >= 0)) {
                 api.playCard({
                     gameId: this.state.game.id,
                     cardId: this.state.selectedCard.id,

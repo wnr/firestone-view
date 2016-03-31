@@ -16,13 +16,24 @@
     "clean": "rimraf build",
     "prebuild": "rimraf build && mkdirp build",
     "build": "npm run build:css -s && npm run build:js -s",
-    "build:js": "browserify -t [ babelify --presets [ es2015 react ] ] --outfile build/index.js -d src/index.js",
+    "build:js": "browserify --outfile build/index.js -d src/index.js",
     "build:css": "node-sass src/index.scss build/index.css -s",
     "serve": "npm run build && echo \"\n\" && node ./tools/server.js",
     "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:test'",
-    "watch:js": "npm run build:js -s && watchify -t [ babelify --presets [ es2015 react ] ] --outfile build/index.js -d src/index.js",
+    "watch:js": "npm run build:js -s && watchify --outfile build/index.js -d src/index.js",
     "watch:css": "nodemon -q -w src --ext '.scss' --exec 'npm run build:css'",
     "watch:test": "nodemon -q -w src --ext '.js' --exec 'npm run test'"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
   },
   "dependencies": {
     "react": "^0.14.6",

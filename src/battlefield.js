@@ -77,8 +77,11 @@ function Side(props) {
             className += " valid-target";
         }
 
-        if (props.selectedCard && props.selectedPosition && props.selectedCard.validTargetIds.indexOf(minion.id) !== -1) {
-            className += " valid-target";
+        if (props.selectedCard && props.selectedCard.validTargetIds.indexOf(minion.id) !== -1) {
+            if ((props.selectedCard.type === "MINION" && props.selectedPosition)
+                || (props.selectedCard.type === "SPELL")) {
+                className += " valid-target";
+            }
         }
 
         if (props.selectedMinion && props.selectedMinion.id === minion.id) {

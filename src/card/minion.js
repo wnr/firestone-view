@@ -63,7 +63,7 @@ export default React.createClass({
                     <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
                     <img src={"/asset/image/card/minion frame " + classType} style={frameStyle} />
                     <div style={overlayStyle}>
-                        <Mana value={card.manaCost} />
+                        <Mana value={card.manaCost} originalValue={card.originalManaCost}/>
                         <Attack value={card.attack} />
                         <Health value={card.health} />
                         <Gem rarity={card.rarity} />
@@ -142,7 +142,7 @@ function Outline(props) {
     return <div style={outlineStyle}></div>;
 }
 
-function getStatsBaseStyle(top, left) {
+function getStatsBaseStyle(top, left, color) {
     return {
         position: "absolute",
         display: "block",
@@ -150,7 +150,7 @@ function getStatsBaseStyle(top, left) {
         left: left,
         width: "76px",
         textAlign: "center",
-        color: "white",
+        color: color || "white",
         fontSize: "70px",
         fontFamily: "Belwe",
         WebkitTextStrokeWidth: "2px",
@@ -160,7 +160,13 @@ function getStatsBaseStyle(top, left) {
 }
 
 function Mana(props) {
-    return <div style={getStatsBaseStyle("-4px", "-5px")}>{props.value}</div>;
+    if (props.value < props.originalValue) {
+        return <div style={getStatsBaseStyle("-4px", "-5px", "lightgreen")}>{props.value}</div>;
+    } else if (props.value > props.originalValue) {
+        return <div style={getStatsBaseStyle("-4px", "-5px", "red")}>{props.value}</div>;
+    } else{
+        return <div style={getStatsBaseStyle("-4px", "-5px")}>{props.value}</div>;
+    }
 }
 
 function Attack(props) {

@@ -1,5 +1,5 @@
 export default function ImageProvider(options) {
-    var assetLoader = options.assetLoader;
+    const assetLoader = options.assetLoader;
 
     function getPortraitUrl(minion) {
         return "image/card/minion/" + minion.name;
@@ -9,21 +9,21 @@ export default function ImageProvider(options) {
         offsetX = offsetX || 0;
         offsetY = offsetY || 0;
 
-        var width = image.width * scale;
-        var height = image.height * scale;
-        var marginX = (image.width - width) / 2;
-        var marginY = (image.height - height) / 2;
+        const width = image.width * scale;
+        const height = image.height * scale;
+        const marginX = (image.width - width) / 2;
+        const marginY = (image.height - height) / 2;
 
         context.drawImage(image, offsetX + marginX, offsetY + marginY, width, height);
     }
 
     function getMinionInPlay(minion, callback) {
         assetLoader.loadImages([getPortraitUrl(minion), "image/dragon.png", "image/effect.png", "image/deathrattle.png", "image/taunt.png", "image/Minion_Frame.png", "image/attack.png", "image/health old.png"], function createMinionInPlayCanvas(portrait, dragon, effect, deathrattle, tauntFrame, frame, attack, health) {
-            var canvas = document.createElement("canvas");
+            const canvas = document.createElement("canvas");
             //canvas.width = 512;
             canvas.width = 530;
             canvas.height = 650;
-            var context = canvas.getContext("2d");
+            const context = canvas.getContext("2d");
 
             if (minion.states.indexOf("TAUNT") >= 0) {
                 drawScaledImage(context, tauntFrame, 2.35, 130, 215);
@@ -96,14 +96,14 @@ export default function ImageProvider(options) {
 
     function getMinionCard(minionCard, callback) {
         assetLoader.loadImages([getPortraitUrl(minionCard), "image/card/Card_Frame.png", "image/mana.png", "image/card/attack.png", "image/card/health.png"], function (portrait, frame, mana, attack, health) {
-            var descriptionImageWidth = 250;
-            var descriptionImageHeight = 130;
-            var descriptionImageFontSize = 28;
+            const descriptionImageWidth = 250;
+            const descriptionImageHeight = 130;
+            const descriptionImageFontSize = 28;
             convertHtmlToImage(minionCard.description, descriptionImageWidth, descriptionImageHeight, descriptionImageFontSize, function (descriptionImage) {
-                var canvas = document.createElement("canvas");
+                const canvas = document.createElement("canvas");
                 canvas.width = 512;
                 canvas.height = 550;
-                var context = canvas.getContext("2d");
+                const context = canvas.getContext("2d");
 
                 if (portrait) {
                     context.save();
@@ -144,10 +144,10 @@ export default function ImageProvider(options) {
 
     function getHero(hero, callback) {
         assetLoader.loadImages(["image/hero/jaina.png", "image/HeroFrame.png", "image/attack.png", "image/health.png"], function (portrait, frame, attack, health) {
-            var canvas = document.createElement("canvas");
+            const canvas = document.createElement("canvas");
             canvas.width = 512;
             canvas.height = 550;
-            var context = canvas.getContext("2d");
+            const context = canvas.getContext("2d");
 
             if (portrait) {
                 context.save();
@@ -193,10 +193,10 @@ export default function ImageProvider(options) {
 
     function getManaStone(text, callback) {
         assetLoader.loadImages(["image/mana.png"], function (mana) {
-            var canvas = document.createElement("canvas");
+            const canvas = document.createElement("canvas");
             canvas.width = 120;
             canvas.height = 120;
-            var context = canvas.getContext("2d");
+            const context = canvas.getContext("2d");
 
             drawScaledImage(context, mana, 1, 0, 0);
 
@@ -212,7 +212,7 @@ export default function ImageProvider(options) {
             context.fillStyle = "white";
             context.lineWidth = 2;
 
-            var size = context.measureText(text);
+            const size = context.measureText(text);
             context.fillText(text, 50 - size.width / 2, 50 + fontSize / 4);
             context.strokeText(text, 50 - size.width / 2, 50 + fontSize / 4);
             callback(canvas);
@@ -222,15 +222,15 @@ export default function ImageProvider(options) {
     function getSpellCard(spellCard, callback) {
 
         assetLoader.loadImages([getPortraitUrl(spellCard), "image/card/Card_Frame.png", "image/mana.png", "image/card/attack.png", "image/card/health.png"], function (portrait, frame, mana, attack, health) {
-            var descriptionImageWidth = 250;
-            var descriptionImageHeight = 130;
-            var descriptionImageFontSize = 28;
+            const descriptionImageWidth = 250;
+            const descriptionImageHeight = 130;
+            const descriptionImageFontSize = 28;
 
             convertHtmlToImage(spellCard.description, descriptionImageWidth, descriptionImageHeight, descriptionImageFontSize, function (descriptionImage) {
-                var canvas = document.createElement("canvas");
+                const canvas = document.createElement("canvas");
                 canvas.width = 512;
                 canvas.height = 550;
-                var context = canvas.getContext("2d");
+                const context = canvas.getContext("2d");
 
                 if (portrait) {
                     context.save();
@@ -258,7 +258,7 @@ export default function ImageProvider(options) {
     }
 
     function convertHtmlToImage(html, width, height, fontSize, callback) {
-        var data =  "<svg xmlns='http://www.w3.org/2000/svg' width='" + width + "' height='" + height + "'>" +
+        const data =  "<svg xmlns='http://www.w3.org/2000/svg' width='" + width + "' height='" + height + "'>" +
                     "<foreignObject width='100%' height='100%'>" +
                     "<div xmlns='http://www.w3.org/1999/xhtml' style='font-size:" + fontSize + "px; text-align: center;'>" +
                         html +
@@ -268,8 +268,8 @@ export default function ImageProvider(options) {
 
 
 
-        var img = new Image();
-        var url = "data:image/svg+xml," + data;
+        const img = new Image();
+        const url = "data:image/svg+xml," + data;
         img.src = url;
 
         img.onload = function () {

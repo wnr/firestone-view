@@ -1,18 +1,18 @@
 export default function AssetLoader(options) {
-    var assetBaseUrl = options.assetBaseUrl || "/";
+    const assetBaseUrl = options.assetBaseUrl || "/";
 
-    var assetCache = {};
+    const assetCache = {};
 
     function loadImages(assetUrls, callback) {
         function loadImage(url, callback) {
-            var image = new Image();
+            const image = new Image();
             image.onload = function () {
                 callback(image);
             };
             image.onerror = function () {
                 console.error("Failed to load asset: " + url);
                 callback();
-            }
+            };
             image.src = url;
         }
 
@@ -21,7 +21,7 @@ export default function AssetLoader(options) {
 
     function loadAudio(assetUrls, callback) {
         function loadAudio(url, callback) {
-            var audio = new Audio();
+            const audio = new Audio();
             audio.addEventListener("canplaythrough", function() {
                 callback(audio);
             }, false);
@@ -42,14 +42,14 @@ export default function AssetLoader(options) {
         });
 
         var async = false;
-        var assets = {};
+        const assets = {};
         var numLoaded = 0;
 
         function assetReady(asset, assetUrl) {
             assets[assetUrl] = asset;
             numLoaded++;
             if (numLoaded === assetUrls.length) {
-                var args = [];
+                const args = [];
                 assetUrls.forEach(function (url) {
                     args.push(assets[url]);
                 });

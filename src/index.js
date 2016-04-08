@@ -9,13 +9,13 @@ import Card from "./card/card";
 import Hand from "./hand";
 import Game from "./game";
 
-var assetLoader = AssetLoader({
+const assetLoader = AssetLoader({
     assetBaseUrl: "../asset/"
 });
-var imageProvider = ImageProvider({
+const imageProvider = ImageProvider({
     assetLoader: assetLoader
 });
-var audioHandler = AudioHandler({
+const audioHandler = AudioHandler({
     assetProvider: assetLoader
 });
 

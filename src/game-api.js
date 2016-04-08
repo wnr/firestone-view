@@ -22,7 +22,7 @@ export function playCard(data, callback) {
 }
 
 function ajax(action, data, callback) {
-    var httpRequest = new XMLHttpRequest();
+    const httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function(){
         if (httpRequest.readyState === 4) {
             if (httpRequest.status === 200) {
@@ -34,7 +34,7 @@ function ajax(action, data, callback) {
         }
     };
 
-    var domain = document.domain || "localhost";
+    const domain = document.domain || "localhost";
 
     httpRequest.open("POST", "http://" + domain + ":8001/" + action, true);
     httpRequest.send(JSON.stringify(data));

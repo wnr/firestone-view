@@ -19,7 +19,7 @@ export default React.createClass({
         };
     },
     componentDidMount: function () {
-        var thisComponent = this;
+        const thisComponent = this;
 
         api.createGame((err, game) => {
             if (err) {
@@ -35,9 +35,9 @@ export default React.createClass({
         });
     },
     render: function () {
-        var imageProvider = this.props.imageProvider;
+        const imageProvider = this.props.imageProvider;
 
-        var game = this.state.game;
+        const game = this.state.game;
 
         if (!game) {
             if (this.state.error) {
@@ -47,8 +47,8 @@ export default React.createClass({
             return <div></div>;
         }
 
-        var friendlyPlayer = game.players[0];
-        var opponentPlayer = game.players[1];
+        const friendlyPlayer = game.players[0];
+        const opponentPlayer = game.players[1];
 
         return (
             <div className="container">
@@ -113,8 +113,8 @@ export default React.createClass({
     endTurn: function () {
         this.props.audioHandler.play("ALERT_YourTurn_0v2.ogg");
 
-        var game = this.state.game;
-        var data = {
+        const game = this.state.game;
+        const data = {
             gameId: game.id,
             playerId: game.playerInTurn
         };
@@ -138,7 +138,7 @@ export default React.createClass({
         }
     },
     onBattlefieldClick: function () {
-        var card = this.state.selectedCard;
+        const card = this.state.selectedCard;
         if (card && !card.isTargeting && card.type === "SPELL") {
             api.playCard({
                 gameId: this.state.game.id,
@@ -162,8 +162,8 @@ export default React.createClass({
         }
     },
     onHeroClick: function (hero) {
-        var selectedMinion = this.state.selectedMinion;
-        var selectedCard = this.state.selectedCard;
+        const selectedMinion = this.state.selectedMinion;
+        const selectedCard = this.state.selectedCard;
         if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
             this.minionAttack({
                         gameId: this.state.game.id,

@@ -8,12 +8,12 @@ export default React.createClass({
         this.draw(this.props.card);
     },
     render: function () {
-        var cardWrapperStyle = {
+        const cardWrapperStyle = {
             height: "210px",
             width: "156px"
         };
 
-        var cardStyle = {
+        const cardStyle = {
             position: "relative",
             width: "312px",
             height: "420px",
@@ -21,24 +21,24 @@ export default React.createClass({
             transformOrigin: "top left"
         };
 
-        var canvasStyle = {
+        const canvasStyle = {
             position: "absolute",
             left: "0px"
         };
 
-        var frameStyle = {
+        const frameStyle = {
             position: "absolute",
             width: "312px",
             left: "0px"
         };
 
-        var overlayStyle = {
+        const overlayStyle = {
             position: "absolute",
             left: "15px",
             top: "-3px"
         };
 
-        var card = this.props.card;
+        const card = this.props.card;
 
         var classType = "neutral";
 
@@ -82,10 +82,10 @@ export default React.createClass({
         );
     },
     draw: function (card) {
-        var canvas = this.refs.portraitCanvas;
-        var ctx = canvas.getContext("2d");
+        const canvas = this.refs.portraitCanvas;
+        const ctx = canvas.getContext("2d");
 
-        var img = new Image();
+        const img = new Image();
         img.onload = () => drawMinion(img)
         img.src = "/asset/image/card/minion/" + card.name;
 
@@ -103,12 +103,12 @@ export default React.createClass({
             ctx.closePath();
             ctx.clip();
 
-            var zoom = 48;
-            var imageWidth = img.width * zoom / 100;
-            var imageHeight = img.height * zoom / 100;
+            const zoom = 48;
+            const imageWidth = img.width * zoom / 100;
+            const imageHeight = img.height * zoom / 100;
 
-            var imageX = 40;
-            var imageY = 4;
+            const imageX = 40;
+            const imageY = 4;
 
             // draw the image
             ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
@@ -141,7 +141,7 @@ function Outline(props) {
         }
     }
 
-    var outlineStyle = {
+    const outlineStyle = {
         width: "85%",
         height: "88%",
         position: "absolute",
@@ -193,7 +193,7 @@ function Gem(props) {
     if (!props.rarity) {
         return (<div></div>);
     }
-    var bracketsStyle = {
+    const bracketsStyle = {
         position: "absolute",
         width: "61px",
         height: "20px",
@@ -202,7 +202,7 @@ function Gem(props) {
         backgroundImage: "url(\"asset/image/card/minion gem brackets\")"
     };
 
-    var gemStyle = {
+    const gemStyle = {
         position: "absolute",
         width: "29px",
         height: "34px",
@@ -222,7 +222,7 @@ function Dragon(props) {
     if (props.rarity !== "legendary") {
         return <div></div>;
     } else {
-        var dragonTopStyle = {
+        const dragonTopStyle = {
             position: "absolute",
             width: "234px",
             height: "174px",
@@ -238,7 +238,7 @@ function Dragon(props) {
 }
 
 function Swirl(props) {
-    var style = {
+    const style = {
         position: "absolute",
         width: "137px",
         height: "108px",
@@ -255,7 +255,7 @@ function Race(props) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    var frameStyle = {
+    const frameStyle = {
         position: "absolute",
         width: "156px",
         height: "36px",
@@ -264,7 +264,7 @@ function Race(props) {
         backgroundImage: "url(\"asset/image/card/minion race\")"
     };
 
-    var textStyle = {
+    const textStyle = {
         position: "absolute",
         width: "156px",
         textAlign: "center",
@@ -291,13 +291,13 @@ var Name = React.createClass({
         this.adjustFontSize();
     },
     render: function () {
-        var style = {
+        const style = {
             position: "absolute",
             top: "3px",
             left: "-14px"
         };
 
-        var textPath = "<textPath xlink:href=\"#minionCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
+        const textPath = "<textPath xlink:href=\"#minionCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
 
         return (
             <div style={style}>
@@ -312,13 +312,13 @@ var Name = React.createClass({
         );
     },
     adjustFontSize: function (cardtype, title) {
-        var nameNode = this.refs.name;
-        var nameShadowNode = this.refs.nameShadow;
+        const nameNode = this.refs.name;
+        const nameShadowNode = this.refs.nameShadow;
 
         var fsize = nameNode.getAttribute("font-size");
         var bbox = nameNode.getBBox();
         var width = bbox.width;
-        var maxTitleSize = 295;
+        const maxTitleSize = 295;
 
         if (width < maxTitleSize - 50) {
             nameNode.setAttribute("font-size", "30");
@@ -326,18 +326,18 @@ var Name = React.createClass({
         }
 
         while (width > maxTitleSize) {
-            var fsize = fsize - 1;
+            fsize = fsize - 1;
             nameNode.setAttribute("font-size", fsize);
             nameShadowNode.setAttribute("font-size", fsize);
-            var bbox = nameNode.getBBox();
-            var width = bbox.width;
+            bbox = nameNode.getBBox();
+            width = bbox.width;
         }
     }
 });
 
 var Description = React.createClass({
     render: function () {
-        var style = {
+        const style = {
             position: "absolute",
             display: "table",
             top: "269px",
@@ -351,7 +351,7 @@ var Description = React.createClass({
             lineHeight: "1"
         };
 
-        var spanStyle = {
+        const spanStyle = {
             display: "table-cell",
             verticalAlign: "middle"
         };

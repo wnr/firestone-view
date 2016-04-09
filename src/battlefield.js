@@ -4,9 +4,9 @@ import ReactDOM from "react-dom";
 import Minion from "./minion";
 
 function mix(coll1, coll2) {
-    var bigLength = Math.max(coll1.length, coll2.length);
+    const bigLength = Math.max(coll1.length, coll2.length);
 
-    var output = [];
+    const output = [];
 
     for (var i = 0; i < bigLength; i++) {
         if (i < coll1.length) {
@@ -66,7 +66,7 @@ export default function Battlefield(props) {
 }
 
 function Side(props) {
-    var minions = props.minions.map(function (minion, position) {
+    const minions = props.minions.map(function (minion, position) {
         var className = "minion";
 
         if (minion.canAttack) {
@@ -116,7 +116,7 @@ function Side(props) {
             }));
     }
 
-    var lis = mix(positions, minions);
+    const lis = mix(positions, minions);
 
     return (
         <div className="side opponent">

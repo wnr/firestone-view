@@ -8,12 +8,12 @@ export default React.createClass({
         this.draw(this.props.card);
     },
     render: function () {
-        var cardWrapperStyle = {
+        const cardWrapperStyle = {
             height: "210px",
             width: "156px"
         };
 
-        var cardStyle = {
+        const cardStyle = {
             position: "relative",
             width: "312px",
             height: "420px",
@@ -21,24 +21,24 @@ export default React.createClass({
             transformOrigin: "top left"
         };
 
-        var canvasStyle = {
+        const canvasStyle = {
             position: "absolute",
             left: "0px"
         };
 
-        var frameStyle = {
+        const frameStyle = {
             position: "absolute",
             width: "312px",
             left: "0px"
         };
 
-        var overlayStyle = {
+        const overlayStyle = {
             position: "absolute",
             left: "15px",
             top: "-3px"
         };
 
-        var card = this.props.card;
+        const card = this.props.card;
 
         var classType = card.class;
 
@@ -75,10 +75,10 @@ export default React.createClass({
         );
     },
     draw: function (card) {
-        var canvas = this.refs.portraitCanvas;
-        var ctx = canvas.getContext("2d");
+        const canvas = this.refs.portraitCanvas;
+        const ctx = canvas.getContext("2d");
 
-        var img = new Image();
+        const img = new Image();
         img.onload = () => drawMinion(img)
         img.src = "/asset/image/card/spell/" + card.name;
 
@@ -91,12 +91,12 @@ export default React.createClass({
 
             ctx.clip();
 
-            var zoom = 43;
-            var imageWidth = img.width * zoom / 100;
-            var imageHeight = img.height * zoom / 100;
+            const zoom = 43;
+            const imageWidth = img.width * zoom / 100;
+            const imageHeight = img.height * zoom / 100;
 
-            var imageX = 47;
-            var imageY = 23;
+            const imageX = 47;
+            const imageY = 23;
 
             // draw the image
             ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
@@ -121,7 +121,7 @@ function Outline(props) {
         }
     }
 
-    var outlineStyle = {
+    const outlineStyle = {
         width: "85%",
         height: "88%",
         position: "absolute",
@@ -165,7 +165,7 @@ function Gem(props) {
     if (!props.rarity) {
         return (<div></div>);
     }
-    var bracketsStyle = {
+    const bracketsStyle = {
         position: "absolute",
         width: "61px",
         height: "20px",
@@ -174,7 +174,7 @@ function Gem(props) {
         backgroundImage: "url(\"asset/image/card/spell gem brackets\")"
     };
 
-    var gemStyle = {
+    const gemStyle = {
         position: "absolute",
         width: "29px",
         height: "34px",
@@ -191,7 +191,7 @@ function Gem(props) {
 }
 
 function Swirl(props) {
-    var style = {
+    const style = {
         position: "absolute",
         width: "137px",
         height: "108px",
@@ -208,13 +208,13 @@ var Name = React.createClass({
         this.adjustFontSize();
     },
     render: function () {
-        var style = {
+        const style = {
             position: "absolute",
             top: "3px",
             left: "-14px"
         };
 
-        var textPath = "<textPath xlink:href=\"#spellCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
+        const textPath = "<textPath xlink:href=\"#spellCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
 
         return (
             <div style={style}>
@@ -229,13 +229,13 @@ var Name = React.createClass({
         );
     },
     adjustFontSize: function (cardtype, title) {
-        var nameNode = this.refs.name;
-        var nameShadowNode = this.refs.nameShadow;
+        const nameNode = this.refs.name;
+        const nameShadowNode = this.refs.nameShadow;
 
         var fsize = nameNode.getAttribute("font-size");
-        var bbox = nameNode.getBBox();
-        var width = bbox.width;
-        var maxTitleSize = 295;
+        const bbox = nameNode.getBBox();
+        const width = bbox.width;
+        const maxTitleSize = 295;
 
         if (width < maxTitleSize - 50) {
             nameNode.setAttribute("font-size", "30");
@@ -243,18 +243,18 @@ var Name = React.createClass({
         }
 
         while (width > maxTitleSize) {
-            var fsize = fsize - 1;
+            fsize = fsize - 1;
             nameNode.setAttribute("font-size", fsize);
             nameShadowNode.setAttribute("font-size", fsize);
-            var bbox = nameNode.getBBox();
-            var width = bbox.width;
+            const bbox = nameNode.getBBox();
+            const width = bbox.width;
         }
     }
 });
 
 var Description = React.createClass({
     render: function () {
-        var style = {
+        const style = {
             position: "absolute",
             display: "table",
             top: "278px",
@@ -268,7 +268,7 @@ var Description = React.createClass({
             lineHeight: "1"
         };
 
-        var spanStyle = {
+        const spanStyle = {
             display: "table-cell",
             verticalAlign: "middle"
         };

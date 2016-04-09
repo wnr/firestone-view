@@ -52,8 +52,12 @@ export default React.createClass({
             className += " playable";
         }
 
+        if (card.combo) {
+            className += " combo";
+        }
+
         if (this.props.selectedCard && this.props.selectedCard.id === card.id) {
-            className += " focused"
+            className += " focused";
         }
 
         return (
@@ -121,11 +125,19 @@ function Outline(props) {
         if (props.selectedCard && props.selectedCard.id === props.card.id) {
             blur = "20px";
             spread = "16px";
-            color = "rgb(0,255,0)";
+            if (props.card.combo) {
+                color = "yellow"
+            } else {
+                color = "rgb(0,255,0)";
+            }
         } else {
             blur = "20px";
             spread = "8px";
-            color = "rgb(0,200,0)";
+            if (props.card.combo) {
+                color = "yellow"
+            } else {
+                color = "rgb(0,200,0)";
+            }
         }
     }
 

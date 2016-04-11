@@ -101,13 +101,13 @@ export default React.createClass({
     minionAttack: function (data) {
         this.props.audioHandler.playMinionAttack(this.state.selectedMinion.name);
         api.attack(data, (err, game) => {
-            this.resetState({ game: game });
+            this.resetGameState({ game: game });
         });
     },
     playMinionCard: function (data) {
         this.props.audioHandler.playMinionPlayedToBoard(this.state.selectedCard.name);
         api.playMinionCard(data, (err, game) => {
-            this.resetState({ game: game });
+            this.resetGameState({ game: game });
         });
     },
     endTurn: function () {
@@ -120,7 +120,7 @@ export default React.createClass({
         };
 
         api.endTurn(data, (err, game) => {
-            this.resetState({ game: game });
+            this.resetGameState({ game: game });
         });
     },
     onCardClick: function (card) {
@@ -144,7 +144,7 @@ export default React.createClass({
                 gameId: this.state.game.id,
                 cardId: card.id
             }, (err, game) => {
-                this.resetState({ game: game });
+                this.resetGameState({ game: game });
             });
         }
     },
@@ -177,7 +177,7 @@ export default React.createClass({
                     cardId: selectedCard.id,
                     targetId: hero.id
                 }, (err, game) => {
-                    this.resetState({ game: game });
+                    this.resetGameState({ game: game });
                 });
             } else {
                 this.playMinionCard({
@@ -218,7 +218,7 @@ export default React.createClass({
                     cardId: this.state.selectedCard.id,
                     targetId: minion.id
                 }, (err, game) => {
-                    this.resetState({ game: game });
+                    this.resetGameState({ game: game });
                 });
             } else {
                 console.error("Invalid state");
@@ -244,5 +244,60 @@ export default React.createClass({
         }
 
         this.setState(newState);
+    },
+    resetGameState: function (game) {
+        var that = this;
+
+        var intermediateStates = game.game.intermediateStates;
+
+        var setStateWithDelay = function (index) {
+
+            var s;
+            if (intermediateStates[index]) {
+                s = {game: intermediateStates[index].state};
+            } else {
+                s = game;
+            }
+
+            var newState = {
+                selectedMinion: null,
+                selectedCard: null,
+                selectedPosition: null
+            };
+
+            for (var prop in s) {
+                if (s.hasOwnProperty(prop)) {
+                    newState[prop] = s[prop];
+                }
+            }
+
+            that.setState(newState, function () {
+                if (s !== game) {
+                    setTimeout(function () {
+                        index = index + 1;
+                        setStateWithDelay(index);
+                    }, 1000);
+                } else {
+                    console.log(s);
+                }
+            });
+        }
+
+        setStateWithDelay(0)
+/*
+        var newState = {
+            selectedMinion: null,
+            selectedCard: null,
+            selectedPosition: null
+        };
+
+        for (var prop in state) {
+            if (state.hasOwnProperty(prop)) {
+                newState[prop] = state[prop];
+            }
+        }
+
+        this.setState(newState);
+    */
     }
 });

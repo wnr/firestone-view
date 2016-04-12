@@ -40,7 +40,7 @@ export default React.createClass({
 
         const card = this.props.card;
 
-        var classType = "neutral";
+        var classType = "neutral fade-in";
 
         if (card.class) {
             classType = card.class;

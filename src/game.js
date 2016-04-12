@@ -254,6 +254,7 @@ export default React.createClass({
 
             var s;
             if (intermediateStates[index]) {
+                that.props.audioHandler.playMinionTrigger(intermediateStates[index].entityName);
                 s = {game: intermediateStates[index].state};
             } else {
                 s = game;
@@ -279,23 +280,8 @@ export default React.createClass({
                     }, 1000);
                 }
             });
-        }
-
-        setStateWithDelay(0)
-/*
-        var newState = {
-            selectedMinion: null,
-            selectedCard: null,
-            selectedPosition: null
         };
 
-        for (var prop in state) {
-            if (state.hasOwnProperty(prop)) {
-                newState[prop] = state[prop];
-            }
-        }
-
-        this.setState(newState);
-    */
+        setStateWithDelay(0);
     }
 });

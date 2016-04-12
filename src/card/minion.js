@@ -40,13 +40,13 @@ export default React.createClass({
 
         const card = this.props.card;
 
-        var classType = "neutral fade-in";
+        var classType = "neutral";
 
         if (card.class) {
             classType = card.class;
         }
 
-        var className = "card minion ";
+        var className = "card minion fade-in";
 
         if (card.playable) {
             className += " playable";

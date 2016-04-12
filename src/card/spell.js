@@ -47,7 +47,7 @@ export default React.createClass({
             classType = "mage";
         }
 
-        var className = "card minion ";
+        var className = "card minion fade-in";
 
         if (card.playable) {
             className += " playable";

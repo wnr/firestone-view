@@ -8,6 +8,11 @@
     src: url("../asset/font/ITC-Franklin-Gothic-LT-Medium-Condensed.ttf");
 }
 
+@keyframes fadeIn {
+    from   {opacity: 0;}
+    to     {opacity: 1;}
+}
+
 body {
     margin: 0;
 
@@ -19,6 +24,10 @@ body {
 
 .container {
     width: 100%;
+}
+
+.fade-in {
+    animation: fadeIn 2s;
 }
 
 .test {
@@ -49,7 +58,7 @@ body {
             justify-content: center;
 
 
-            .left-container, .right-container, {
+            .left-container, .right-container {
                 display: inline-block;
                 width: 100px;
             }

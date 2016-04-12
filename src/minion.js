@@ -13,7 +13,7 @@ export default React.createClass({
         this.loadCanvas(nextProps.minion);
     },
     render: function () {
-        return <div ref="canvasContainer"></div>;
+        return <div className="fade-in" ref="canvasContainer"></div>;
     },
     loadCanvas: function (minion) {
         this.props.imageProvider.getMinionInPlay(minion, (canvas) => {

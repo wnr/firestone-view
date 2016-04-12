@@ -277,8 +277,6 @@ export default React.createClass({
                         index = index + 1;
                         setStateWithDelay(index);
                     }, 1000);
-                } else {
-                    console.log(s);
                 }
             });
         }

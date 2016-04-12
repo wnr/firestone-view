@@ -32,6 +32,8 @@ function createDir(path) {
 function getHearthcardsPortraitImageUrl(minion) {
     var cardArtObj = cardArts[minion];
 
+    if (minion === 'Dr. Boom') { cardArtObj = {art: 'hs3-068_d'}; } // Why doesn't it work?
+
     if (!cardArtObj || !cardArtObj.art) {
         return null;
     }

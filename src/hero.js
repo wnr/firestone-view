@@ -63,6 +63,7 @@ export default React.createClass({
                     </div>
                 </div>
                 <div className="right-container">
+                    <HeroPower heropower={props.hero.heropower}/>
                 </div>
             </div>
         );
@@ -174,6 +175,59 @@ function Armor(props) {
     return (
         <div style={style}>
             <div style={textStyle}>{props.armor}</div>
+        </div>
+    );
+}
+
+function HeroPower(props) {
+    const style = {
+        textAlign: "left",
+        position: "relative",
+        width: "90px",
+        height: "90px"
+    };
+
+    const portraitStyle = {
+        position: "absolute",
+        height: "55%",
+        top: "27%",
+        left: "23%",
+        verticalAlign: "middle",
+    };
+
+    const frameStyle = {
+        height: "100%",
+        position: "absolute",
+        verticalAlign: "middle"
+    };
+
+    const manaCost = props.heropower.manaCost;
+    const originalManaCost = props.heropower.originalManaCost;
+
+    var color = "white";
+    if (manaCost > originalManaCost) {
+        color = "red";
+    } else if (manaCost < originalManaCost) {
+        color = "lightgreen";
+    }
+
+    const textStyle = {
+        position: "relative",
+        display: "block",
+        top: "3px",
+        textAlign: "center",
+        color: color,
+        fontSize: "20px",
+        fontFamily: "Belwe",
+        lineHeight: "0.95em",
+        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+    };
+
+    return (
+        <div style={style}>
+            <img style={portraitStyle} draggable="false" src="asset/image/heropower/Fireblast.png" />
+            <img style={frameStyle} draggable="false" src="asset/image/heropower-frame.png" />
+            <div style={textStyle}>{props.heropower.manaCost}</div>
         </div>
     );
 }

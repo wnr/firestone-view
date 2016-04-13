@@ -21,6 +21,10 @@ export function playCard(data, callback) {
     ajax("playCard", data, callback);
 }
 
+export function useHeroPower(data, callback) {
+    ajax("useHeroPower", data, callback);
+}
+
 function ajax(action, data, callback) {
     const httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function(){

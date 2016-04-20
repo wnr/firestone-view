@@ -164,7 +164,7 @@ body {
         }
     }
 
-    .end-turn-container {
+    .buttons-container {
         position: absolute;
         right: 0;
         height: 100%;
@@ -174,7 +174,7 @@ body {
         justify-content: center;
         pointer-events: none;
 
-        .end-turn {
+        .button {
             font-size: 20px;
             margin-right: 100px;
             pointer-events: auto;

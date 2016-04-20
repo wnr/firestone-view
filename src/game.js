@@ -258,6 +258,9 @@ export default React.createClass({
             }
         } else {
             newState = history[history.length - 1 - historyBackSteps];
+            newState.selectedMinion =  null;
+            newState.selectedCard = null;
+            newState.selectedPosition = null;
         }
 
         this.setState(newState);

@@ -20,8 +20,13 @@ export default React.createClass({
         var heroClassName = "face";
 
         if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(props.hero.id) !== -1) {
+            // Minion is selected for attack and the hero is a valid target.
             heroClassName += " valid-target";
         } else if (props.selectedCard && props.selectedCard.isTargeting && props.selectedCard.validTargetIds.indexOf(props.hero.id) !== -1) {
+            // Card is selected to be played, which is targeting, and the hero is a valid target.
+            heroClassName += " valid-target";
+        } else if (props.selectedHeroPower && props.selectedHeroPower.isTargeting && props.selectedHeroPower.validTargetIds.indexOf(props.hero.id) !== -1) {
+            // Hero power is selected, which is targeting, and the hero is a valid target.
             heroClassName += " valid-target";
         }
 
@@ -62,8 +67,8 @@ export default React.createClass({
                         <Armor armor={props.hero.armor} />
                     </div>
                 </div>
-                <div className="right-container">
-                    <HeroPower heropower={props.hero.heropower}/>
+                <div className="right-container" onClick={() => props.onHeroPowerClick(props.hero.heropower)}>
+                    <HeroPower heropower={props.hero.heropower} selectedHeroPower={props.selectedHeroPower} />
                 </div>
             </div>
         );
@@ -180,11 +185,24 @@ function Armor(props) {
 }
 
 function HeroPower(props) {
+    var border = "";
+
+    if (props.heropower.canUse) {
+        border = "2px solid green";
+    }
+
+    var backgroundColor;
+    if (props.heropower === props.selectedHeroPower) {
+        backgroundColor = "rgba(0, 255, 0, 0.3)";
+    }
+
     const style = {
         textAlign: "left",
         position: "relative",
         width: "90px",
-        height: "90px"
+        height: "90px",
+        border: border,
+        backgroundColor: backgroundColor
     };
 
     const portraitStyle = {

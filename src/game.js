@@ -15,6 +15,7 @@ export default React.createClass({
             selectedMinion: null,
             selectedCard: null,
             selectedPosition: null,
+            selectedHeroPower: null,
             bottomPlayerInTurn: true
         };
     },
@@ -63,7 +64,9 @@ export default React.createClass({
                               hero={opponentPlayer.hero}
                               selectedMinion={this.state.selectedMinion}
                               onHeroClick={this.onHeroClick}
+                              onHeroPowerClick={this.onHeroPowerClick}
                               selectedCard={this.state.selectedCard}
+                              selectedHeroPower={this.state.selectedHeroPower}
                         />
                     </div>
                     <Battlefield
@@ -78,15 +81,19 @@ export default React.createClass({
                         selectedMinion={this.state.selectedMinion}
                         selectedCard={this.state.selectedCard}
                         selectedPosition={this.state.selectedPosition}
+                        selectedHeroPower={this.state.selectedHeroPower}
                     />
                     <div className="side friendly">
                         <Hero imageProvider={imageProvider}
                               hero={friendlyPlayer.hero}
                               selectedMinion={this.state.selectedMinion}
                               onHeroClick={this.onHeroClick}
+                              onHeroPowerClick={this.onHeroPowerClick}
                               selectedCard={this.state.selectedCard}
+                              selectedHeroPower={this.state.selectedHeroPower}
                         />
-                        <Hand imageProvider={imageProvider} cards={friendlyPlayer.hand}
+                        <Hand imageProvider={imageProvider}
+                              cards={friendlyPlayer.hand}
                               onCardClick={this.onCardClick}
                               selectedCard={this.state.selectedCard}
                         />
@@ -125,7 +132,6 @@ export default React.createClass({
     },
     onCardClick: function (card) {
         if (!card.playable) {
-            console.log("Card not playable");
             return;
         }
 
@@ -166,10 +172,10 @@ export default React.createClass({
         const selectedCard = this.state.selectedCard;
         if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
             this.minionAttack({
-                        gameId: this.state.game.id,
-                        attackerId: selectedMinion.id,
-                        targetId: hero.id
-                    });
+                gameId: this.state.game.id,
+                attackerId: selectedMinion.id,
+                targetId: hero.id
+            });
         } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(hero.id) !== -1) {
             if (selectedCard.type === "SPELL") {
                 api.playCard({
@@ -187,6 +193,14 @@ export default React.createClass({
                     targetId: hero.id
                 });
             }
+        } else if (this.state.selectedHeroPower) {
+            api.useHeroPower({
+                playerId: this.state.game.playerInTurn,
+                gameId: this.state.game.id,
+                targetId: hero.id
+            }, (err, game) => {
+                this.resetGameState({ game: game });
+            });
         }
     },
     onMinionClick: function (minion) {
@@ -223,6 +237,8 @@ export default React.createClass({
             } else {
                 console.error("Invalid state");
             }
+        } else if (this.state.selectedHeroPower) {
+            // Using hero power on minion.
         } else if (minion.canAttack) {
             // Minions is selected for attacking
             this.resetState({
@@ -230,11 +246,34 @@ export default React.createClass({
             });
         }
     },
+    onHeroPowerClick: function (heropower) {
+        if (!heropower.canUse) {
+            return;
+        }
+
+        if (heropower.isTargeting) {
+            if (this.state.selectedHeroPower) {
+                // The hero power has been canceled.
+                this.resetState();
+            } else {
+                this.resetState({
+                    selectedHeroPower: heropower
+                });
+            }
+        } else {
+            api.useHeroPower({
+                gameId: this.state.game.id
+            }, (err, game) => {
+                this.resetGameState({ game: game });
+            });
+        }
+    },
     resetState: function (state) {
         var newState = {
             selectedMinion: null,
             selectedCard: null,
-            selectedPosition: null
+            selectedPosition: null,
+            selectedHeroPower: null
         };
 
         for (var prop in state) {
@@ -263,7 +302,8 @@ export default React.createClass({
             var newState = {
                 selectedMinion: null,
                 selectedCard: null,
-                selectedPosition: null
+                selectedPosition: null,
+                selectedHeroPower: null
             };
 
             for (var prop in s) {

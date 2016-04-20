@@ -22,16 +22,6 @@ function mix(coll1, coll2) {
 }
 
 export default function Battlefield(props) {
-    var validTargetIds = [];
-
-    if (props.selectedCard) {
-        if (props.selectedCard.type === "SPELL" || props.selectedPosition !== null) {
-            validTargetIds = props.selectedCard.validTargetIds;
-        }
-    } else if (props.selectedMinion) {
-        validTargetIds = props.selectedMinion.validTargetIds;
-    }
-
     var className = "battlefield";
     if (props.selectedCard && !props.selectedCard.isTargeting && (props.selectedCard.type === "SPELL")) {
         className = className + " targeting";
@@ -48,7 +38,7 @@ export default function Battlefield(props) {
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
                 selectedCard={props.selectedCard}
-                validTargetIds={validTargetIds}
+                selectedHeroPower={props.selectedHeroPower}
             />
             <Side
                 imageProvider={props.imageProvider}
@@ -59,7 +49,7 @@ export default function Battlefield(props) {
                 selectedMinion={props.selectedMinion}
                 selectedPosition={props.selectedPosition}
                 selectedCard={props.selectedCard}
-                validTargetIds={validTargetIds}
+                selectedHeroPower={props.selectedHeroPower}
             />
         </div>
     );
@@ -75,13 +65,13 @@ function Side(props) {
 
         if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(minion.id) !== -1) {
             className += " valid-target";
-        }
-
-        if (props.selectedCard && props.selectedCard.validTargetIds.indexOf(minion.id) !== -1) {
+        } else if (props.selectedCard && props.selectedCard.validTargetIds.indexOf(minion.id) !== -1) {
             if ((props.selectedCard.type === "MINION" && props.selectedPosition)
                 || (props.selectedCard.type === "SPELL")) {
                 className += " valid-target";
             }
+        } else if (props.selectedHeroPower && props.selectedHeroPower.validTargetIds.indexOf(minion.id) !== -1) {
+            className += " valid-target";
         }
 
         if (props.selectedMinion && props.selectedMinion.id === minion.id) {

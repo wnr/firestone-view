@@ -238,7 +238,13 @@ export default React.createClass({
                 console.error("Invalid state");
             }
         } else if (this.state.selectedHeroPower) {
-            // Using hero power on minion.
+            api.useHeroPower({
+                playerId: this.state.game.playerInTurn,
+                gameId: this.state.game.id,
+                targetId: minion.id
+            }, (err, game) => {
+                this.resetGameState({ game: game });
+            });
         } else if (minion.canAttack) {
             // Minions is selected for attacking
             this.resetState({

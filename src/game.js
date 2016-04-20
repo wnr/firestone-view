@@ -7,6 +7,9 @@ import Battlefield from "./battlefield";
 import * as api from "./game-api";
 import { getPlayerById } from "./game-state-utils";
 
+var history = [];
+var historyBackSteps = 0;
+
 export default React.createClass({
     getInitialState: function () {
         return {
@@ -30,7 +33,7 @@ export default React.createClass({
                 return;
             }
 
-            thisComponent.setState({
+            thisComponent.resetGameState({
                 game: game
             });
         });
@@ -98,8 +101,12 @@ export default React.createClass({
                               selectedCard={this.state.selectedCard}
                         />
                     </div>
-                    <div className="end-turn-container">
-                        <button className="end-turn" onClick={this.endTurn}>End turn</button>
+                    <div className="buttons-container">
+                        <button className="button" onClick={this.endTurn}>End turn</button>
+                        <br />
+                        <button className="button" onClick={this.undoInHistory}>Undo</button>
+                        <br />
+                        <button className="button" onClick={this.doInHistory}>Do</button>
                     </div>
                 </div>
             </div>
@@ -129,6 +136,14 @@ export default React.createClass({
         api.endTurn(data, (err, game) => {
             this.resetGameState({ game: game });
         });
+    },
+    undoInHistory: function () {
+        historyBackSteps = Math.min(historyBackSteps + 1, history.length - 1);
+        this.resetState();
+    },
+    doInHistory: function () {
+        historyBackSteps = Math.max(historyBackSteps - 1, 0);
+        this.resetState();
     },
     onCardClick: function (card) {
         if (!card.playable) {
@@ -275,17 +290,24 @@ export default React.createClass({
         }
     },
     resetState: function (state) {
-        var newState = {
-            selectedMinion: null,
-            selectedCard: null,
-            selectedPosition: null,
-            selectedHeroPower: null
-        };
+        var newState;
+        if (historyBackSteps === 0) {
+            newState = history[history.length - 1 - historyBackSteps];
+            newState.selectedMinion =  null;
+            newState.selectedCard = null;
+            newState.selectedPosition = null;
+            newState.selectedHeroPower = null;
 
-        for (var prop in state) {
-            if (state.hasOwnProperty(prop)) {
-                newState[prop] = state[prop];
+            for (var prop in state) {
+                if (state.hasOwnProperty(prop)) {
+                    newState[prop] = state[prop];
+                }
             }
+        } else {
+            newState = history[history.length - 1 - historyBackSteps];
+            newState.selectedMinion =  null;
+            newState.selectedCard = null;
+            newState.selectedPosition = null;
         }
 
         this.setState(newState);
@@ -317,6 +339,8 @@ export default React.createClass({
                     newState[prop] = s[prop];
                 }
             }
+
+            history.push(newState);
 
             that.setState(newState, function () {
                 if (s !== game) {

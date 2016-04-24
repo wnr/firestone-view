@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import classNames from "classnames";
 
 import { updateElement } from "../dom-utils";
 
 export default React.createClass({
     componentDidMount: function () {
-        this.draw(this.props.card);
+        // this.draw(this.props.card);
     },
     render: function () {
         const cardWrapperStyle = {
@@ -60,23 +61,63 @@ export default React.createClass({
             className += " focused";
         }
 
+        const manaClassName = classNames({
+            "card-minion__overlay__mana": true,
+            "stats-text":           card.manaCost === card.originalManaCost,
+            "stats-text--enhanced": card.manaCost < card.originalManaCost,
+            "stats-text--worsened": card.manaCost > card.originalManaCost
+        });
+
+        const attackClassName = classNames({
+            "card-minion__overlay__attack": true,
+            "stats-text":           card.attack === card.originalAttack,
+            "stats-text--enhanced": card.attack > card.originalAttack,
+            "stats-text--worsened": card.attack < card.originalAttack
+        });
+
+        const healthClassName = classNames({
+            "card-minion__overlay__health": true,
+            "stats-text":           card.health === card.originalHealth,
+            "stats-text--enhanced": card.health > card.originalHealth,
+            "stats-text--worsened": card.health < card.originalHealth
+        });
+
         return (
-            <div className={className} style={cardWrapperStyle}>
-                <div style={cardStyle}>
-                    <Outline card={card} selectedCard={this.props.selectedCard} />
-                    <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
-                    <img src={"/asset/image/card/minion frame " + classType} style={frameStyle} />
-                    <div style={overlayStyle}>
-                        <Mana value={card.manaCost} originalValue={card.originalManaCost}/>
-                        <Attack value={card.attack} />
-                        <Health value={card.health} />
-                        <Gem rarity={card.rarity} />
-                        <Dragon rarity={card.rarity} />
-                        <Swirl />
-                        <Race race={card.race} />
-                        <Name name={card.name} />
-                        <Description description={card.description} />
-                    </div>
+            <div className="card-minion">
+                {/*<Outline card={card} selectedCard={this.props.selectedCard} />*/}
+                <img className="card-minion__portrait" src={"/asset/image/card/minion/" + card.name} />
+                <img className="card-minion__frame" src={"/asset/image/card/minion frame " + classType} />
+                <div className="card-minion__overlay">
+                    <svg className={manaClassName} viewBox="0 0 100 100">
+                        <text x="50" y="50">{card.manaCost}</text>
+                    </svg>
+                    <Name name={card.name} />
+                    <Gem rarity={card.rarity} />
+                    <Swirl />
+                    <svg className="card-minion__overlay__description" viewBox="0 0 1000 500">
+                        <foreignObject width="1000" height="500" requiredExtensions="http://www.w3.org/1999/xhtml">
+                            <body xmlns="http://www.w3.org/1999/xhtml">
+                                <div className="card-minion__overlay__description__text">{card.description}</div>
+                            </body>
+                        </foreignObject>
+                    </svg>
+                    <svg className={attackClassName} viewBox="0 0 100 100">
+                        <text x="50" y="50">{card.attack}</text>
+                    </svg>
+                    <svg className={healthClassName} viewBox="0 0 100 100">
+                        <text x="50" y="50">{card.health}</text>
+                    </svg>
+
+                    {/*<div className={manaClassName}>{card.manaCost}</div>
+                    <div className={attackClassName}>{card.attack}</div>
+                    <div className={healthClassName}>{card.health}</div>
+                    <img className="card-minion__overlay__gem-bracket"  />
+                    <Attack value={card.attack} />
+                    <Health value={card.health} />
+                    <Dragon rarity={card.rarity} />
+                    <Race race={card.race} />
+
+                    */}
                 </div>
             </div>
         );
@@ -177,7 +218,7 @@ function Mana(props) {
     } else if (props.value > props.originalValue) {
         return <div style={getStatsBaseStyle("-4px", "-5px", "red")}>{props.value}</div>;
     } else{
-        return <div style={getStatsBaseStyle("-4px", "-5px")}>{props.value}</div>;
+        return ;
     }
 }
 
@@ -193,27 +234,11 @@ function Gem(props) {
     if (!props.rarity) {
         return (<div></div>);
     }
-    const bracketsStyle = {
-        position: "absolute",
-        width: "61px",
-        height: "20px",
-        top: "240px",
-        left: "129px",
-        backgroundImage: "url(\"asset/image/card/minion gem brackets\")"
-    };
-
-    const gemStyle = {
-        position: "absolute",
-        width: "29px",
-        height: "34px",
-        top: "3px",
-        left: "11px",
-        backgroundImage: "url(\"asset/image/card/gem " + props.rarity + "\")"
-    };
 
     return (
-        <div style={bracketsStyle}>
-            <div style={gemStyle}></div>
+        <div className="card-minion__overlay__rarity">
+            <img className="card-minion__overlay__rarity__bracket" src="/asset/image/card/minion gem brackets" />
+            <img className="card-minion__overlay__rarity__gem" src="/asset/image/card/gem rare" />
         </div>
     );
 }
@@ -247,7 +272,7 @@ function Swirl(props) {
         backgroundImage: "url(\"asset/image/card/minion swirl blackrock\")"
     };
 
-    return <div style={style}></div>;
+    return <img className="card-minion__overlay__swirl" src="/asset/image/card/minion swirl blackrock" />;
 }
 
 function Race(props) {
@@ -291,24 +316,16 @@ var Name = React.createClass({
         this.adjustFontSize();
     },
     render: function () {
-        const style = {
-            position: "absolute",
-            top: "3px",
-            left: "-14px"
-        };
-
         const textPath = "<textPath xlink:href=\"#minionCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
 
         return (
-            <div style={style}>
-                <svg width="312" height="424" viewBox="0 0 400 543">
-                    <defs>
-                        <path id="minionCardNamePath" d="m 56.336299,307.51481 c 0,0 3.8284,6.45932 52.003431,0.99221 28.84576,-3.27354 57.87325,-12.4128 107.80271,-18.66988 36.69487,-4.59854 72.68333,-5.86349 97.95307,-1.16154 27.31819,5.0831 43.46829,12.47526 43.46829,12.47526"></path>
-                    </defs>
-                    <text ref="name" fontFamily="Belwe" fontSize="30" fill="white" stroke="black" strokeWidth="5" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
-                    <text ref="nameShadow" fontFamily="Belwe" fontSize="30" fill="white" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
-                </svg>
-            </div>
+            <svg className="card-minion__overlay__name" viewBox="0 0 400 543">
+                <defs>
+                    <path id="minionCardNamePath" d="m 56.336299,307.51481 c 0,0 3.8284,6.45932 52.003431,0.99221 28.84576,-3.27354 57.87325,-12.4128 107.80271,-18.66988 36.69487,-4.59854 72.68333,-5.86349 97.95307,-1.16154 27.31819,5.0831 43.46829,12.47526 43.46829,12.47526"></path>
+                </defs>
+                <text ref="name" fontFamily="Belwe" fontSize="30" fill="white" stroke="black" strokeWidth="5" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
+                <text ref="nameShadow" fontFamily="Belwe" fontSize="30" fill="white" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
+            </svg>
         );
     },
     adjustFontSize: function (cardtype, title) {
@@ -337,27 +354,10 @@ var Name = React.createClass({
 
 var Description = React.createClass({
     render: function () {
-        const style = {
-            position: "absolute",
-            display: "table",
-            top: "269px",
-            left: "38.5px",
-            width: "215px",
-            height: "100px",
-            textAlign: "center",
-            boxSizing: "border-box",
-            fontFamily: "franklinGothic",
-            fontSize: "20px",
-            lineHeight: "1"
-        };
-
-        const spanStyle = {
-            display: "table-cell",
-            verticalAlign: "middle"
-        };
-
         return (
-            <div style={style}><span style={spanStyle}>{this.props.description}</span></div>
+            <div className="card-minion__overlay__description-container">
+                <span className="card-minion__overlay__description-container__text">{this.props.description}</span>
+            </div>
         );
     }
 });

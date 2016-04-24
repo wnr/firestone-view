@@ -81,7 +81,8 @@ export default React.createClass({
 
             const img = new Image();
             img.onload = () => drawPortrait(img)
-            img.src = "/asset/image/hero/jaina.png";
+
+            img.src = "/asset/image/hero/" + props.hero.name + ".png";
 
             function drawPortrait() {
                 ctx.save();
@@ -241,9 +242,11 @@ function HeroPower(props) {
         textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
     };
 
+    var src = "asset/image/heropower/" + props.heropower.name + ".png"
+
     return (
         <div style={style}>
-            <img style={portraitStyle} draggable="false" src="asset/image/heropower/Fireblast.png" />
+            <img style={portraitStyle} draggable="false" src={src} />
             <img style={frameStyle} draggable="false" src="asset/image/heropower-frame.png" />
             <div style={textStyle}>{props.heropower.manaCost}</div>
         </div>

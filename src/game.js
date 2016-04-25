@@ -283,7 +283,8 @@ export default React.createClass({
             }
         } else {
             api.useHeroPower({
-                gameId: this.state.game.id
+                gameId: this.state.game.id,
+                playerId: this.state.game.playerInTurn
             }, (err, game) => {
                 this.resetGameState({ game: game });
             });

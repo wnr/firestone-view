@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const cardArts = require("./card-art.json");
-const soundData = require("./sound-data.json").concat(require("./sound-data-extra.json"));
+const soundData = require("./sound-data-2016-04.json").concat(require("./sound-data-extra.json"));
 
 const assetPath = "asset-cache/";
 const imagePath = assetPath + "image/";

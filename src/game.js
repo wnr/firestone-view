@@ -348,7 +348,7 @@ export default React.createClass({
                     setTimeout(function () {
                         index = index + 1;
                         setStateWithDelay(index);
-                    }, 1000);
+                    }, 500);
                 }
             });
         };

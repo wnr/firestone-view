@@ -147,3 +147,31 @@
 		}
 	}
 }
+
+@mixin overlay($color, $spread) {
+	content: "";
+	position: absolute;
+	width: 81%;
+	height: 85%;
+	left: 11%;
+	top: 9%;
+	box-shadow: 0 0 $spread 8px $color;
+	background-color: $color;
+	z-index: -1;
+}
+
+.card-minion.playable::before {
+	@include overlay(#00aa00, 12px);
+}
+
+.card-minion.playable.focused::before {
+	@include overlay(#00c800, 24px);
+}
+
+.card-minion.combo::before {
+	@include overlay(orange, 12px);
+}
+
+.card-minion.combo.focused::before {
+	@include overlay(orange, 24px);
+}

@@ -201,9 +201,7 @@ function Description(props) {
     return (
         <svg className="card-minion__overlay__description" viewBox="0 0 200 100">
             <foreignObject width="100%" height="100%">
-                <body>
-                    <div className="card-minion__overlay__description__text"><div>{props.description}</div></div>
-                </body>
+                <div className="card-minion__overlay__description__text"><div>{props.description}</div></div>
             </foreignObject>
         </svg>
     );

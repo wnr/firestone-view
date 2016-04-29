@@ -36,7 +36,7 @@ export default React.createClass({
                     <Description description={card.description} />
                     <Attack card={card} />
                     <Health card={card} />
-                    {/*<Race race={card.race} />*/}
+                    <Race card={card} />
                 </div>
             </div>
         );
@@ -129,6 +129,16 @@ function Health(props) {
     );
 }
 
+function Dragon(props) {
+    if (props.rarity !== "legendary") {
+        return <div></div>;
+    }
+
+    return (
+        <img className="card-minion__overlay__dragon" src="/asset/image/card/minion frame dragon bracket" />
+    );
+}
+
 function Gem(props) {
     if (!props.rarity) {
         return (<div></div>);
@@ -142,54 +152,8 @@ function Gem(props) {
     );
 }
 
-function Dragon(props) {
-    if (props.rarity !== "legendary") {
-        return <div></div>;
-    }
-
-    return (
-        <img className="card-minion__overlay__dragon" src="/asset/image/card/minion frame dragon bracket" />
-    );
-}
-
 function Swirl(props) {
     return <img className="card-minion__overlay__swirl" src="/asset/image/card/minion swirl blackrock" />;
-}
-
-function Race(props) {
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    const frameStyle = {
-        position: "absolute",
-        width: "156px",
-        height: "36px",
-        left: "73px",
-        top: "363px",
-        backgroundImage: "url(\"asset/image/card/minion race\")"
-    };
-
-    const textStyle = {
-        position: "absolute",
-        width: "156px",
-        textAlign: "center",
-        top: "7px",
-        color: "white",
-        fontSize: "20px",
-        fontFamily: "Belwe",
-        textShadow: "1.5px 1.5px 0 #000, -1.5px -1px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000"
-    };
-
-    if (!props.race) {
-        return <div></div>;
-    }
-
-    return (
-        <div style={frameStyle}>
-            <div style={textStyle}>{capitalizeFirstLetter(props.race)}</div>
-        </div>
-    );
 }
 
 var Name = React.createClass({
@@ -233,16 +197,35 @@ var Name = React.createClass({
     }
 });
 
-var Description = React.createClass({
-    render: function () {
-        return (
-            <svg className="card-minion__overlay__description" viewBox="0 0 200 100">
-                <foreignObject width="100%" height="100%">
-                    <body>
-                        <div className="card-minion__overlay__description__text"><div>{this.props.description}</div></div>
-                    </body>
-                </foreignObject>
-            </svg>
-        );
+function Description(props) {
+    return (
+        <svg className="card-minion__overlay__description" viewBox="0 0 200 100">
+            <foreignObject width="100%" height="100%">
+                <body>
+                    <div className="card-minion__overlay__description__text"><div>{props.description}</div></div>
+                </body>
+            </foreignObject>
+        </svg>
+    );
+}
+
+function Race(props) {
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
-});
+
+    const race = props.card.race;
+
+    if (!race) {
+        return <div></div>;
+    }
+
+    return (
+        <div className="card-minion__overlay__race">
+            <img src="/asset/image/card/minion race" />
+            <svg viewBox="0 0 100 100">
+                <text x="50" y="50">{capitalizeFirstLetter(race)}</text>
+            </svg>
+        </div>
+    );
+}

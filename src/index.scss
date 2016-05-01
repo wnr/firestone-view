@@ -17,6 +17,7 @@
 
 body {
     margin: 0;
+    padding: 0;
 
     ul {
         margin: 0;
@@ -153,29 +154,6 @@ svg.stats-text {
                 &.focused {
                     background-color: rgba(0, 255, 0, 0.3);
                 }
-
-                // .attack, .health {
-                //     display: inline;
-                //     font-family: belwe;
-                //     position: absolute;
-                //     font-size: 32px;
-                //     bottom: 29px;
-                //     color: white;
-                //     font-weight: bold;
-                //     text-shadow:
-                //     -1px -1px 0 #000,
-                //      1px -1px 0 #000,
-                //     -1px 1px 0 #000,
-                //      1px 1px 0 #000;
-                // }
-
-                // .attack {
-                //     left: 47px;
-                // }
-
-                // .health {
-                //     right: 45px;
-                // }
             }
         }
     }

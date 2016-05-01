@@ -56,7 +56,7 @@ export default React.createClass({
 
         return (
             <div className="container">
-                <div className="game" style={{paddingTop: "16px"}}>
+                <div className="game">
                     <div className="side opponent">
                         <Hand imageProvider={imageProvider}
                               cards={opponentPlayer.hand}

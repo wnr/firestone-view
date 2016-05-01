@@ -5,9 +5,6 @@ import classNames from "classnames";
 import { updateElement } from "../dom-utils";
 
 export default React.createClass({
-    componentDidMount: function () {
-        // this.draw(this.props.card);
-    },
     render: function () {
         const card = this.props.card;
 
@@ -16,7 +13,7 @@ export default React.createClass({
 
         const cardClassName = classNames({
             "card-minion": true,
-            // "fade-in": true,
+            "fade-in": true,
             "playable": card.playable,
             "combo": card.combo,
             "focused": focused
@@ -24,7 +21,6 @@ export default React.createClass({
 
         return (
             <div className={cardClassName}>
-                {/*<Outline card={card} selectedCard={this.props.selectedCard} />*/}
                 <img className="card-minion__portrait" src={"/asset/image/card/minion/" + card.name} />
                 <img className="card-minion__frame" src={"/asset/image/card/minion frame " + classType} />
                 <div className="card-minion__overlay">

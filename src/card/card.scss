@@ -1,3 +1,37 @@
+@mixin glow($color, $spread) {
+	content: "";
+	position: absolute;
+	width: 81%;
+	height: 85%;
+	left: 11%;
+	top: 9%;
+	box-shadow: 0 0 $spread 8px $color;
+	background-color: $color;
+	z-index: -1;
+}
+
+.card-spell, .card-minion {
+	&.playable {
+		&::before {
+			@include glow(#00aa00, 12px);
+		}
+
+		&.focused::before {
+			@include glow(#00c800, 24px);
+		}
+
+		&.combo {
+			&::before {
+				@include glow(orange, 12px);
+			}
+
+			.combo.focused::before {
+				@include glow(orange, 24px);
+			}
+		}
+	}
+}
+
 @mixin stat-overlay-item() {
 	position: absolute;
 	width: 42%;
@@ -11,6 +45,10 @@
 		font-family: Belwe;
 	}
 }
+
+/**
+ * Minion Card
+ */
 
 .card-minion {
 	position: relative;
@@ -80,7 +118,6 @@
 
 		&__swirl {
 			position: absolute;
-			width: 34.25%;
 			height: 19.89%;
 			bottom: 10.5%;
 			left: 36.5%;
@@ -148,30 +185,93 @@
 	}
 }
 
-@mixin overlay($color, $spread) {
-	content: "";
-	position: absolute;
-	width: 81%;
-	height: 85%;
-	left: 11%;
-	top: 9%;
-	box-shadow: 0 0 $spread 8px $color;
-	background-color: $color;
-	z-index: -1;
-}
+/**
+ * Spell Card
+ */
 
-.card-minion.playable::before {
-	@include overlay(#00aa00, 12px);
-}
+.card-spell {
+	position: relative;
+	height: 100%;
 
-.card-minion.playable.focused::before {
-	@include overlay(#00c800, 24px);
-}
+	&__portrait {
+		position: absolute;
+	    height: 53%;
+	    left: 15.39%;
+	    top: 4.33%;
+	    -webkit-clip-path: ellipse(75.87% 40.12% at 50.49% 50.49%);
+	    clip-path: ellipse(75.87% 40.12% at 50.49% 50.49%);
+		z-index: -1; // Can this be removed somehow?
+	}
 
-.card-minion.combo::before {
-	@include overlay(orange, 12px);
-}
+	&__frame {
+		position: relative;
+		left: 0px;
+		height: 100%;
+	}
 
-.card-minion.combo.focused::before {
-	@include overlay(orange, 24px);
+	&__overlay {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0px;
+		top: 0px;
+
+		@at-root svg#{& + __mana} {
+			@include stat-overlay-item();
+			top: 1%;
+			left: -6%;
+		}
+
+		@at-root svg#{& + __name} {
+			position: absolute;
+			width: 100%;
+			left: 0;
+		}
+
+		&__rarity {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+
+			&__bracket {
+				position: absolute;
+			    height: 8%;
+			    top: 54.7%;
+			    left: 41.1%;
+			}
+
+			&__gem {
+				position: absolute;
+			    width: 9%;
+			    top: 57%;
+			    left: 47.3%;
+			}
+		}
+
+		&__swirl {
+			position: absolute;
+			width: 45%;
+		    bottom: 10%;
+		    left: 29.5%;
+		}
+
+		&__description {
+			position: absolute;
+			width: 67%;
+		    bottom: 11%;
+		    left: 18%;
+			font-family: "franklinGothic";
+			font-size: 20px;
+
+			&__text {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				height: 92px;
+				width: 90%;
+				margin-left: 4%;
+			}
+		}
+	}
 }

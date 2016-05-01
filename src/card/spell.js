@@ -1,214 +1,71 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import classNames from "classnames";
 
 import { updateElement } from "../dom-utils";
 
 export default React.createClass({
-    componentDidMount: function () {
-        this.draw(this.props.card);
-    },
     render: function () {
-        const cardWrapperStyle = {
-            height: "210px",
-            width: "156px"
-        };
-
-        const cardStyle = {
-            position: "relative",
-            width: "312px",
-            height: "420px",
-            transform: "scale(0.5)",
-            transformOrigin: "top left"
-        };
-
-        const canvasStyle = {
-            position: "absolute",
-            left: "0px"
-        };
-
-        const frameStyle = {
-            position: "absolute",
-            width: "312px",
-            left: "0px"
-        };
-
-        const overlayStyle = {
-            position: "absolute",
-            left: "15px",
-            top: "-3px"
-        };
-
         const card = this.props.card;
 
-        var classType = card.class;
+        const classType = card.class || "neutral";
+        const focused = this.props.selectedCard && this.props.selectedCard.id === card.id;
 
-        if (!classType) {
-            console.warn("Unknown class type for card ", card.name);
-            classType = "mage";
-        }
-
-        var className = "card minion fade-in";
-
-        if (card.playable) {
-            className += " playable";
-        }
-
-        if (this.props.selectedCard && this.props.selectedCard.id === card.id) {
-            className += " focused"
-        }
+        const cardClassName = classNames({
+            "card-spell": true,
+            "fade-in": true,
+            "playable": card.playable,
+            "combo": card.combo,
+            "focused": focused
+        });
 
         return (
-            <div className={className} style={cardWrapperStyle}>
-                <div style={cardStyle}>
-                    <Outline card={this.props.card} selectedCard={this.props.selectedCard} />
-                    <canvas ref="portraitCanvas" style={canvasStyle} width="290" height="300"></canvas>
-                    <img src={"asset/image/card/spell frame " + classType} style={frameStyle} />
-                    <div style={overlayStyle}>
-                        <Mana value={card.manaCost} originalValue={card.originalManaCost} />
-                        <Gem rarity={card.rarity} />
-                        <Swirl />
-                        <Name name={card.name} />
-                        <Description description={card.description} />
-                    </div>
+            <div className={cardClassName}>
+                <img className="card-spell__portrait" src={"/asset/image/card/spell/" + card.name} />
+                <img className="card-spell__frame" src={"asset/image/card/spell frame " + classType} />
+                <div className="card-spell__overlay">
+                    <Mana card={card} />
+                    <Name name={card.name} />
+                    <Gem rarity={card.rarity} />
+                    <Swirl />
+                    <Description description={card.description} />
                 </div>
             </div>
         );
-    },
-    draw: function (card) {
-        const canvas = this.refs.portraitCanvas;
-        const ctx = canvas.getContext("2d");
-
-        const img = new Image();
-        img.onload = () => drawMinion(img)
-        img.src = "/asset/image/card/spell/" + card.name;
-
-        function drawMinion(img) {
-            ctx.save();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.beginPath();
-            ctx.rect(30, 32, 250, 200);
-            ctx.closePath();
-
-            ctx.clip();
-
-            const zoom = 43;
-            const imageWidth = img.width * zoom / 100;
-            const imageHeight = img.height * zoom / 100;
-
-            const imageX = 47;
-            const imageY = 23;
-
-            // draw the image
-            ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
-        }
     }
 });
 
-function Outline(props) {
-    var blur = 0;
-    var spread = 0;
-    var color = "rgb(0,0,0)";
-
-    if (props.card.playable) {
-        if (props.selectedCard && props.selectedCard.id === props.card.id) {
-            blur = "20px";
-            spread = "16px";
-            if (props.card.combo) {
-                color = "yellow"
-            } else {
-                color = "rgb(0,255,0)";
-            }
-        } else {
-            blur = "20px";
-            spread = "10px";
-            if (props.card.combo) {
-                color = "yellow"
-            } else {
-                color = "rgb(0,255,0)";
-            }
-        }
-    }
-
-    const outlineStyle = {
-        width: "85%",
-        height: "88%",
-        position: "absolute",
-        left: "9%",
-        top: "8%",
-        boxShadow: `0 0 ${blur} ${spread} ${color}`,
-        backgroundColor: color
-    };
-
-    return <div style={outlineStyle}></div>;
-}
-
-function getStatsBaseStyle(top, left, color) {
-    return {
-        position: "absolute",
-        display: "block",
-        top: top,
-        left: left,
-        width: "76px",
-        textAlign: "center",
-        color: color || "white",
-        fontSize: "70px",
-        fontFamily: "Belwe",
-        WebkitTextStrokeWidth: "2px",
-        WebkitTextStrokeColor: "black",
-        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
-    };
-}
-
 function Mana(props) {
-    if (props.value < props.originalValue) {
-        return <div style={getStatsBaseStyle("-4px", "-5px", "lightgreen")}>{props.value}</div>;
-    } else if (props.value > props.originalValue) {
-        return <div style={getStatsBaseStyle("-4px", "-5px", "red")}>{props.value}</div>;
-    } else{
-        return <div style={getStatsBaseStyle("-4px", "-5px")}>{props.value}</div>;
-    }
+    const card = props.card;
+    const manaClassName = classNames({
+        "card-spell__overlay__mana": true,
+        "stats-text":           card.manaCost === card.originalManaCost,
+        "stats-text--enhanced": card.manaCost < card.originalManaCost,
+        "stats-text--worsened": card.manaCost > card.originalManaCost
+    });
+
+    return (
+        <svg className={manaClassName} viewBox="0 0 100 100">
+            <text x="50" y="50">{card.manaCost}</text>
+        </svg>
+    );
 }
 
 function Gem(props) {
     if (!props.rarity) {
         return (<div></div>);
     }
-    const bracketsStyle = {
-        position: "absolute",
-        width: "61px",
-        height: "20px",
-        top: "235px",
-        left: "115px",
-        backgroundImage: "url(\"asset/image/card/spell gem brackets\")"
-    };
-
-    const gemStyle = {
-        position: "absolute",
-        width: "29px",
-        height: "34px",
-        top: "9px",
-        left: "19px",
-        backgroundImage: "url(\"asset/image/card/gem " + props.rarity + "\")"
-    };
 
     return (
-        <div style={bracketsStyle}>
-            <div style={gemStyle}></div>
+        <div className="card-spell__overlay__rarity">
+            <img className="card-spell__overlay__rarity__bracket" src="/asset/image/card/spell gem brackets" />
+            <img className="card-spell__overlay__rarity__gem" src={"/asset/image/card/gem " + props.rarity} />
         </div>
     );
 }
 
 function Swirl(props) {
-    const style = {
-        position: "absolute",
-        width: "137px",
-        height: "108px",
-        left: "81px",
-        top: "272px",
-        backgroundImage: "url(\"asset/image/card/spell swirl basic\")"
-    };
-
-    return <div style={style}></div>;
+    return <img className="card-spell__overlay__swirl" src="/asset/image/card/spell swirl basic" />;
 }
 
 var Name = React.createClass({
@@ -225,15 +82,13 @@ var Name = React.createClass({
         const textPath = "<textPath xlink:href=\"#spellCardNamePath\" startOffset=\"50%\">" + this.props.name + "</textPath>";
 
         return (
-            <div style={style}>
-                <svg width="312" height="424" viewBox="0 0 400 543">
-                    <defs>
-                        <path id="spellCardNamePath" d="m 72.083772,305.1818 c 0,0 138.390898,-53.03301 268.195498,-1.01015"></path>
-                    </defs>
-                    <text ref="name" fontFamily="Belwe" fontSize="30" fill="white" stroke="black" strokeWidth="5" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
-                    <text ref="nameShadow" fontFamily="Belwe" fontSize="30" fill="white" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
-                </svg>
-            </div>
+            <svg className="card-spell__overlay__name" viewBox="0 0 400 543">
+                <defs>
+                    <path id="spellCardNamePath" d="m 72.083772,305.1818 c 0,0 138.390898,-53.03301 268.195498,-1.01015"></path>
+                </defs>
+                <text ref="name" fontFamily="Belwe" fontSize="30" fill="white" stroke="black" strokeWidth="5" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
+                <text ref="nameShadow" fontFamily="Belwe" fontSize="30" fill="white" textAnchor="middle" dangerouslySetInnerHTML={{__html: textPath }}></text>
+            </svg>
         );
     },
     adjustFontSize: function (cardtype, title) {
@@ -260,29 +115,12 @@ var Name = React.createClass({
     }
 });
 
-var Description = React.createClass({
-    render: function () {
-        const style = {
-            position: "absolute",
-            display: "table",
-            top: "278px",
-            left: "46.5px",
-            width: "196px",
-            height: "100px",
-            textAlign: "center",
-            boxSizing: "border-box",
-            fontFamily: "franklinGothic",
-            fontSize: "20px",
-            lineHeight: "1"
-        };
-
-        const spanStyle = {
-            display: "table-cell",
-            verticalAlign: "middle"
-        };
-
-        return (
-            <div style={style}><span style={spanStyle}>{this.props.description}</span></div>
-        );
-    }
-});
+function Description(props) {
+    return (
+        <svg className="card-spell__overlay__description" viewBox="0 0 200 100">
+            <foreignObject width="100%" height="100%">
+                <div className="card-spell__overlay__description__text"><div>{props.description}</div></div>
+            </foreignObject>
+        </svg>
+    );
+}

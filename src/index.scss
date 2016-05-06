@@ -1,4 +1,5 @@
 @import "./card/card.scss";
+@import "./minion/minion.scss";
 
 @font-face {
     font-family: belwe;
@@ -28,7 +29,6 @@ body {
 svg.stats-text {
     fill: white;
 
-
     &--enhanced {
         fill: lightgreen;
     }
@@ -36,7 +36,6 @@ svg.stats-text {
     &--worsened {
         fill: red;
     }
-
 }
 
 .container {
@@ -137,24 +136,24 @@ svg.stats-text {
         		}
         	}
 
-            .minion {
-                position: relative;
-                height: 100%;
-
-                img, canvas {
-                    height: 100%;
-                }
-
-                &.can-attack {
-                    border: 2px solid green;
-                }
-                &.valid-target {
-                	border: 1px solid red;
-				}
-                &.focused {
-                    background-color: rgba(0, 255, 0, 0.3);
-                }
-            }
+            // .minion {
+            //     position: relative;
+            //     height: 100%;
+            //
+            //     img, canvas {
+            //         height: 100%;
+            //     }
+            //
+            //     &.can-attack {
+            //         border: 2px solid green;
+            //     }
+            //     &.valid-target {
+            //     	border: 1px solid red;
+			// 	}
+            //     &.focused {
+            //         background-color: rgba(0, 255, 0, 0.3);
+            //     }
+            // }
         }
     }
 

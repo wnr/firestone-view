@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import classNames from "classnames";
 
-import Minion from "./minion";
+import Minion from "./minion/minion";
 
 function mix(coll1, coll2) {
     const bigLength = Math.max(coll1.length, coll2.length);
@@ -30,7 +31,6 @@ export default function Battlefield(props) {
     return (
         <div className={className} onClick={() => props.onBattlefieldClick()}>
             <Side
-                imageProvider={props.imageProvider}
                 minions={props.topMinions}
                 showPositions={!props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
@@ -41,7 +41,6 @@ export default function Battlefield(props) {
                 selectedHeroPower={props.selectedHeroPower}
             />
             <Side
-                imageProvider={props.imageProvider}
                 minions={props.bottomMinions}
                 showPositions={props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
@@ -56,57 +55,53 @@ export default function Battlefield(props) {
 }
 
 function Side(props) {
-    const minions = props.minions.map(function (minion, position) {
-        var className = "minion";
+    const minions = props.minions;
+    const onMinionClick = props.onMinionClick;
+    const onPositionClick = props.onPositionClick;
+    const selectedCard = props.selectedCard;
+    const selectedHeroPower = props.selectedHeroPower;
+    const selectedMinion = props.selectedMinion;
+    const selectedPosition = props.selectedPosition;
+    const showPositions = props.showPositions;
 
-        if (minion.canAttack) {
-            className += " can-attack";
-        }
-
-        if (props.selectedMinion && props.selectedMinion.validAttackIds.indexOf(minion.id) !== -1) {
-            className += " valid-target";
-        } else if (props.selectedCard && props.selectedCard.validTargetIds.indexOf(minion.id) !== -1) {
-            if ((props.selectedCard.type === "MINION" && props.selectedPosition)
-                || (props.selectedCard.type === "SPELL")) {
-                className += " valid-target";
-            }
-        } else if (props.selectedHeroPower && props.selectedHeroPower.validTargetIds.indexOf(minion.id) !== -1) {
-            className += " valid-target";
-        }
-
-        if (props.selectedMinion && props.selectedMinion.id === minion.id) {
-            className += " focused";
-        }
-
+    const minionElements = minions.map(function (minion, position) {
         return (
-            <li key={minion.id} className={className} onClick={() => props.onMinionClick(minion)}>
-                <Minion imageProvider={props.imageProvider} minion={minion} />
+            <li key={minion.id} onClick={() => props.onMinionClick(minion)}>
+                <Minion
+                    minion={minion}
+                    selectedCard={selectedCard}
+                    selectedHeroPower={selectedHeroPower}
+                    selectedMinion={selectedMinion}
+                    selectedPosition={selectedPosition}
+                />
             </li>
         );
 
     });
 
-    var positions = [];
-    if (props.showPositions) {
+    var positionElements = [];
+    if (showPositions) {
         function Position(props) {
-            var className = "position";
+            const selectedPosition = props.selectedPosition;
+            const position = props.position;
 
-            if (props.selectedPosition === props.position) {
-                className += " marked";
-            }
+            const className = classNames({
+                "position": true,
+                "marked": selectedPosition === position // TODO: rename to selected.
+            });
 
-            return <li className={className} onClick={() => props.onClick(props.position)}></li>;
+            return <li className={className} onClick={() => props.onClick(position)}></li>;
         }
 
-        positions =
-            [<Position key={"position-0"} position={0} onClick={props.onPositionClick} selectedPosition={props.selectedPosition} />]
-            .concat(props.minions.map((m) => {
-                var pos = m.position + 1;
-                return <Position key={"position-" + pos} position={pos} onClick={props.onPositionClick} selectedPosition={props.selectedPosition} />;
+        positionElements =
+            [<Position key="position-0" position={0} onClick={onPositionClick} selectedPosition={selectedPosition} />]
+            .concat(minions.map((m) => {
+                const position = m.position + 1;
+                return <Position key={"position-" + position} position={position} onClick={onPositionClick} selectedPosition={selectedPosition} />;
             }));
     }
 
-    const lis = mix(positions, minions);
+    const lis = mix(positionElements, minionElements);
 
     return (
         <div className="side opponent">

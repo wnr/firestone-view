@@ -1,0 +1,79 @@
+@mixin stat-overlay-item() {
+	position: absolute;
+	width: 37%;
+
+	& text {
+		text-anchor: middle;
+		stroke: black;
+		stroke-width: 2px;
+		font-size: 60px;
+		font-family: Belwe;
+	}
+}
+
+@mixin glow($color, $spread) {
+	content: "";
+	position: absolute;
+	width: 53%;
+	height: 67%;
+	left: 24%;
+	top: 15%;
+	border-radius: 65px;
+	box-shadow: 0 0 $spread 8px $color;
+	background-color: $color;
+	z-index: -1;
+}
+
+.minion {
+	&.can-attack {
+		&::before {
+			@include glow(#00aa00, 12px);
+		}
+
+		&.focused::before {
+			@include glow(#00c800, 24px);
+		}
+	}
+
+	&.non-valid-target {
+		filter: grayscale(100%);
+	}
+}
+
+.minion {
+	position: relative;
+	height: 100%;
+
+	&__frame {
+		height: 100%;
+	}
+
+	&__portrait {
+		position: absolute;
+		height: 68%;
+	    left: 11.39%;
+	    top: 13.33%;
+		clip-path: ellipse(37.87% 48.12% at 50.49% 50.49%);
+		z-index: -1; // Can this be removed somehow?
+	}
+
+	&__overlay {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0px;
+		top: 0px;
+
+		@at-root svg#{& + __attack} {
+			@include stat-overlay-item();
+			bottom: 9%;
+			left: 12%;
+		}
+
+		@at-root svg#{& + __health} {
+			@include stat-overlay-item();
+			bottom: 8%;
+		    right: 10.5%;
+		}
+	}
+}

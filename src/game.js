@@ -75,7 +75,6 @@ export default React.createClass({
                     <Battlefield
                         showPositions={this.state.selectedCard}
                         bottomPlayerInTurn={this.state.game.playerInTurn === friendlyPlayer.id}
-                        imageProvider={imageProvider}
                         topMinions={opponentPlayer.activeMinions}
                         bottomMinions={friendlyPlayer.activeMinions}
                         onBattlefieldClick={this.onBattlefieldClick}

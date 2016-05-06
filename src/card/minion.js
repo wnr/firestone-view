@@ -39,44 +39,6 @@ export default React.createClass({
     }
 });
 
-function Outline(props) {
-    var blur = 0;
-    var spread = 0;
-    var color = "rgb(0,0,0)";
-
-    if (props.card.playable) {
-        if (props.selectedCard && props.selectedCard.id === props.card.id) {
-            blur = "20px";
-            spread = "16px";
-            if (props.card.combo) {
-                color = "yellow"
-            } else {
-                color = "rgb(0,255,0)";
-            }
-        } else {
-            blur = "20px";
-            spread = "8px";
-            if (props.card.combo) {
-                color = "yellow"
-            } else {
-                color = "rgb(0,200,0)";
-            }
-        }
-    }
-
-    const outlineStyle = {
-        width: "85%",
-        height: "88%",
-        position: "absolute",
-        left: "9%",
-        top: "8%",
-        boxShadow: `0 0 ${blur} ${spread} ${color}`,
-        backgroundColor: color
-    };
-
-    return <div style={outlineStyle}></div>;
-}
-
 function Mana(props) {
     const card = props.card;
     const manaClassName = classNames({
@@ -152,7 +114,7 @@ function Swirl(props) {
     return <img className="card-minion__overlay__swirl" src="/asset/image/card/minion swirl blackrock" />;
 }
 
-var Name = React.createClass({
+const Name = React.createClass({
     componentDidMount: function () {
         this.adjustFontSize();
     },

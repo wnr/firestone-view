@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { updateElement } from "./dom-utils";
+import { updateElement } from "../dom-utils";
+import HeroPower from "./hero-power";
 
 export default React.createClass({
     propTypes: {
@@ -68,7 +69,9 @@ export default React.createClass({
                     </div>
                 </div>
                 <div className="right-container" onClick={() => props.onHeroPowerClick(props.hero.heropower)}>
-                    <HeroPower heropower={props.hero.heropower} selectedHeroPower={props.selectedHeroPower} />
+                    <div style={{"height": "95px"}}>
+                        <HeroPower heroPower={props.hero.heropower} selectedHeroPower={props.selectedHeroPower} />
+                    </div>
                 </div>
             </div>
         );
@@ -181,74 +184,6 @@ function Armor(props) {
     return (
         <div style={style}>
             <div style={textStyle}>{props.armor}</div>
-        </div>
-    );
-}
-
-function HeroPower(props) {
-    var border = "";
-
-    if (props.heropower.canUse) {
-        border = "2px solid green";
-    }
-
-    var backgroundColor;
-    if (props.heropower === props.selectedHeroPower) {
-        backgroundColor = "rgba(0, 255, 0, 0.3)";
-    }
-
-    const style = {
-        textAlign: "left",
-        position: "relative",
-        width: "90px",
-        height: "90px",
-        border: border,
-        backgroundColor: backgroundColor
-    };
-
-    const portraitStyle = {
-        position: "absolute",
-        height: "55%",
-        top: "27%",
-        left: "23%",
-        verticalAlign: "middle",
-    };
-
-    const frameStyle = {
-        height: "100%",
-        position: "absolute",
-        verticalAlign: "middle"
-    };
-
-    const manaCost = props.heropower.manaCost;
-    const originalManaCost = props.heropower.originalManaCost;
-
-    var color = "white";
-    if (manaCost > originalManaCost) {
-        color = "red";
-    } else if (manaCost < originalManaCost) {
-        color = "lightgreen";
-    }
-
-    const textStyle = {
-        position: "relative",
-        display: "block",
-        top: "3px",
-        textAlign: "center",
-        color: color,
-        fontSize: "20px",
-        fontFamily: "Belwe",
-        lineHeight: "0.95em",
-        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-    };
-
-    var src = "asset/image/heropower/" + props.heropower.name + ".png"
-
-    return (
-        <div style={style}>
-            <img style={portraitStyle} draggable="false" src={src} />
-            <img style={frameStyle} draggable="false" src="asset/image/heropower-frame.png" />
-            <div style={textStyle}>{props.heropower.manaCost}</div>
         </div>
     );
 }

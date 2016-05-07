@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import Hand from "./hand";
-import Hero from "./hero";
+import Hero from "./hero/hero";
 import Battlefield from "./battlefield";
 import * as api from "./game-api";
 import { getPlayerById } from "./game-state-utils";

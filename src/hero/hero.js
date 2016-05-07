@@ -7,6 +7,7 @@ import Mana from "./mana";
 
 export default function Hero(props) {
     const hero = props.hero;
+    const secrets = props.secrets;
     const selectedCard = props.selectedCard;
     const selectedHeroPower = props.selectedHeroPower;
     const selectedMinion = props.selectedMinion;
@@ -17,6 +18,7 @@ export default function Hero(props) {
             <Mana hero={hero} />
             <Face
                 hero={hero}
+                secrets={secrets}
                 selectedCard={selectedCard}
                 selectedHeroPower={selectedHeroPower}
                 selectedMinion={selectedMinion}

@@ -3,6 +3,7 @@ import classNames from "classnames";
 
 export default function Face(props) {
 	const hero = props.hero;
+    const secrets = props.secrets;
 
     // TODO: The targeting logic is shared by characters (minion and hero).
     const selectedCard = props.selectedCard;
@@ -44,6 +45,7 @@ export default function Face(props) {
             <img className="hero-face__portrait" src={"/asset/image/hero/" + hero.name + ".png"} />
             <img className="hero-face__frame" src="/asset/image/hero frame.png" />
             <div className="hero-face__overlay">
+                <Secrets secrets={secrets} />
                 <Armor hero={hero} />
                 <Health hero={hero} />
             </div>
@@ -51,6 +53,24 @@ export default function Face(props) {
 	);
 }
 
+function Secrets(props) {
+    const secrets = props.secrets;
+
+    if (!secrets.length) {
+        return <div></div>;
+    }
+
+    // TODO: Fix so that multiple secrets may be displayed.
+
+    return (
+        <div className="hero-face__overlay__secret">
+            <img src="/asset/image/secret_sheathed.png" />
+            <svg className="stats-text" viewBox="0 0 100 100">
+                <text x="50" y="50">?</text>
+            </svg>
+        </div>
+    );
+}
 
 function Armor(props) {
     const hero = props.hero;

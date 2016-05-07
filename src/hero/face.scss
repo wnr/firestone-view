@@ -50,6 +50,22 @@
 		left: 0px;
 		top: 0px;
 
+		&__secret {
+			> img {
+				position: absolute;
+				height: 120%;
+			    left: -16%;
+			    top: -5%;
+			}
+
+			> svg {
+				@include stat-overlay-item();
+				width: 40%;
+			    left: 30%;
+			    top: -2%;
+			}
+		}
+
 		&__armor {
 			& > img {
 				position: absolute;

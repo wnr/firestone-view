@@ -68,6 +68,7 @@ export default React.createClass({
                         <div className="hero-area">
                             <Hero imageProvider={imageProvider}
                                   hero={opponentPlayer.hero}
+                                  secrets={opponentPlayer.activeSecrets}
                                   selectedMinion={this.state.selectedMinion}
                                   onHeroClick={this.onHeroClick}
                                   onHeroPowerClick={this.onHeroPowerClick}
@@ -94,6 +95,7 @@ export default React.createClass({
                         <div className="hero-area">
                             <Hero imageProvider={imageProvider}
                                   hero={friendlyPlayer.hero}
+                                  secrets={friendlyPlayer.activeSecrets}
                                   selectedMinion={this.state.selectedMinion}
                                   onHeroClick={this.onHeroClick}
                                   onHeroPowerClick={this.onHeroPowerClick}

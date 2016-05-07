@@ -44,11 +44,22 @@ export default function Minion(props) {
             <img className="minion__portrait" src={"/asset/image/card/minion/" + minion.name} />
             <img className="minion__frame" src="/asset/image/minion frame.png" />
             <div className="minion__overlay">
+                <Dragon minion={minion} />
                 <Attack minion={minion} />
                 <Health minion={minion} />
             </div>
         </div>
     );
+}
+
+function Dragon(props) {
+    const minion = props.minion;
+
+    if (minion.rarity !== "legendary") {
+        return <div></div>;
+    }
+
+    return <img className="minion__overlay__dragon" src="/asset/image/inplay_minion_legendary.png" />
 }
 
 function Attack(props) {

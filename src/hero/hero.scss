@@ -2,20 +2,31 @@
 @import "./hero-power.scss";
 @import "./mana.scss";
 
+$hero-mana-height: 50%;
+$hero-power-height: 65%;
+
 .hero {
 	position: relative;
 	display: inline-block;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	height: 100%;
 
 	.hero-mana {
-		height: 50%;
-		margin-right: 2%;
+		position: absolute;
+		height: $hero-mana-height;
+		left: -65%;
+		top: (100% - $hero-mana-height) / 2;
+	}
+
+	.hero-face {
+		display: inline-block;
+		position: relative;
+		height: 100%;
 	}
 
 	.hero-power {
-		height: 65%;
-		margin-left: 1%;
+		position: absolute;
+		height: $hero-power-height;
+		left: 103%;
+		top: (100% - $hero-power-height) / 2;
 	}
 }

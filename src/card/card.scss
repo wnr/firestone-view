@@ -1,48 +1,35 @@
-@mixin glow($color, $spread) {
-	content: "";
-	position: absolute;
+@import "../glow.scss";
+
+@mixin card-glow-shape() {
 	width: 81%;
 	height: 85%;
 	left: 11%;
 	top: 9%;
-	box-shadow: 0 0 $spread 8px $color;
-	background-color: $color;
-	z-index: -1;
 }
 
 .card-spell, .card-minion {
 	&.playable {
 		&::before {
-			@include glow(#00aa00, 12px);
+			@include green-glow-subtle();
+			@include card-glow-shape();
 		}
 
 		&.focused::before {
-			@include glow(#00c800, 24px);
+			@include green-glow-intense();
+			@include card-glow-shape();
 		}
 
 		&.combo {
 			&::before {
-				@include glow(orange, 12px);
+				@include orange-glow-subtle();
+				@include card-glow-shape();
 			}
 
 			.combo.focused::before {
-				@include glow(orange, 24px);
+				@include orange-glow-intense();
+				@include card-glow-shape();
 			}
 		}
-	}
-}
-
-@mixin stat-overlay-item() {
-	position: absolute;
-	width: 42%;
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-
-	& text {
-		text-anchor: middle;
-		stroke: black;
-		stroke-width: 1px;
-		font-size: 60px;
-		font-family: Belwe;
 	}
 }
 
@@ -76,8 +63,8 @@
 
 		@at-root svg#{& + __mana} {
 			@include stat-overlay-item();
-			top: 1%;
-			left: -5%;
+			top: 1.5%;
+			left: -3.5%;
 		}
 
 		@at-root svg#{& + __name} {
@@ -142,14 +129,14 @@
 
 		@at-root svg#{& + __attack} {
 			@include stat-overlay-item();
-			bottom: -10%;
-			left: -5%;
+			bottom: -8.5%;
+			left: -3%;
 		}
 
 		@at-root svg#{& + __health} {
 			@include stat-overlay-item();
-			bottom: -10.5%;
-			right: -9.5%;
+			bottom: -9%;
+			right: -7.5%;
 		}
 
 		&__race {
@@ -196,14 +183,11 @@
 	    height: 53%;
 	    left: 15.39%;
 	    top: 4.33%;
-	    -webkit-clip-path: ellipse(75.87% 40.12% at 50.49% 50.49%);
 	    clip-path: ellipse(75.87% 40.12% at 50.49% 50.49%);
 		z-index: -1; // Can this be removed somehow?
 	}
 
 	&__frame {
-		position: relative;
-		left: 0px;
 		height: 100%;
 	}
 
@@ -216,8 +200,8 @@
 
 		@at-root svg#{& + __mana} {
 			@include stat-overlay-item();
-			top: 1%;
-			left: -6%;
+			top: 1.5%;
+			left: -3.5%;
 		}
 
 		@at-root svg#{& + __name} {

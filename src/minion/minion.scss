@@ -1,36 +1,23 @@
-@mixin stat-overlay-item() {
-	position: absolute;
-	width: 37%;
-	text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+@import "../glow.scss";
 
-	& text {
-		text-anchor: middle;
-		font-size: 60px;
-		font-family: Belwe;
-	}
-}
-
-@mixin glow($color, $spread) {
-	content: "";
-	position: absolute;
+@mixin minion-glow-shape() {
 	width: 53%;
 	height: 67%;
 	left: 24%;
 	top: 15%;
 	border-radius: 65px;
-	box-shadow: 0 0 $spread 8px $color;
-	background-color: $color;
-	z-index: -1;
 }
 
 .minion {
 	&.can-attack {
 		&::before {
-			@include glow(#00aa00, 12px);
+			@include green-glow-subtle();
+			@include minion-glow-shape();
 		}
 
 		&.focused::before {
-			@include glow(#00c800, 24px);
+			@include green-glow-intense();
+			@include minion-glow-shape();
 		}
 	}
 
@@ -65,14 +52,16 @@
 
 		@at-root svg#{& + __attack} {
 			@include stat-overlay-item();
-			bottom: 9%;
-			left: 12%;
+			width: 35%;
+			bottom: 10%;
+			left: 12.5%;
 		}
 
 		@at-root svg#{& + __health} {
 			@include stat-overlay-item();
-			bottom: 8%;
-		    right: 10.5%;
+			width: 35%;
+			bottom: 10%;
+		    right: 12%;
 		}
 	}
 }

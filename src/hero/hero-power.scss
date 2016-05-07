@@ -1,40 +1,26 @@
-@mixin stat-overlay-item() {
-	position: absolute;
-	width: 42%;
-	text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+@import "../glow.scss";
 
-	& text {
-		text-anchor: middle;
-		font-size: 60px;
-		font-family: Belwe;
-	}
-}
-
-@mixin glow($color, $spread) {
-	content: "";
-	position: absolute;
+@mixin hero-power-glow-shape() {
 	border-radius: 65px;
 	width: 68%;
 	height: 78%;
 	left: 16%;
 	top: 14%;
-	box-shadow: 0 0 $spread 8px $color;
-	background-color: $color;
-	z-index: -1;
 }
 
 .hero-power {
 	&.can-use {
 		&::before {
-			@include glow(#00aa00, 12px);
+			@include green-glow-subtle();
+			@include hero-power-glow-shape();
 		}
 
 		&.selected::before {
-			@include glow(#00c800, 24px);
+			@include green-glow-intense();
+			@include hero-power-glow-shape();
 		}
 	}
 }
-
 
 .hero-power {
 	position: relative;
@@ -63,7 +49,7 @@
 		@at-root svg#{& + __mana} {
 			@include stat-overlay-item();
 			top: 2%;
-			left: 28%;
+			left: 30%;
 		}
 	}
 }

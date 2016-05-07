@@ -1,3 +1,16 @@
+
+@mixin stat-overlay-item() {
+	position: absolute;
+	width: 38%;
+	text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+
+	& text {
+		text-anchor: middle;
+		font-size: 60px;
+		font-family: Belwe;
+	}
+}
+
 @import "./card/card.scss";
 @import "./minion/minion.scss";
 @import "./hero/hero.scss";
@@ -136,25 +149,6 @@ svg.stats-text {
         			background-color: green;
         		}
         	}
-
-            // .minion {
-            //     position: relative;
-            //     height: 100%;
-            //
-            //     img, canvas {
-            //         height: 100%;
-            //     }
-            //
-            //     &.can-attack {
-            //         border: 2px solid green;
-            //     }
-            //     &.valid-target {
-            //     	border: 1px solid red;
-			// 	}
-            //     &.focused {
-            //         background-color: rgba(0, 255, 0, 0.3);
-            //     }
-            // }
         }
     }
 

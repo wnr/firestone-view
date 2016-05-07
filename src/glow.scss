@@ -1,0 +1,31 @@
+@mixin _glow($color, $spread) {
+    content: "";
+	position: absolute;
+	box-shadow: 0 0 $spread 8px $color;
+	background-color: $color;
+	z-index: -1;
+}
+
+@mixin _glow-subtle($color) {
+	@include _glow($color, 12px);
+}
+
+@mixin _glow-intense($color) {
+    @include _glow($color, 24px);
+}
+
+@mixin green-glow-subtle() {
+    @include _glow-subtle(#00aa00);
+}
+
+@mixin green-glow-intense() {
+    @include _glow-intense(#00c800);
+}
+
+@mixin orange-glow-subtle() {
+    @include _glow-subtle(orange);
+}
+
+@mixin orange-glow-intense() {
+    @include _glow-intense(orange);
+}

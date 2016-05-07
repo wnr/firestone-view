@@ -65,8 +65,8 @@ function Attack(props) {
     });
 
     return (
-        <svg className={attackClassName} viewBox="0 0 100 100">
-            <text x="50" y="50">{card.attack}</text>
+        <svg className={attackClassName} viewBox="0 0 100 50">
+            <text x="50" y="45">{card.attack}</text>
         </svg>
     );
 }
@@ -81,8 +81,8 @@ function Health(props) {
     });
 
     return (
-        <svg className={healthClassName} viewBox="0 0 100 100">
-            <text x="50" y="50">{card.health}</text>
+        <svg className={healthClassName} viewBox="0 0 100 50">
+            <text x="50" y="45">{card.health}</text>
         </svg>
     );
 }
@@ -179,8 +179,8 @@ function Race(props) {
     return (
         <div className="card-minion__overlay__race">
             <img src="/asset/image/card/minion race" />
-            <svg viewBox="0 0 100 100">
-                <text x="50" y="50">{capitalizeFirstLetter(race)}</text>
+            <svg viewBox="0 0 100 50">
+                <text x="50" y="45">{capitalizeFirstLetter(race)}</text>
             </svg>
         </div>
     );

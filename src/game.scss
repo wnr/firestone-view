@@ -19,6 +19,8 @@
 
         .hand-area {
         	height: 60%;
+            box-sizing: border-box;
+            padding: 1%;
 
             .hand {
                 margin-left: auto;

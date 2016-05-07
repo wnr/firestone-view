@@ -12,7 +12,7 @@ export default function HeroPower(props) {
     });
 
 	return (
-		<div className={heroPowerClassName}>
+		<div className={heroPowerClassName} onClick={() => props.onClick(heroPower)}>
             <img className="hero-power__portrait" draggable="false" src={"asset/image/heropower/" + heroPower.name + ".png"} />
             <img className="hero-power__frame" draggable="false" src="asset/image/heropower-frame.png" />
             <div className="her-power__overlay">

@@ -58,19 +58,24 @@ export default React.createClass({
             <div className="container">
                 <div className="game">
                     <div className="side opponent">
-                        <Hand imageProvider={imageProvider}
-                              cards={opponentPlayer.hand}
-                              onCardClick={this.onCardClick}
-                              selectedCard={this.state.selectedCard}
-                        />
-                        <Hero imageProvider={imageProvider}
-                              hero={opponentPlayer.hero}
-                              selectedMinion={this.state.selectedMinion}
-                              onHeroClick={this.onHeroClick}
-                              onHeroPowerClick={this.onHeroPowerClick}
-                              selectedCard={this.state.selectedCard}
-                              selectedHeroPower={this.state.selectedHeroPower}
-                        />
+                        <div className="hand-area">
+                            <Hand imageProvider={imageProvider}
+                                  cards={opponentPlayer.hand}
+                                  onCardClick={this.onCardClick}
+                                  selectedCard={this.state.selectedCard}
+                            />
+                        </div>
+                        <div className="hero-area">
+                            <Hero imageProvider={imageProvider}
+                                  hero={opponentPlayer.hero}
+                                  selectedMinion={this.state.selectedMinion}
+                                  onHeroClick={this.onHeroClick}
+                                  onHeroPowerClick={this.onHeroPowerClick}
+                                  selectedCard={this.state.selectedCard}
+                                  selectedHeroPower={this.state.selectedHeroPower}
+                                  selectedPosition={this.state.selectedPosition}
+                            />
+                        </div>
                     </div>
                     <Battlefield
                         showPositions={this.state.selectedCard}
@@ -86,19 +91,24 @@ export default React.createClass({
                         selectedHeroPower={this.state.selectedHeroPower}
                     />
                     <div className="side friendly">
-                        <Hero imageProvider={imageProvider}
-                              hero={friendlyPlayer.hero}
-                              selectedMinion={this.state.selectedMinion}
-                              onHeroClick={this.onHeroClick}
-                              onHeroPowerClick={this.onHeroPowerClick}
-                              selectedCard={this.state.selectedCard}
-                              selectedHeroPower={this.state.selectedHeroPower}
-                        />
-                        <Hand imageProvider={imageProvider}
-                              cards={friendlyPlayer.hand}
-                              onCardClick={this.onCardClick}
-                              selectedCard={this.state.selectedCard}
-                        />
+                        <div className="hero-area">
+                            <Hero imageProvider={imageProvider}
+                                  hero={friendlyPlayer.hero}
+                                  selectedMinion={this.state.selectedMinion}
+                                  onHeroClick={this.onHeroClick}
+                                  onHeroPowerClick={this.onHeroPowerClick}
+                                  selectedCard={this.state.selectedCard}
+                                  selectedHeroPower={this.state.selectedHeroPower}
+                                  selectedPosition={this.state.selectedPosition}
+                            />
+                        </div>
+                        <div className="hand-area">
+                            <Hand imageProvider={imageProvider}
+                                  cards={friendlyPlayer.hand}
+                                  onCardClick={this.onCardClick}
+                                  selectedCard={this.state.selectedCard}
+                            />
+                        </div>
                     </div>
                     <div className="buttons-container">
                         <button className="button" onClick={this.endTurn}>End turn</button>

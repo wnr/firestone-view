@@ -14,6 +14,7 @@
 @import "./card/card.scss";
 @import "./minion/minion.scss";
 @import "./hero/hero.scss";
+@import "./game.scss";
 
 @font-face {
     font-family: belwe;
@@ -64,111 +65,6 @@ svg.stats-text {
     position: relative;
     max-width: 100%;
     max-height: 100%;
-}
-
-.game {
-    height: 100%;
-    position: relative;
-    text-align: center;
-
-    .gameplay-area {
-        height: 100%;
-    }
-
-    & > .side {
-        width: 100%;
-        height: 35%;
-        text-align: center;
-
-        .hero-container {
-            height: 40%;
-            display: inline-block;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-
-            .left-container, .right-container {
-                display: inline-block;
-                width: 100px;
-            }
-
-            .left-container {
-                text-align: right;
-
-                .mana canvas {
-                    height: 60%;
-                }
-            }
-
-            .face {
-                &.valid-target {
-                	border: 1px solid red;
-                    padding: 5px;
-				}
-            }
-        }
-
-        .hand {
-            height: 60%;
-            margin-left: auto;
-            margin-right: auto;
-
-            .card {
-                margin: 0px 5px 0 5px;
-            }
-        }
-    }
-
-    ul {
-        list-style: none;
-
-        li {
-            display: inline-block;
-        }
-    }
-
-    & .battlefield {
-        &.targeting {
-            border: 1px solid red;
-        }
-
-        .side {
-            height: 15%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            .position {
-                background-color: red;
-                height: 100%;
-                width: 20px;
-                margin: 0px 10px 0px 10px;
-
-                &.marked {
-        			background-color: green;
-        		}
-        	}
-        }
-    }
-
-    .buttons-container {
-        position: absolute;
-        right: 0;
-        height: 100%;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: none;
-        padding-right: 5%;
-
-        .button {
-            font-size: 20px;
-            pointer-events: auto;
-            display: block;
-        }
-    }
 }
 
 #offscreenCanvas {

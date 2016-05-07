@@ -1,1 +1,21 @@
+@import "./face.scss";
 @import "./hero-power.scss";
+@import "./mana.scss";
+
+.hero {
+	position: relative;
+	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.hero-mana {
+		height: 50%;
+		margin-right: 2%;
+	}
+
+	.hero-power {
+		height: 65%;
+		margin-left: 1%;
+	}
+}

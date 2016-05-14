@@ -1,0 +1,562 @@
+{
+    "Call of the Wild": {
+        "art": "",
+        "name": "Call of the Wild"
+    },
+    "Druid of the Saber": {
+        "art": "w20_a104_d",
+        "name": "Druid of the Saber"
+    },
+    "Lion Form": {
+        "art": "",
+        "name": "Lion Form"
+    },
+    "Panther Form": {
+        "art": "w20_a104_d2",
+        "name": "Panther Form"
+    },
+    "Sabertooth Lion": {
+        "art": "w9_a025_d",
+        "name": "Sabertooth Lion"
+    },
+    "Sabertooth Panther": {
+        "art": "w20_a104_d2",
+        "name": "Sabertooth Panther"
+    },
+    "Astral Communion": {
+        "art": "w13_063_d",
+        "name": "Astral Communion"
+    },
+    "Mulch": {
+        "art": "hs5-065_d",
+        "name": "Mulch"
+    },
+    "Aviana": {
+        "art": "w19_a193_d",
+        "name": "Aviana"
+    },
+    "Empowering Mist": {
+        "art": "",
+        "name": "Empowering Mist"
+    },
+    "Mistcaller Deck Ench": {
+        "art": "",
+        "name": "Mistcaller Deck Ench"
+    },
+    "Tuskarr Totemic": {
+        "art": "hs5-006_d",
+        "name": "Tuskarr Totemic"
+    },
+    "Draenei Totemcarver": {
+        "art": "w8_089_d",
+        "name": "Draenei Totemcarver"
+    },
+    "Experienced": {
+        "art": "",
+        "name": "Experienced"
+    },
+    "Healing Wave": {
+        "art": "w13_273_d",
+        "name": "Healing Wave"
+    },
+    "Thunder Bluff Valiant": {
+        "art": "hs5-007_d",
+        "name": "Thunder Bluff Valiant"
+    },
+    "Power of the Bluff": {
+        "art": "",
+        "name": "Power of the Bluff"
+    },
+    "Charged Hammer": {
+        "art": "w17_a065_d",
+        "name": "Charged Hammer"
+    },
+    "Lightning Jolt": {
+        "art": "w13_271_d",
+        "name": "Lightning Jolt"
+    },
+    "Elemental Destruction": {
+        "art": "w5_245_d",
+        "name": "Elemental Destruction"
+    },
+    "Totem Golem": {
+        "art": "hs5-034_d",
+        "name": "Totem Golem"
+    },
+    "Ancestral Knowledge": {
+        "art": "wow_arm_037_d",
+        "name": "Ancestral Knowledge"
+    },
+    "The Mistcaller": {
+        "art": "hs5-008_d",
+        "name": "The Mistcaller"
+    },
+    "Flash Heal": {
+        "art": "w17_a110_d",
+        "name": "Flash Heal"
+    },
+    "Powershot": {
+        "art": "hs4-006_d",
+        "name": "Powershot"
+    },
+    "Stablemaster": {
+        "art": "hs5-051_d",
+        "name": "Stablemaster"
+    },
+    "Groomed": {
+        "art": "",
+        "name": "Groomed"
+    },
+    "King's Elekk": {
+        "art": "w10_a188_d",
+        "name": "King's Elekk"
+    },
+    "Brave Archer": {
+        "art": "hs5-052_d",
+        "name": "Brave Archer"
+    },
+    "Bear Trap": {
+        "art": "w14_a125_d",
+        "name": "Bear Trap"
+    },
+    "Lock and Load": {
+        "art": "hs5-009_d",
+        "name": "Lock and Load"
+    },
+    "Ball of Spiders": {
+        "art": "hs5-053_d",
+        "name": "Ball of Spiders"
+    },
+    "Acidmaw": {
+        "art": "hs5-010_d",
+        "name": "Acidmaw"
+    },
+    "Dreadscale": {
+        "art": "hs5-011_d",
+        "name": "Dreadscale"
+    },
+    "Bash": {
+        "art": "w21_a062_d",
+        "name": "Bash"
+    },
+    "King's Defender": {
+        "art": "w9_a092a_d",
+        "name": "King's Defender"
+    },
+    "Orgrimmar Aspirant": {
+        "art": "hs5-012_d",
+        "name": "Orgrimmar Aspirant"
+    },
+    "Forges of Orgrimmar": {
+        "art": "",
+        "name": "Forges of Orgrimmar"
+    },
+    "Magnataur Alpha": {
+        "art": "hs5-055_d",
+        "name": "Magnataur Alpha"
+    },
+    "Bolster": {
+        "art": "w20_a074_d",
+        "name": "Bolster"
+    },
+    "Bolstered": {
+        "art": "",
+        "name": "Bolstered"
+    },
+    "Sparring Partner": {
+        "art": "hs5-054_d",
+        "name": "Sparring Partner"
+    },
+    "Training Complete": {
+        "art": "",
+        "name": "Training Complete"
+    },
+    "Skycap'n Kragg": {
+        "art": "hs5-013_d",
+        "name": "Skycap'n Kragg"
+    },
+    "Alexstrasza's Champion": {
+        "art": "hs5-041_d",
+        "name": "Alexstrasza's Champion"
+    },
+    "Alexstrasza's Boon": {
+        "art": "",
+        "name": "Alexstrasza's Boon"
+    },
+    "Varian Wrynn": {
+        "art": "varian_d",
+        "name": "Varian Wrynn"
+    },
+    "Competitive Spirit": {
+        "art": "w8_054_d",
+        "name": "Competitive Spirit"
+    },
+    "Seal of Champions": {
+        "art": "w16_a052_d",
+        "name": "Seal of Champions"
+    },
+    "Warhorse Trainer": {
+        "art": "w11_085_d",
+        "name": "Warhorse Trainer"
+    },
+    "Might of the Hostler": {
+        "art": "",
+        "name": "Might of the Hostler"
+    },
+    "Murloc Knight": {
+        "art": "hs5-038_d",
+        "name": "Murloc Knight"
+    },
+    "Argent Lance": {
+        "art": "hs5-039_d",
+        "name": "Argent Lance"
+    },
+    "Extra Poke": {
+        "art": "",
+        "name": "Extra Poke"
+    },
+    "Enter the Coliseum": {
+        "art": "hs5-067_d",
+        "name": "Enter the Coliseum"
+    },
+    "Mysterious Challenger": {
+        "art": "hs5-040_d",
+        "name": "Mysterious Challenger"
+    },
+    "Garrison Commander": {
+        "art": "w8_049_d",
+        "name": "Garrison Commander"
+    },
+    "Eadric the Pure": {
+        "art": "w12_a112_d",
+        "name": "Eadric the Pure"
+    },
+    "Purified": {
+        "art": "",
+        "name": "Purified"
+    },
+    "Lowly Squire": {
+        "art": "hs5-014_d",
+        "name": "Lowly Squire"
+    },
+    "Training": {
+        "art": "",
+        "name": "Training"
+    },
+    "Dragonhawk Rider": {
+        "art": "hs5-056_d",
+        "name": "Dragonhawk Rider"
+    },
+    "Dragonhawkery": {
+        "art": "",
+        "name": "Dragonhawkery"
+    },
+    "Lance Carrier": {
+        "art": "hs5-015_d",
+        "name": "Lance Carrier"
+    },
+    "Equipped": {
+        "art": "",
+        "name": "Equipped"
+    },
+    "Maiden of the Lake": {
+        "art": "hs5-037_d",
+        "name": "Maiden of the Lake"
+    },
+    "Saboteur": {
+        "art": "w2_182_d",
+        "name": "Saboteur"
+    },
+    "Villainy": {
+        "art": "",
+        "name": "Villainy"
+    },
+    "Argent Horserider": {
+        "art": "hs5-017_d",
+        "name": "Argent Horserider"
+    },
+    "Mogor's Champion": {
+        "art": "hs5-057_d",
+        "name": "Mogor's Champion"
+    },
+    "Boneguard Lieutenant": {
+        "art": "hs5-016_d",
+        "name": "Boneguard Lieutenant"
+    },
+    "Boneguarded": {
+        "art": "",
+        "name": "Boneguarded"
+    },
+    "Mukla's Champion": {
+        "art": "hs5-058_d",
+        "name": "Mukla's Champion"
+    },
+    "Might of the Monkey": {
+        "art": "",
+        "name": "Might of the Monkey"
+    },
+    "Tournament Medic": {
+        "art": "w11_157_d",
+        "name": "Tournament Medic"
+    },
+    "Ice Rager": {
+        "art": "hs5-018_d",
+        "name": "Ice Rager"
+    },
+    "Frigid Snobold": {
+        "art": "hs5-019_d",
+        "name": "Frigid Snobold"
+    },
+    "Flame Juggler": {
+        "art": "w3_208_d",
+        "name": "Flame Juggler"
+    },
+    "Silent Knight": {
+        "art": "w2_283_d",
+        "name": "Silent Knight"
+    },
+    "Clockwork Knight": {
+        "art": "hs5-020_d",
+        "name": "Clockwork Knight"
+    },
+    "Wound Up": {
+        "art": "",
+        "name": "Wound Up"
+    },
+    "Tournament Attendee": {
+        "art": "w11_052_d",
+        "name": "Tournament Attendee"
+    },
+    "Sideshow Spelleater": {
+        "art": "w4_303_d",
+        "name": "Sideshow Spelleater"
+    },
+    "Kodorider": {
+        "art": "w14_a188_d",
+        "name": "Kodorider"
+    },
+    "War Kodo": {
+        "art": "hs5-070_d",
+        "name": "War Kodo"
+    },
+    "Silver Hand Regent": {
+        "art": "w11_156_d",
+        "name": "Silver Hand Regent"
+    },
+    "Pit Fighter": {
+        "art": "w3_010_d",
+        "name": "Pit Fighter"
+    },
+    "Captured Jormungar": {
+        "art": "hs5-035_d",
+        "name": "Captured Jormungar"
+    },
+    "North Sea Kraken": {
+        "art": "w16_a176_d",
+        "name": "North Sea Kraken"
+    },
+    "Tuskarr Jouster": {
+        "art": "hs5-066_d",
+        "name": "Tuskarr Jouster"
+    },
+    "Injured Kvaldir": {
+        "art": "hs5-021_d",
+        "name": "Injured Kvaldir"
+    },
+    "Light's Champion": {
+        "art": "r8_a039_d",
+        "name": "Light's Champion"
+    },
+    "Armored Warhorse": {
+        "art": "hs5-036_d",
+        "name": "Armored Warhorse"
+    },
+    "Argent Watchman": {
+        "art": "hs5-071_d",
+        "name": "Argent Watchman"
+    },
+    "Inspired": {
+        "art": "",
+        "name": "Inspired"
+    },
+    "Coliseum Manager": {
+        "art": "w11_220_d",
+        "name": "Coliseum Manager"
+    },
+    "Refreshment Vendor": {
+        "art": "hs5-042_d",
+        "name": "Refreshment Vendor"
+    },
+    "Master Jouster": {
+        "art": "hs5-032_d",
+        "name": "Master Jouster"
+    },
+    "Recruiter": {
+        "art": "hs5-022_d",
+        "name": "Recruiter"
+    },
+    "Evil Heckler": {
+        "art": "w12_a122_d",
+        "name": "Evil Heckler"
+    },
+    "Fencing Coach": {
+        "art": "w5_052_d",
+        "name": "Fencing Coach"
+    },
+    "Fencing Practice": {
+        "art": "",
+        "name": "Fencing Practice"
+    },
+    "Wyrmrest Agent": {
+        "art": "w9_001_d",
+        "name": "Wyrmrest Agent"
+    },
+    "Bring it on!": {
+        "art": "",
+        "name": "Bring it on!"
+    },
+    "Master of Ceremonies": {
+        "art": "hs5-023_d",
+        "name": "Master of Ceremonies"
+    },
+    "Ceremony": {
+        "art": "",
+        "name": "Ceremony"
+    },
+    "Grand Crusader": {
+        "art": "hs5-024_d",
+        "name": "Grand Crusader"
+    },
+    "Kvaldir Raider": {
+        "art": "hs5-025_d",
+        "name": "Kvaldir Raider"
+    },
+    "Frost Giant": {
+        "art": "hs5-026_d",
+        "name": "Frost Giant"
+    },
+    "Crowd Favorite": {
+        "art": "hs5-059_d",
+        "name": "Crowd Favorite"
+    },
+    "Huge Ego": {
+        "art": "",
+        "name": "Huge Ego"
+    },
+    "Gormok the Impaler": {
+        "art": "hs5-027_d",
+        "name": "Gormok the Impaler"
+    },
+    "Chillmaw": {
+        "art": "r6_a019_d",
+        "name": "Chillmaw"
+    },
+    "Bolf Ramshield": {
+        "art": "hs5-060_d",
+        "name": "Bolf Ramshield"
+    },
+    "Icehowl": {
+        "art": "hs5-028_d",
+        "name": "Icehowl"
+    },
+    "Nexus-Champion Saraad": {
+        "art": "hs5-043_d",
+        "name": "Nexus-Champion Saraad"
+    },
+    "The Skeleton Knight": {
+        "art": "hs5-029_d",
+        "name": "The Skeleton Knight"
+    },
+    "Fjola Lightbane": {
+        "art": "hs5-062_d",
+        "name": "Fjola Lightbane"
+    },
+    "Sea Reaver": {
+        "art": "hs5-030_d",
+        "name": "Sea Reaver"
+    },
+    "Eydis Darkbane": {
+        "art": "w12_a123_d",
+        "name": "Eydis Darkbane"
+    },
+    "Justicar Trueheart": {
+        "art": "hs5-031_d",
+        "name": "Justicar Trueheart"
+    },
+    "Dire Shapeshift": {
+        "art": "druid_power2_d",
+        "name": "Dire Shapeshift"
+    },
+    "Dire Claws": {
+        "art": "",
+        "name": "Dire Claws"
+    },
+    "Ballista Shot": {
+        "art": "hunter_power2_d",
+        "name": "Ballista Shot"
+    },
+    "Fireblast Rank 2": {
+        "art": "mage_power2_d",
+        "name": "Fireblast Rank 2"
+    },
+    "The Silver Hand": {
+        "art": "paladin_power2_d",
+        "name": "The Silver Hand"
+    },
+    "Heal": {
+        "art": "priest_power2_d",
+        "name": "Heal"
+    },
+    "Poisoned Daggers": {
+        "art": "rogue_power2_d",
+        "name": "Poisoned Daggers"
+    },
+    "Poisoned Dagger": {
+        "art": "",
+        "name": "Poisoned Dagger"
+    },
+    "Totemic Slam": {
+        "art": "shaman_power2_d",
+        "name": "Totemic Slam"
+    },
+    "Healing Totem": {
+        "art": "",
+        "name": "Healing Totem"
+    },
+    "Searing Totem": {
+        "art": "",
+        "name": "Searing Totem"
+    },
+    "Stoneclaw Totem": {
+        "art": "",
+        "name": "Stoneclaw Totem"
+    },
+    "Wrath of Air Totem": {
+        "art": "",
+        "name": "Wrath of Air Totem"
+    },
+    "Soul Tap": {
+        "art": "warlock_power2_d",
+        "name": "Soul Tap"
+    },
+    "Tank Up!": {
+        "art": "warrior_power2_d",
+        "name": "Tank Up!"
+    },
+    "Gadgetzan Jouster": {
+        "art": "hs5-063_d",
+        "name": "Gadgetzan Jouster"
+    },
+    "Victory!": {
+        "art": "",
+        "name": "Victory!"
+    },
+    "Tiger Form": {
+        "art": "hs7-071_d",
+        "name": "Tiger Form"
+    },
+    "Placeholder Card": {
+        "art": "",
+        "name": "Placeholder Card"
+    }
+}

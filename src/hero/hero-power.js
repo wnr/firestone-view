@@ -11,7 +11,7 @@ export default function HeroPower(props) {
         "selected": heroPower === selectedHeroPower
     });
 
-	return (
+    return (
 		<div className={heroPowerClassName} onClick={() => props.onClick(heroPower)}>
             <img className="hero-power__portrait" draggable="false" src={"asset/image/heropower/" + heroPower.name + ".png"} />
             <img className="hero-power__frame" draggable="false" src="asset/image/heropower-frame.png" />

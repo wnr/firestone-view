@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 export default function Face(props) {
-	const hero = props.hero;
+    const hero = props.hero;
     const secrets = props.secrets;
 
     // TODO: The targeting logic is shared by characters (minion and hero).
@@ -40,7 +40,7 @@ export default function Face(props) {
         "non-valid-target": isPlayerTargeting() && !isValidTarget()
     });
 
-	return (
+    return (
 		<div className={faceClassName} onClick={() => props.onClick(hero)}>
             <img className="hero-face__portrait" src={"/asset/image/hero/" + hero.name + ".png"} />
             <img className="hero-face__frame" src="/asset/image/hero frame.png" />

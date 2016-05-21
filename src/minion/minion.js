@@ -41,33 +41,40 @@ export default function Minion(props) {
 
     return (
         <div className={minionClassName}>
+            <Taunt minion={minion} />
             <img className="minion__portrait" src={"/asset/image/card/minion/" + minion.name} />
             <img className="minion__frame" src="/asset/image/minion frame.png" />
             <div className="minion__overlay">
                 <Dragon minion={minion} />
-                <Taunt minion={minion} />
                 <Frozen minion={minion} />
                 <Attack minion={minion} />
                 <Health minion={minion} />
+                <DivineShield minion={minion} />
             </div>
         </div>
     );
 }
 
+function DivineShield(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "DIVINE_SHIELD"; })) {
+        return <img className="minion__overlay__divine_shield" src="/asset/image/inplay_minion_divine_shield.png" />;
+    }
+    return <div></div>;
+}
+
 function Taunt(props) {
     const minion = props.minion;
-
-   /* console.log(minion);
-    if (minion.states.contains("TAUNT")) {
-        console.log("HEJ");
-    }*/
+    if (minion.states.some(function (state) { return state === "TAUNT"; })) {
+        return <img className="minion__taunt" src="/asset/image/inplay_minion_taunt.png" />;
+    }
     return <div></div>;
 }
 
 function Frozen(props) {
     const minion = props.minion;
     if (minion.states.some(function (state) { return state === "FROZEN"; })) {
-        return <img className="minion__overlay__frozen" src="/asset/image/frozen.png" />;
+        return <img className="minion__overlay__frozen" src="/asset/image/inplay_minion_frozen.png" />;
     }
     return <div></div>;
 }

@@ -34,6 +34,12 @@
 		height: 100%;
 	}
 
+	&__taunt {
+		position: absolute;
+		z-index: -1;
+		height: 100%;
+	}
+
 	&__portrait {
 		position: absolute;
 		height: 68%;
@@ -50,6 +56,12 @@
 		left: 0px;
 		top: 0px;
 
+		&__divine_shield {
+			position: absolute;
+			height: 100%;
+			left: 0;
+		}
+
 		&__dragon {
 			position: absolute;
 			top: 0;
@@ -61,7 +73,6 @@
 			position: absolute;
 			height: 100%;
 			left: 0;
-			transform: scale(0.9);
 		}
 
 		@at-root svg#{& + __attack} {

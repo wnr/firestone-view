@@ -66,6 +66,12 @@
 			}
 		}
 
+		&__frozen {
+			position: absolute;
+			height: 100%;
+			left: -7px;
+		}
+
 		&__armor {
 			& > img {
 				position: absolute;

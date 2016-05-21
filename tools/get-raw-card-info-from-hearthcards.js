@@ -32,7 +32,7 @@ function getCardData(id, callback) {
     var options = {
         form: {
             cardname: id
-        },
+        }
         // json: true,
         // encoding: "utf8"
     };

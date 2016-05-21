@@ -46,11 +46,21 @@ export default function Face(props) {
             <img className="hero-face__frame" src="/asset/image/hero frame.png" />
             <div className="hero-face__overlay">
                 <Secrets secrets={secrets} />
+                <Frozen hero={hero} />
                 <Armor hero={hero} />
                 <Health hero={hero} />
             </div>
         </div>
 	);
+}
+
+function Frozen(props) {
+    const hero = props.hero;
+
+    if (hero.states.some(function (state) { return state === "FROZEN"; })) {
+        return <img className="hero-face__overlay__frozen" src="/asset/image/frozen.png" />;
+    }
+    return <div></div>;
 }
 
 function Secrets(props) {

@@ -45,11 +45,31 @@ export default function Minion(props) {
             <img className="minion__frame" src="/asset/image/minion frame.png" />
             <div className="minion__overlay">
                 <Dragon minion={minion} />
+                <Taunt minion={minion} />
+                <Frozen minion={minion} />
                 <Attack minion={minion} />
                 <Health minion={minion} />
             </div>
         </div>
     );
+}
+
+function Taunt(props) {
+    const minion = props.minion;
+
+   /* console.log(minion);
+    if (minion.states.contains("TAUNT")) {
+        console.log("HEJ");
+    }*/
+    return <div></div>;
+}
+
+function Frozen(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "FROZEN"; })) {
+        return <img className="minion__overlay__frozen" src="/asset/image/frozen.png" />;
+    }
+    return <div></div>;
 }
 
 function Dragon(props) {
@@ -59,7 +79,7 @@ function Dragon(props) {
         return <div></div>;
     }
 
-    return <img className="minion__overlay__dragon" src="/asset/image/inplay_minion_legendary.png" />
+    return <img className="minion__overlay__dragon" src="/asset/image/inplay_minion_legendary.png" />;
 }
 
 function Attack(props) {

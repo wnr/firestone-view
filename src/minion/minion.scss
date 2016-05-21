@@ -57,6 +57,13 @@
 			height: 100%;
 		}
 
+		&__frozen {
+			position: absolute;
+			height: 100%;
+			left: 0;
+			transform: scale(0.9);
+		}
+
 		@at-root svg#{& + __attack} {
 			@include stat-overlay-item();
 			width: 35%;

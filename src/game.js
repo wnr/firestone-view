@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import classNames from "classnames";
 
 import Hand from "./hand";
 import Hero from "./hero/hero";
 import Battlefield from "./battlefield";
 import * as api from "./game-api";
-import { getPlayerById } from "./game-state-utils";
+import * as stateUtils from "./game-state-utils";
 
 var history = [];
 var historyBackSteps = 0;
@@ -54,8 +55,11 @@ export default React.createClass({
         const friendlyPlayer = game.players[0];
         const opponentPlayer = game.players[1];
 
+
+
         return (
             <div className="container">
+                <Backdrop enabled={stateUtils.isInBlockingState(this.state.game)} />
                 <div className="game">
                     <div className="side opponent">
                         <div className="hand-area">
@@ -113,7 +117,7 @@ export default React.createClass({
                         </div>
                     </div>
                     <div className="buttons-container">
-                        <button className="button" onClick={this.endTurn}>End turn</button>
+                        <button className="button" onClick={this.onEndTurn}>End turn</button>
                         <br />
                         <button className="button" onClick={this.undoInHistory}>Undo</button>
                         <br />
@@ -135,7 +139,11 @@ export default React.createClass({
             this.resetGameState({ game: game });
         });
     },
-    endTurn: function () {
+    onEndTurn: function () {
+        if (stateUtils.isInBlockingState(this.state.game)) {
+            return;
+        }
+
         this.props.audioHandler.play("ALERT_YourTurn_0v2.ogg");
 
         const game = this.state.game;
@@ -157,6 +165,10 @@ export default React.createClass({
         this.resetState();
     },
     onCardClick: function (card) {
+        if (stateUtils.isInBlockingState(this.state.game)) {
+            return;
+        }
+
         if (!card.playable) {
             return;
         }
@@ -170,6 +182,10 @@ export default React.createClass({
         }
     },
     onBattlefieldClick: function () {
+        if (stateUtils.isInBlockingState(this.state.game)) {
+            return;
+        }
+
         const card = this.state.selectedCard;
         if (card && !card.isTargeting && card.type === "SPELL") {
             api.playCard({
@@ -181,6 +197,10 @@ export default React.createClass({
         }
     },
     onPositionClick: function (position) {
+        if (stateUtils.isInBlockingState(this.state.game)) {
+            return;
+        }
+
         if (this.state.selectedCard.isTargeting && this.state.selectedCard.validTargetIds.length) {
             this.setState({
                 selectedPosition: position
@@ -194,6 +214,10 @@ export default React.createClass({
         }
     },
     onHeroClick: function (hero) {
+        if (stateUtils.isInBlockingState(this.state.game)) {
+            return;
+        }
+
         const selectedMinion = this.state.selectedMinion;
         const selectedCard = this.state.selectedCard;
         if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
@@ -230,6 +254,10 @@ export default React.createClass({
         }
     },
     onMinionClick: function (minion) {
+        if (stateUtils.isInBlockingState(this.state.game)) {
+            return;
+        }
+
         if (this.state.selectedMinion) {
             if (this.state.selectedMinion.id === minion.id) {
                 this.resetState();
@@ -279,6 +307,10 @@ export default React.createClass({
         }
     },
     onHeroPowerClick: function (heropower) {
+        if (stateUtils.isInBlockingState(this.state.game)) {
+            return;
+        }
+
         if (!heropower.canUse) {
             return;
         }
@@ -367,3 +399,14 @@ export default React.createClass({
         setStateWithDelay(0);
     }
 });
+
+function Backdrop(props) {
+    const className = classNames({
+        "backdrop": true,
+        "backdrop--enabled": props.enabled,
+    });
+
+    return (
+        <div className={className}></div>
+    );
+}

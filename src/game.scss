@@ -1,3 +1,4 @@
+@import "./choose-one/choose-one.scss";
 
 .game {
     text-align: center;
@@ -73,20 +74,5 @@
             pointer-events: auto;
             display: block;
         }
-    }
-}
-
-.backdrop {
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1040;
-    background-color: #000;
-
-    &--enabled {
-        right: 0;
-        bottom: 0;
-        opacity: 0.5;
     }
 }

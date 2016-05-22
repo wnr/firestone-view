@@ -1,12 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import classNames from "classnames";
+
+import * as api from "./game-api";
+import * as stateUtils from "./game-state-utils";
 
 import Hand from "./hand";
 import Hero from "./hero/hero";
 import Battlefield from "./battlefield";
-import * as api from "./game-api";
-import * as stateUtils from "./game-state-utils";
+import ChooseOne from "./choose-one/choose-one";
 
 var history = [];
 var historyBackSteps = 0;
@@ -55,11 +55,9 @@ export default React.createClass({
         const friendlyPlayer = game.players[0];
         const opponentPlayer = game.players[1];
 
-
-
         return (
             <div className="container">
-                <Backdrop enabled={stateUtils.isInBlockingState(this.state.game)} />
+                <ChooseOne game={this.state.game} />
                 <div className="game">
                     <div className="side opponent">
                         <div className="hand-area">
@@ -399,14 +397,3 @@ export default React.createClass({
         setStateWithDelay(0);
     }
 });
-
-function Backdrop(props) {
-    const className = classNames({
-        "backdrop": true,
-        "backdrop--enabled": props.enabled,
-    });
-
-    return (
-        <div className={className}></div>
-    );
-}

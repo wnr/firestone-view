@@ -45,6 +45,8 @@ export default function Minion(props) {
             <img className="minion__portrait" src={"/asset/image/card/minion/" + minion.name} />
             <img className="minion__frame" src="/asset/image/minion frame.png" />
             <div className="minion__overlay">
+                <Deathrattle minion={minion} />
+                <Inspire minion={minion} />
                 <Dragon minion={minion} />
                 <Frozen minion={minion} />
                 <Attack minion={minion} />
@@ -53,6 +55,14 @@ export default function Minion(props) {
             </div>
         </div>
     );
+}
+
+function Deathrattle(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "DEATHRATTLE"; })) {
+        return <img className="minion__overlay__deathrattle" src="/asset/image/icon_deathrattle.png" />;
+    }
+    return <div></div>;
 }
 
 function DivineShield(props) {
@@ -75,6 +85,14 @@ function Frozen(props) {
     const minion = props.minion;
     if (minion.states.some(function (state) { return state === "FROZEN"; })) {
         return <img className="minion__overlay__frozen" src="/asset/image/inplay_minion_frozen.png" />;
+    }
+    return <div></div>;
+}
+
+function Inspire(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "INSPIRE"; })) {
+        return <img className="minion__overlay__inspire" src="/asset/image/icon_inspire.png" />;
     }
     return <div></div>;
 }

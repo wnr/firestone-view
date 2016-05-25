@@ -27,8 +27,33 @@
                 margin-right: auto;
 
                 .card {
-                    margin: 0px 5px 0 5px;
+                 //   margin: 0px 5px 0 5px;
                 }
+                ul li {
+                    margin-left: -40px;
+                    transition: all 500ms linear;
+                }
+                ul li.position-5 { transform: rotateZ(-20deg); margin-top: 12px; }
+                ul li.position-4 { transform: rotateZ(-16deg); margin-top: 9px; }
+                ul li.position-3 { transform: rotateZ(-12deg); margin-top: 6px; }
+                ul li.position-2 { transform: rotateZ(-8deg); margin-top: 3px;}
+                ul li.position-1 { transform: rotateZ(-4deg); margin-top: 0px;}
+                ul li.position0 { transform: rotateZ(0deg); margin-top: -3px;}
+                ul li.position1 { transform: rotateZ(4deg); margin-top: -6px;}
+                ul li.position2 { transform: rotateZ(8deg); margin-top: -9px;}
+                ul li.position3 { transform: rotateZ(12deg); margin-top: -12px;}
+                ul li.position4 { transform: rotateZ(16deg); margin-top: -15px;}
+
+                //ul li:nth-child(1) { transform: rotateZ(-16deg); margin-top: 12px; }
+                //ul li:nth-child(2) { transform: rotateZ(-12deg); margin-top: 9px; }
+                //ul li:nth-child(3) { transform: rotateZ(-8deg); margin-top: 6px; }
+                //ul li:nth-child(4) { transform: rotateZ(-4deg); margin-top: 3px;}
+                //ul li:nth-child(5) { transform: rotateZ(0deg); margin-top: 0px;}
+                //ul li:nth-child(6) { transform: rotateZ(4deg); margin-top: -3px;}
+                //ul li:nth-child(7) { transform: rotateZ(8deg); margin-top: -6px;}
+                //ul li:nth-child(8) { transform: rotateZ(12deg); margin-top: -9px;}
+                //ul li:nth-child(9) { transform: rotateZ(16deg); margin-top: -12px;}
+                //ul li:nth-child(10) { transform: rotateZ(20deg); margin-top: -15px;}
             }
         }
     }

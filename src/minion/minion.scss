@@ -34,6 +34,12 @@
 		height: 100%;
 	}
 
+	&__sleepy {
+		position: absolute;
+		height: 100%;
+		left: 0;
+	}
+
 	&__taunt {
 		position: absolute;
 		z-index: -1;

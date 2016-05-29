@@ -37,7 +37,7 @@ export default function Face(props) {
         "fade-in": true,
         "can-attack": hero.canAttack,
         "valid-target": isPlayerTargeting() && isValidTarget(),
-        "non-valid-target": isPlayerTargeting() && !isValidTarget()
+        "non-valid-target": (isPlayerTargeting() && !isValidTarget()) || (selectedMinion && !isValidTargetByMinionAttack())
     });
 
     return (

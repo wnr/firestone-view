@@ -35,7 +35,7 @@ export default function Minion(props) {
         "fade-in": true,
         "can-attack": minion.canAttack,
         "valid-target": isPlayerTargeting() && isValidTarget(),
-        "non-valid-target": isPlayerTargeting() && !isValidTarget(),
+        "non-valid-target": (isPlayerTargeting() && !isValidTarget()) || (selectedMinion && selectedMinion.id !== minion.id && !isValidTargetByMinionAttack()),
         "focused": selectedMinion && selectedMinion.id === minion.id
     });
 
@@ -52,6 +52,7 @@ export default function Minion(props) {
                 <Attack minion={minion} />
                 <Health minion={minion} />
                 <DivineShield minion={minion} />
+                <Sleepy minion={minion} />
             </div>
         </div>
     );
@@ -73,10 +74,10 @@ function DivineShield(props) {
     return <div></div>;
 }
 
-function Taunt(props) {
+function Dragon(props) {
     const minion = props.minion;
-    if (minion.states.some(function (state) { return state === "TAUNT"; })) {
-        return <img className="minion__taunt" src="/asset/image/inplay_minion_taunt.png" />;
+    if (minion.rarity === "legendary") {
+        return <img className="minion__overlay__dragon" src="/asset/image/inplay_minion_legendary.png" />;
     }
     return <div></div>;
 }
@@ -97,14 +98,20 @@ function Inspire(props) {
     return <div></div>;
 }
 
-function Dragon(props) {
+function Sleepy(props) {
     const minion = props.minion;
-
-    if (minion.rarity !== "legendary") {
-        return <div></div>;
+    if (minion.sleepy) {
+        return <img className="minion__sleepy" src="/asset/image/effect_sleep.png" />;
     }
+    return <div></div>;
+}
 
-    return <img className="minion__overlay__dragon" src="/asset/image/inplay_minion_legendary.png" />;
+function Taunt(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "TAUNT"; })) {
+        return <img className="minion__taunt" src="/asset/image/inplay_minion_taunt.png" />;
+    }
+    return <div></div>;
 }
 
 function Attack(props) {

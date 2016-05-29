@@ -32,8 +32,58 @@ export default function AssetLoader(options) {
         loadAssets(assetUrls, loadAudio, callback);
     }
 
+/*    function loadAnyAudio(assetUrls, callback) {
+        if (!Array.isArray(assetUrls)) {
+            assetUrls = [assetUrls];
+        }
+
+        assetUrls = assetUrls.map(function (url) {
+            return assetBaseUrl + url;
+        });
+
+        var cachedAssetUrl = assetUrls.find((assetUrl) => assetCache[assetUrl]);
+
+        if (cachedAssetUrl) {
+            return callback(assetCache[cachedAssetUrl]);
+        }
+
+        function loadAudio(url, callback) {
+            const audio = new Audio();
+            audio.addEventListener("canplaythrough", function() {
+                callback(audio);
+            }, false);
+            audio.src = url;
+            audio.load();
+        }
+
+        loadAnyAsset(assetUrls, loadAudio, callback);
+
+
+
+
+        function getAudioAsset(urls, callback) {
+            const url = urls[0];
+            if (url) {
+                const audio = new Audio(url);
+                audio.addEventListener("canplaythrough", function () {
+                    console.log("Can play through");
+                    assetCache[url] = audio;
+                    callback(audio);
+                }, false);
+                audio.addEventListener("error", function () {
+                    console.log("Will try with a different url from ", urls.splice(1));
+                    getAudioAsset(urls.splice(1), callback);
+                }, false);
+                audio.load();
+            } else {
+                console.log("No asset could be found from", assetUrls);
+            }
+        }
+
+    }*/
+
     function loadAssets(assetUrls, loadAsset, callback) {
-        if (!assetUrls.forEach) {
+        if (!Array.isArray(assetUrls)) {
             assetUrls = [assetUrls];
         }
 
@@ -81,7 +131,8 @@ export default function AssetLoader(options) {
     }
 
     return {
-        loadImages: loadImages,
-        loadAudio: loadAudio
+        //loadAnyAudio: loadAnyAudio,
+        loadAudio: loadAudio,
+        loadImages: loadImages
     };
 };

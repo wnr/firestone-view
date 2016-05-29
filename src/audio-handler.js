@@ -2,19 +2,19 @@ export default function AudioHandler(config) {
     const assetProvider = config.assetProvider;
 
     function playMinionAttack(name) {
-        assetProvider.loadAudio("sound/minion/" + name + "Attack.ogg", function (audio) {
+        assetProvider.loadAudio("sound/minion/" + name + "Attack", function (audio) {
             audio.play();
         });
     }
 
     function playMinionPlayedToBoard(name) {
-        assetProvider.loadAudio("sound/minion/" + name + "Play.ogg", function (audio) {
+        assetProvider.loadAudio("sound/minion/" + name + "Play", function (audio) {
             audio.play();
         });
     }
 
     function playMinionTrigger(name) {
-        assetProvider.loadAudio("sound/minion/" + name + "Trigger.ogg", function (audio) {
+        assetProvider.loadAudio("sound/minion/" + name + "Trigger", function (audio) {
             audio.play();
         });
     }

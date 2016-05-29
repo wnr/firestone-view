@@ -94,6 +94,7 @@ function download(url, filename, done) {
     http.get(url, function (hearthcardsResponse) {
         if (hearthcardsResponse.statusCode !== 200) {
             console.log("Failed to get asset from hearthcards.net for ", url);
+            done(null);
         } else {
             var targetFile = fs.createWriteStream(filename);
             hearthcardsResponse.pipe(targetFile);
@@ -256,33 +257,89 @@ const routes = {
     }, {
         url: /^\/asset\/sound\/minion\//,
         fn: function (req, res) {
-            const url = req.url;
-            const name = decodeURIComponent(url.split("asset/sound/minion/")[1]);
-            const filename = path.join(process.cwd(), minionSoundPath, name);
+           function getCachedFilename(filenames, callback) {
+                const filename = filenames[0];
 
-            fs.exists(filename, function (exists) {
-                if (exists) {
-                    console.log("cache hit", filename);
-                    serveFile(res, "application/audio/ogg", filename);
-                } else {
-                    console.log("cache miss", filename);
-                    const url = getHearthheadSoundUrl(name);
+                if (!filename) {
+                    return callback(null);
+                }
+
+                fs.exists(filename, function (exists) {
+                    if (exists) {
+                        callback(filename);
+                    } else {
+                        getCachedFilename(filenames.slice(1), callback);
+                    }
+                });
+            }
+
+            function downloadFileFromExternalUrl(filenames, callback) {
+                const filename = filenames[0];
+                console.log("FILENAME:", filename);
+                if (filename) {
+                    const fileType = filename.substring(filename.length - 4, filename.length);
+                    console.log("THE FILE TYPE IS", fileType);
+
+                    if (!filename) {
+                        return callback(null);
+                    }
+
+                    console.log("FILENAME:", filename);
+                    const name = decodeURIComponent(filename.split("sound/minion/")[1]);
+                    console.log("NAME:", name.replace(".mp3", ".ogg"));
+                    const url = getHearthheadSoundUrl(name.replace(".mp3", ".ogg")).replace(".ogg", fileType);
 
                     console.log('Trying to download from:', url);
 
                     if (!url) {
-                        console.log("Cannot find sound for", name);
-                        res.statusCode = 404;
-                        res.end();
+                        console.log("WARNING: Cannot find sound url for", name);
+                        downloadFileFromExternalUrl(filenames.slice(1), callback);
                         return;
                     }
+
                     download(url, filename, function (f) {
+                        console.log('DONE WITH DOWNLOAD');
                         if (!f) {
+                            console.log('RECUR');
+                            downloadFileFromExternalUrl(filenames.slice(1), callback);
+                        } else {
+                            callback(filename);
+                        }
+                    });
+                } else {
+                    callback(null);
+                }
+            }
+
+            function prepareResponse(res, filename) {
+                if (filename.indexOf(".ogg") !== -1) {
+                    serveFile(res, "application/audio/ogg", filename);
+                } else {
+                    serveFile(res, "application/audio/mp3", filename);
+                }
+            }
+
+            const url = req.url;
+            const name = decodeURIComponent(url.split("asset/sound/minion/")[1]);
+            const filenames = [
+                path.join(process.cwd(), minionSoundPath, name + ".ogg"),
+                path.join(process.cwd(), minionSoundPath, name + ".mp3")
+            ];
+
+            getCachedFilename(filenames, function (filenameInCache) {
+                if (filenameInCache) {
+                    console.log("cache hit", filenameInCache);
+                    prepareResponse(res, filenameInCache);
+                } else {
+                    console.log("cache miss", filenames);
+                    downloadFileFromExternalUrl(filenames, function (downloadedFilename) {
+                        if (downloadedFilename) {
+                            console.log("Downloaded sound", downloadedFilename);
+                            prepareResponse(res, downloadedFilename);
+                        } else {
                             res.statusCode = 404;
                             res.end();
-                            return;
                         }
-                        serveFile(res, "application/audio/ogg", f);
                     });
                 }
             });

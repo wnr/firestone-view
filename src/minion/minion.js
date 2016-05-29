@@ -49,6 +49,8 @@ export default function Minion(props) {
                 <Inspire minion={minion} />
                 <Dragon minion={minion} />
                 <Frozen minion={minion} />
+                <Stealth minion={minion} />
+                <Enrage minion={minion} />
                 <Attack minion={minion} />
                 <Health minion={minion} />
                 <DivineShield minion={minion} />
@@ -78,6 +80,22 @@ function Dragon(props) {
     const minion = props.minion;
     if (minion.rarity === "legendary") {
         return <img className="minion__overlay__dragon" src="/asset/image/inplay_minion_legendary.png" />;
+    }
+    return <div></div>;
+}
+
+function Enrage(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "ENRAGE"; })) {
+        return <img className="minion__overlay__enrage" src="/asset/image/inplay_minion_enrage.png" />;
+    }
+    return <div></div>;
+}
+
+function Stealth(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "STEALTH"; })) {
+        return <img className="minion__overlay__stealth" src="/asset/image/inplay_minion_stealth.png" />;
     }
     return <div></div>;
 }

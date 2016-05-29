@@ -287,15 +287,17 @@ const routes = {
                     console.log("FILENAME:", filename);
                     const name = decodeURIComponent(filename.split("sound/minion/")[1]);
                     console.log("NAME:", name.replace(".mp3", ".ogg"));
-                    const url = getHearthheadSoundUrl(name.replace(".mp3", ".ogg")).replace(".ogg", fileType);
+                    const preUrl = getHearthheadSoundUrl(name.replace(".mp3", ".ogg"));
 
                     console.log('Trying to download from:', url);
 
-                    if (!url) {
+                    if (!preUrl) {
                         console.log("WARNING: Cannot find sound url for", name);
                         downloadFileFromExternalUrl(filenames.slice(1), callback);
                         return;
                     }
+
+                    const url = preUrl.replace(".ogg", fileType);
 
                     download(url, filename, function (f) {
                         console.log('DONE WITH DOWNLOAD');

@@ -14,6 +14,20 @@
     .side {
         height: 35%;
 
+        &.friendly .hand {
+            .card-minion:hover, .card-spell:hover, .card-weapon:hover {
+                transition: all 500ms ease;
+                transform: translateY(-70px) scale(1.4);
+            }
+        }
+
+        &.opponent .hand {
+            .card-minion:hover, .card-spell:hover, .card-weapon:hover {
+                transition: all 500ms ease;
+                transform: translateY(70px) scale(1.4);
+            }
+        }
+
         .hero-area {
         	height: 40%;
         }
@@ -30,7 +44,42 @@
                 .card {
                  //   margin: 0px 5px 0 5px;
                 }
-                ul li {
+
+                ul {
+                    position: relative;
+
+                    li {
+                        transition: all 500ms ease;
+                        position: absolute;
+                        margin-left: -50px;
+
+                        $translationValue: 1200px;
+                        $angle: 4deg;
+
+                        &.position-4 { transform: translateY($translationValue) rotateZ(-4*$angle) translateY(-$translationValue); z-index: 0; &:hover {z-index: 10;}}
+                        &.position-3 { transform: translateY($translationValue) rotateZ(-3*$angle) translateY(-$translationValue); z-index: 1; &:hover {z-index: 10;}}
+                        &.position-2 { transform: translateY($translationValue) rotateZ(-2*$angle) translateY(-$translationValue); z-index: 2; &:hover {z-index: 10;}}
+                        &.position-1 { transform: translateY($translationValue) rotateZ(-1*$angle) translateY(-$translationValue); z-index: 3; &:hover {z-index: 10;}}
+                        &.position0  { z-index: 4; &:hover {z-index: 10;}}
+                        &.position1  { transform: translateY($translationValue) rotateZ($angle) translateY(-$translationValue); z-index: 5; &:hover {z-index: 10;}}
+                        &.position2  { transform: translateY($translationValue) rotateZ(2*$angle) translateY(-$translationValue); z-index: 6; &:hover {z-index: 10;}}
+                        &.position3  { transform: translateY($translationValue) rotateZ(3*$angle) translateY(-$translationValue); z-index: 7; &:hover {z-index: 10;}}
+                        &.position4  { transform: translateY($translationValue) rotateZ(4*$angle) translateY(-$translationValue); z-index: 8; &:hover {z-index: 10;}}
+
+                        &.position-even-5 { transform: translateY($translationValue) rotateZ(-5*$angle + $angle/2) translateY(-$translationValue); z-index: 0; &:hover {z-index: 10;}}
+                        &.position-even-4 { transform: translateY($translationValue) rotateZ(-4*$angle + $angle/2) translateY(-$translationValue); z-index: 1; &:hover {z-index: 10;}}
+                        &.position-even-3 { transform: translateY($translationValue) rotateZ(-3*$angle + $angle/2) translateY(-$translationValue); z-index: 2; &:hover {z-index: 10;}}
+                        &.position-even-2 { transform: translateY($translationValue) rotateZ(-2*$angle + $angle/2) translateY(-$translationValue); z-index: 3; &:hover {z-index: 10;}}
+                        &.position-even-1 { transform: translateY($translationValue) rotateZ(-1*$angle + $angle/2) translateY(-$translationValue); z-index: 4; &:hover {z-index: 10;}}
+                        &.position-even0  { transform: translateY($translationValue) rotateZ($angle - $angle/2) translateY(-$translationValue); z-index: 5; &:hover {z-index: 10;}}
+                        &.position-even1  { transform: translateY($translationValue) rotateZ(2*$angle - $angle/2) translateY(-$translationValue); z-index: 6; &:hover {z-index: 10;}}
+                        &.position-even2  { transform: translateY($translationValue) rotateZ(3*$angle - $angle/2) translateY(-$translationValue); z-index: 7; &:hover {z-index: 10;}}
+                        &.position-even3  { transform: translateY($translationValue) rotateZ(4*$angle - $angle/2) translateY(-$translationValue); z-index: 8; &:hover {z-index: 10;}}
+                        &.position-even4  { transform: translateY($translationValue) rotateZ(5*$angle - $angle/2) translateY(-$translationValue); z-index: 9; &:hover {z-index: 10;}}
+                    }
+
+                }
+/*                ul li {
                     margin-left: -40px;
                     transition: all 500ms linear;
                 }
@@ -43,7 +92,7 @@
                 ul li.position1 { transform: rotateZ(4deg); margin-top: -6px;}
                 ul li.position2 { transform: rotateZ(8deg); margin-top: -9px;}
                 ul li.position3 { transform: rotateZ(12deg); margin-top: -12px;}
-                ul li.position4 { transform: rotateZ(16deg); margin-top: -15px;}
+                ul li.position4 { transform: rotateZ(16deg); margin-top: -15px;}*/
 
                 //ul li:nth-child(1) { transform: rotateZ(-16deg); margin-top: 12px; }
                 //ul li:nth-child(2) { transform: rotateZ(-12deg); margin-top: 9px; }

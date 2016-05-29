@@ -185,7 +185,8 @@ export default React.createClass({
         }
 
         const card = this.state.selectedCard;
-        if (card && !card.isTargeting && card.type === "SPELL") {
+        console.log(card);
+        if (card && !card.isTargeting && (card.type === "SPELL" || card.type === "WEAPON")) {
             api.playCard({
                 gameId: this.state.game.id,
                 cardId: card.id

@@ -1,7 +1,7 @@
 export default function AudioHandler(config) {
     const assetProvider = config.assetProvider;
 
-    function playMinionAttack(name) {
+    function playCharacterAttack(name) {
         assetProvider.loadAudio("sound/minion/" + name + "Attack", function (audio) {
             audio.play();
         });
@@ -11,6 +11,10 @@ export default function AudioHandler(config) {
         assetProvider.loadAudio("sound/minion/" + name + "Play", function (audio) {
             audio.play();
         });
+    }
+
+    function playWeaponPlayed(name) {
+        // TODO
     }
 
     function playMinionTrigger(name) {
@@ -26,9 +30,10 @@ export default function AudioHandler(config) {
     }
 
     return {
-        playMinionAttack: playMinionAttack,
+        playCharacterAttack: playCharacterAttack,
         playMinionPlayedToBoard: playMinionPlayedToBoard,
         playMinionTrigger: playMinionTrigger,
+        playWeaponPlayed: playWeaponPlayed,
         play: play
     };
 }

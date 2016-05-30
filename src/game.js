@@ -16,7 +16,7 @@ export default React.createClass({
         return {
             error: false,
             game: null,
-            selectedMinion: null,
+            selectedCharacter: null,
             selectedCard: null,
             selectedPosition: null,
             selectedHeroPower: null,
@@ -71,7 +71,7 @@ export default React.createClass({
                             <Hero imageProvider={imageProvider}
                                   hero={opponentPlayer.hero}
                                   secrets={opponentPlayer.activeSecrets}
-                                  selectedMinion={this.state.selectedMinion}
+                                  selectedCharacter={this.state.selectedCharacter}
                                   onHeroClick={this.onHeroClick}
                                   onHeroPowerClick={this.onHeroPowerClick}
                                   selectedCard={this.state.selectedCard}
@@ -88,7 +88,7 @@ export default React.createClass({
                         onBattlefieldClick={this.onBattlefieldClick}
                         onPositionClick={this.onPositionClick}
                         onMinionClick={this.onMinionClick}
-                        selectedMinion={this.state.selectedMinion}
+                        selectedCharacter={this.state.selectedCharacter}
                         selectedCard={this.state.selectedCard}
                         selectedPosition={this.state.selectedPosition}
                         selectedHeroPower={this.state.selectedHeroPower}
@@ -98,7 +98,7 @@ export default React.createClass({
                             <Hero imageProvider={imageProvider}
                                   hero={friendlyPlayer.hero}
                                   secrets={friendlyPlayer.activeSecrets}
-                                  selectedMinion={this.state.selectedMinion}
+                                  selectedCharacter={this.state.selectedCharacter}
                                   onHeroClick={this.onHeroClick}
                                   onHeroPowerClick={this.onHeroPowerClick}
                                   selectedCard={this.state.selectedCard}
@@ -125,8 +125,8 @@ export default React.createClass({
             </div>
         );
     },
-    minionAttack: function (data) {
-        this.props.audioHandler.playMinionAttack(this.state.selectedMinion.name);
+    characterAttack: function (data) {
+        this.props.audioHandler.playCharacterAttack(this.state.selectedCharacter.name);
         api.attack(data, (err, game) => {
             this.resetGameState({ game: game });
         });
@@ -134,6 +134,12 @@ export default React.createClass({
     playMinionCard: function (data) {
         this.props.audioHandler.playMinionPlayedToBoard(this.state.selectedCard.name);
         api.playMinionCard(data, (err, game) => {
+            this.resetGameState({ game: game });
+        });
+    },
+    playWeaponCard: function (data) {
+        this.props.audioHandler.playWeaponPlayed(this.state.selectedCard.name);
+        api.playWeaponCard(data, (err, game) => {
             this.resetGameState({ game: game });
         });
     },
@@ -186,8 +192,15 @@ export default React.createClass({
 
         const card = this.state.selectedCard;
         console.log(card);
-        if (card && !card.isTargeting && (card.type === "SPELL" || card.type === "WEAPON")) {
+        if (card && !card.isTargeting && card.type === "SPELL") {
             api.playCard({
+                gameId: this.state.game.id,
+                cardId: card.id
+            }, (err, game) => {
+                this.resetGameState({ game: game });
+            });
+        } else if (card && !card.isTargeting && card.type === "WEAPON") {
+            api.playWeaponCard({
                 gameId: this.state.game.id,
                 cardId: card.id
             }, (err, game) => {
@@ -216,13 +229,14 @@ export default React.createClass({
         if (stateUtils.isInBlockingState(this.state.game)) {
             return;
         }
+        //TODO Creacte onCharacterClick and merge onHeroClick and onMinionClick
 
-        const selectedMinion = this.state.selectedMinion;
+        const selectedCharacter = this.state.selectedCharacter;
         const selectedCard = this.state.selectedCard;
-        if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
-            this.minionAttack({
+        if (selectedCharacter && (selectedCharacter.validAttackIds.indexOf(hero.id) >= 0)) {
+            this.characterAttack({
                 gameId: this.state.game.id,
-                attackerId: selectedMinion.id,
+                attackerId: selectedCharacter.id,
                 targetId: hero.id
             });
         } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(hero.id) !== -1) {
@@ -233,6 +247,12 @@ export default React.createClass({
                     targetId: hero.id
                 }, (err, game) => {
                     this.resetGameState({ game: game });
+                });
+            } else if(selectedCard.type === "WEAPON"){
+                this.playWeaponCard({
+                    gameId: this.state.game.id,
+                    cardId: selectedCard.id,
+                    targetId: hero.id
                 });
             } else {
                 this.playMinionCard({
@@ -250,6 +270,21 @@ export default React.createClass({
             }, (err, game) => {
                 this.resetGameState({ game: game });
             });
+        } else if (selectedCharacter && selectedCharacter.id === hero.id) {
+            // Second click on same hero
+            this.resetState();
+        } else if(selectedCharacter && (selectedCharacter.validAttackIds.indexOf(hero.id) >= 0)) {
+            // Attacking the other hero
+            this.characterAttack({
+                gameId: this.state.game.id,
+                attackerId: selectedCharacter.id,
+                targetId: hero.id
+            });
+        } else if(hero.canAttack){
+            // First click on hero
+            this.resetState({
+                selectedCharacter: hero
+            });
         }
     },
     onMinionClick: function (minion) {
@@ -257,14 +292,14 @@ export default React.createClass({
             return;
         }
 
-        if (this.state.selectedMinion) {
-            if (this.state.selectedMinion.id === minion.id) {
+        if (this.state.selectedCharacter) {
+            if (this.state.selectedCharacter.id === minion.id) {
                 this.resetState();
-            } else if ((this.state.selectedMinion.validAttackIds.indexOf(minion.id) >= 0)) {
+            } else if ((this.state.selectedCharacter.validAttackIds.indexOf(minion.id) >= 0)) {
                 // Minion attacks a minion
-                this.minionAttack({
+                this.characterAttack({
                     gameId: this.state.game.id,
-                    attackerId: this.state.selectedMinion.id,
+                    attackerId: this.state.selectedCharacter.id,
                     targetId: minion.id
                 });
             }
@@ -301,7 +336,7 @@ export default React.createClass({
         } else if (minion.canAttack) {
             // Minions is selected for attacking
             this.resetState({
-                selectedMinion: minion
+                selectedCharacter: minion
             });
         }
     },
@@ -336,7 +371,7 @@ export default React.createClass({
         var newState;
         if (historyBackSteps === 0) {
             newState = history[history.length - 1 - historyBackSteps];
-            newState.selectedMinion =  null;
+            newState.selectedCharacter =  null;
             newState.selectedCard = null;
             newState.selectedPosition = null;
             newState.selectedHeroPower = null;
@@ -348,7 +383,7 @@ export default React.createClass({
             }
         } else {
             newState = history[history.length - 1 - historyBackSteps];
-            newState.selectedMinion =  null;
+            newState.selectedCharacter =  null;
             newState.selectedCard = null;
             newState.selectedPosition = null;
         }
@@ -371,7 +406,7 @@ export default React.createClass({
             }
 
             var newState = {
-                selectedMinion: null,
+                selectedCharacter: null,
                 selectedCard: null,
                 selectedPosition: null,
                 selectedHeroPower: null

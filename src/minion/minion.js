@@ -6,7 +6,7 @@ export default function Minion(props) {
     const minion = props.minion;
     const selectedCard = props.selectedCard;
     const selectedHeroPower = props.selectedHeroPower;
-    const selectedMinion = props.selectedMinion;
+    const selectedCharacter = props.selectedCharacter;
     const selectedPosition = props.selectedPosition;
 
     function isPlayerTargeting() {
@@ -14,12 +14,12 @@ export default function Minion(props) {
         return selectedCard && selectedCard.isTargeting && (selectedCard.type === "SPELL" || Number.isInteger(selectedPosition));
     }
 
-    function isValidTargetByHeroAttack() {
+    function isValidTargetByHeroPowerAttack() {
         return selectedHeroPower && selectedHeroPower.validTargetIds.indexOf(minion.id) !== -1;
     }
 
-    function isValidTargetByMinionAttack() {
-        return selectedMinion && selectedMinion.validAttackIds.indexOf(minion.id) !== -1;
+    function isValidTargetByCharacterAttack() {
+        return selectedCharacter && selectedCharacter.validAttackIds.indexOf(minion.id) !== -1;
     }
 
     function isValidTargetByCard() {
@@ -27,7 +27,7 @@ export default function Minion(props) {
     }
 
     function isValidTarget() {
-        return isValidTargetByHeroAttack() || isValidTargetByMinionAttack() || isValidTargetByCard();
+        return isValidTargetByHeroPowerAttack() || isValidTargetByCharacterAttack() || isValidTargetByCard();
     }
 
     const minionClassName = classNames({
@@ -35,8 +35,8 @@ export default function Minion(props) {
         "fade-in": true,
         "can-attack": minion.canAttack,
         "valid-target": isPlayerTargeting() && isValidTarget(),
-        "non-valid-target": (isPlayerTargeting() && !isValidTarget()) || (selectedMinion && selectedMinion.id !== minion.id && !isValidTargetByMinionAttack()),
-        "focused": selectedMinion && selectedMinion.id === minion.id
+        "non-valid-target": (isPlayerTargeting() && !isValidTarget()) || (selectedCharacter && selectedCharacter.id !== minion.id && !isValidTargetByCharacterAttack()),
+        "focused": selectedCharacter && selectedCharacter.id === minion.id
     });
 
     return (

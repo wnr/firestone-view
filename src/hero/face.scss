@@ -1,5 +1,12 @@
 @import "../glow.scss";
 
+@mixin face-glow-shape() {
+	width: 81%;
+	height: 85%;
+	left: 11%;
+	top: 9%;
+}
+
 @mixin minion-glow-shape() {
 	width: 53%;
 	height: 67%;
@@ -12,12 +19,12 @@
 	&.can-attack {
 		&::before {
 			@include green-glow-subtle();
-			@include minion-glow-shape();
+			@include face-glow-shape();
 		}
 
 		&.focused::before {
 			@include green-glow-intense();
-			@include minion-glow-shape();
+			@include face-glow-shape();
 		}
 	}
 

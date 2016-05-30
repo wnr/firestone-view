@@ -8,7 +8,7 @@ export default function Face(props) {
     // TODO: The targeting logic is shared by characters (minion and hero).
     const selectedCard = props.selectedCard;
     const selectedHeroPower = props.selectedHeroPower;
-    const selectedMinion = props.selectedMinion;
+    const selectedCharacter = props.selectedCharacter;
     const selectedPosition = props.selectedPosition;
 
     function isPlayerTargeting() {
@@ -16,12 +16,12 @@ export default function Face(props) {
         return selectedCard && selectedCard.isTargeting && (selectedCard.type === "SPELL" || Number.isInteger(selectedPosition));
     }
 
-    function isValidTargetByHeroAttack() {
+    function isValidTargetByHeroPowerAttack() {
         return selectedHeroPower && selectedHeroPower.validTargetIds.indexOf(hero.id) !== -1;
     }
 
-    function isValidTargetByMinionAttack() {
-        return selectedMinion && selectedMinion.validAttackIds.indexOf(hero.id) !== -1;
+    function isValidTargetByCharacterAttack() {
+        return selectedCharacter && selectedCharacter.validAttackIds.indexOf(hero.id) !== -1;
     }
 
     function isValidTargetByCard() {
@@ -29,7 +29,7 @@ export default function Face(props) {
     }
 
     function isValidTarget() {
-        return isValidTargetByHeroAttack() || isValidTargetByMinionAttack() || isValidTargetByCard();
+        return isValidTargetByHeroPowerAttack() || isValidTargetByCharacterAttack() || isValidTargetByCard();
     }
 
     const faceClassName = classNames({
@@ -37,7 +37,8 @@ export default function Face(props) {
         "fade-in": true,
         "can-attack": hero.canAttack,
         "valid-target": isPlayerTargeting() && isValidTarget(),
-        "non-valid-target": (isPlayerTargeting() && !isValidTarget()) || (selectedMinion && !isValidTargetByMinionAttack())
+        "non-valid-target": (isPlayerTargeting() && !isValidTarget()) || (selectedCharacter && selectedCharacter.id !== hero.id && !isValidTargetByCharacterAttack()),
+        "focused": selectedCharacter && selectedCharacter.id === hero.id
     });
 
     return (

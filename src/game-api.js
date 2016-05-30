@@ -17,6 +17,10 @@ export function playMinionCard(data, callback) {
     ajax("playMinionCard", data, callback);
 }
 
+export function playWeaponCard(data, callback) {
+    ajax("playWeaponCard", data, callback);
+}
+
 export function playCard(data, callback) {
     ajax("playCard", data, callback);
 }

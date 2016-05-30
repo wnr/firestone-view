@@ -10,7 +10,7 @@ export default function Hero(props) {
     const secrets = props.secrets;
     const selectedCard = props.selectedCard;
     const selectedHeroPower = props.selectedHeroPower;
-    const selectedMinion = props.selectedMinion;
+    const selectedCharacter = props.selectedCharacter;
     const selectedPosition = props.selectedPosition;
 
     return (
@@ -21,7 +21,7 @@ export default function Hero(props) {
                 secrets={secrets}
                 selectedCard={selectedCard}
                 selectedHeroPower={selectedHeroPower}
-                selectedMinion={selectedMinion}
+                selectedCharacter={selectedCharacter}
                 selectedPosition={selectedPosition}
                 onClick={props.onHeroClick}
             />

@@ -35,7 +35,7 @@ export default function Battlefield(props) {
                 showPositions={!props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
-                selectedMinion={props.selectedMinion}
+                selectedCharacter={props.selectedCharacter}
                 selectedPosition={props.selectedPosition}
                 selectedCard={props.selectedCard}
                 selectedHeroPower={props.selectedHeroPower}
@@ -45,7 +45,7 @@ export default function Battlefield(props) {
                 showPositions={props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
-                selectedMinion={props.selectedMinion}
+                selectedCharacter={props.selectedCharacter}
                 selectedPosition={props.selectedPosition}
                 selectedCard={props.selectedCard}
                 selectedHeroPower={props.selectedHeroPower}
@@ -60,7 +60,7 @@ function Side(props) {
     const onPositionClick = props.onPositionClick;
     const selectedCard = props.selectedCard;
     const selectedHeroPower = props.selectedHeroPower;
-    const selectedMinion = props.selectedMinion;
+    const selectedCharacter = props.selectedCharacter;
     const selectedPosition = props.selectedPosition;
     const showPositions = props.showPositions;
 
@@ -71,7 +71,7 @@ function Side(props) {
                     minion={minion}
                     selectedCard={selectedCard}
                     selectedHeroPower={selectedHeroPower}
-                    selectedMinion={selectedMinion}
+                    selectedCharacter={selectedCharacter}
                     selectedPosition={selectedPosition}
                 />
             </li>

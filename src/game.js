@@ -16,7 +16,7 @@ export default React.createClass({
         return {
             error: false,
             game: null,
-            selectedMinion: null,
+            selectedCharacter: null,
             selectedCard: null,
             selectedPosition: null,
             selectedHeroPower: null,
@@ -71,7 +71,7 @@ export default React.createClass({
                             <Hero imageProvider={imageProvider}
                                   hero={opponentPlayer.hero}
                                   secrets={opponentPlayer.activeSecrets}
-                                  selectedMinion={this.state.selectedMinion}
+                                  selectedCharacter={this.state.selectedCharacter}
                                   onHeroClick={this.onHeroClick}
                                   onHeroPowerClick={this.onHeroPowerClick}
                                   selectedCard={this.state.selectedCard}
@@ -88,7 +88,7 @@ export default React.createClass({
                         onBattlefieldClick={this.onBattlefieldClick}
                         onPositionClick={this.onPositionClick}
                         onMinionClick={this.onMinionClick}
-                        selectedMinion={this.state.selectedMinion}
+                        selectedCharacter={this.state.selectedCharacter}
                         selectedCard={this.state.selectedCard}
                         selectedPosition={this.state.selectedPosition}
                         selectedHeroPower={this.state.selectedHeroPower}
@@ -98,7 +98,7 @@ export default React.createClass({
                             <Hero imageProvider={imageProvider}
                                   hero={friendlyPlayer.hero}
                                   secrets={friendlyPlayer.activeSecrets}
-                                  selectedMinion={this.state.selectedMinion}
+                                  selectedCharacter={this.state.selectedCharacter}
                                   onHeroClick={this.onHeroClick}
                                   onHeroPowerClick={this.onHeroPowerClick}
                                   selectedCard={this.state.selectedCard}
@@ -125,8 +125,8 @@ export default React.createClass({
             </div>
         );
     },
-    minionAttack: function (data) {
-        this.props.audioHandler.playMinionAttack(this.state.selectedMinion.name);
+    characterAttack: function (data) {
+        this.props.audioHandler.playCharacterAttack(this.state.selectedCharacter.name);
         api.attack(data, (err, game) => {
             this.resetGameState({ game: game });
         });
@@ -134,6 +134,12 @@ export default React.createClass({
     playMinionCard: function (data) {
         this.props.audioHandler.playMinionPlayedToBoard(this.state.selectedCard.name);
         api.playMinionCard(data, (err, game) => {
+            this.resetGameState({ game: game });
+        });
+    },
+    playWeaponCard: function (data) {
+        this.props.audioHandler.playWeaponPlayed(this.state.selectedCard.name);
+        api.playWeaponCard(data, (err, game) => {
             this.resetGameState({ game: game });
         });
     },
@@ -186,8 +192,15 @@ export default React.createClass({
 
         const card = this.state.selectedCard;
         console.log(card);
-        if (card && !card.isTargeting && (card.type === "SPELL" || card.type === "WEAPON")) {
+        if (card && !card.isTargeting && card.type === "SPELL") {
             api.playCard({
+                gameId: this.state.game.id,
+                cardId: card.id
+            }, (err, game) => {
+                this.resetGameState({ game: game });
+            });
+        } else if (card && !card.isTargeting && card.type === "WEAPON") {
+            api.playWeaponCard({
                 gameId: this.state.game.id,
                 cardId: card.id
             }, (err, game) => {
@@ -216,94 +229,67 @@ export default React.createClass({
         if (stateUtils.isInBlockingState(this.state.game)) {
             return;
         }
-
-        const selectedMinion = this.state.selectedMinion;
-        const selectedCard = this.state.selectedCard;
-        if (selectedMinion && (selectedMinion.validAttackIds.indexOf(hero.id) >= 0)) {
-            this.minionAttack({
-                gameId: this.state.game.id,
-                attackerId: selectedMinion.id,
-                targetId: hero.id
-            });
-        } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(hero.id) !== -1) {
-            if (selectedCard.type === "SPELL") {
-                api.playCard({
-                    gameId: this.state.game.id,
-                    cardId: selectedCard.id,
-                    targetId: hero.id
-                }, (err, game) => {
-                    this.resetGameState({ game: game });
-                });
-            } else {
-                this.playMinionCard({
-                    gameId: this.state.game.id,
-                    cardId: selectedCard.id,
-                    position: this.state.selectedPosition,
-                    targetId: hero.id
-                });
-            }
-        } else if (this.state.selectedHeroPower) {
-            api.useHeroPower({
-                playerId: this.state.game.playerInTurn,
-                gameId: this.state.game.id,
-                targetId: hero.id
-            }, (err, game) => {
-                this.resetGameState({ game: game });
-            });
-        }
+        this.onCharacterClick(hero);
     },
     onMinionClick: function (minion) {
         if (stateUtils.isInBlockingState(this.state.game)) {
             return;
         }
-
-        if (this.state.selectedMinion) {
-            if (this.state.selectedMinion.id === minion.id) {
-                this.resetState();
-            } else if ((this.state.selectedMinion.validAttackIds.indexOf(minion.id) >= 0)) {
-                // Minion attacks a minion
-                this.minionAttack({
-                    gameId: this.state.game.id,
-                    attackerId: this.state.selectedMinion.id,
-                    targetId: minion.id
-                });
-            }
-        } else if (this.state.selectedCard) {
-            if (this.state.selectedPosition !== null) {
-                // Targeting card is being played on the given minion as target.
-                this.playMinionCard({
-                    gameId: this.state.game.id,
-                    cardId: this.state.selectedCard.id,
-                    position: this.state.selectedPosition,
-                    targetId: minion.id
-                });
-            } else if (this.state.selectedCard.type === "SPELL"
-                        && this.state.selectedCard.isTargeting
-                        && (this.state.selectedCard.validTargetIds.indexOf(minion.id) >= 0)) {
+        this.onCharacterClick(minion);
+    },
+    onCharacterClick: function (character) {
+        const selectedCharacter = this.state.selectedCharacter;
+        const selectedCard = this.state.selectedCard;
+        if (selectedCharacter && (selectedCharacter.validAttackIds.indexOf(character.id) >= 0)) {
+            // Attacking another character
+            this.characterAttack({
+                gameId: this.state.game.id,
+                attackerId: selectedCharacter.id,
+                targetId: character.id
+            });
+        } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(character.id) !== -1) {
+            // Some card is a targetting card and the character was selected as the target
+            if (selectedCard.type === "SPELL") {
                 api.playCard({
                     gameId: this.state.game.id,
-                    cardId: this.state.selectedCard.id,
-                    targetId: minion.id
+                    cardId: selectedCard.id,
+                    targetId: character.id
                 }, (err, game) => {
                     this.resetGameState({ game: game });
                 });
+            } else if(selectedCard.type === "WEAPON"){
+                this.playWeaponCard({
+                    gameId: this.state.game.id,
+                    cardId: selectedCard.id,
+                    targetId: character.id
+                });
             } else {
-                console.error("Invalid state");
+                this.playMinionCard({
+                    gameId: this.state.game.id,
+                    cardId: selectedCard.id,
+                    position: this.state.selectedPosition,
+                    targetId: character.id
+                });
             }
         } else if (this.state.selectedHeroPower) {
+            // Hero power is beeing used on this character
             api.useHeroPower({
                 playerId: this.state.game.playerInTurn,
                 gameId: this.state.game.id,
-                targetId: minion.id
+                targetId: character.id
             }, (err, game) => {
                 this.resetGameState({ game: game });
             });
-        } else if (minion.canAttack) {
-            // Minions is selected for attacking
+        } else if (selectedCharacter && selectedCharacter.id === character.id) {
+            // Second click on same character
+            this.resetState();
+        } else if(character.canAttack){
+            // First click on character
             this.resetState({
-                selectedMinion: minion
+                selectedCharacter: character
             });
         }
+
     },
     onHeroPowerClick: function (heropower) {
         if (stateUtils.isInBlockingState(this.state.game)) {
@@ -336,7 +322,7 @@ export default React.createClass({
         var newState;
         if (historyBackSteps === 0) {
             newState = history[history.length - 1 - historyBackSteps];
-            newState.selectedMinion =  null;
+            newState.selectedCharacter =  null;
             newState.selectedCard = null;
             newState.selectedPosition = null;
             newState.selectedHeroPower = null;
@@ -348,7 +334,7 @@ export default React.createClass({
             }
         } else {
             newState = history[history.length - 1 - historyBackSteps];
-            newState.selectedMinion =  null;
+            newState.selectedCharacter =  null;
             newState.selectedCard = null;
             newState.selectedPosition = null;
         }
@@ -371,7 +357,7 @@ export default React.createClass({
             }
 
             var newState = {
-                selectedMinion: null,
+                selectedCharacter: null,
                 selectedCard: null,
                 selectedPosition: null,
                 selectedHeroPower: null

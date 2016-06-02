@@ -136,9 +136,9 @@ function Attack(props) {
     const minion = props.minion;
     const attackClassName = classNames({
         "minion__overlay__attack": true,
-        "stats-text":           minion.attack === minion.originalAttack,
+        "stats-text":           minion.attack <= minion.originalAttack,
         "stats-text--enhanced": minion.attack > minion.originalAttack,
-        "stats-text--worsened": minion.attack < minion.originalAttack
+//        "stats-text--worsened": minion.attack < minion.originalAttack
     });
 
     return (
@@ -152,9 +152,9 @@ function Health(props) {
     const minion = props.minion;
     const healthClassName = classNames({
         "minion__overlay__health": true,
-        "stats-text":           minion.health === minion.originalHealth,
-        "stats-text--enhanced": minion.health > minion.originalHealth,
-        "stats-text--worsened": minion.health < minion.originalHealth
+        "stats-text":           minion.health <= minion.originalHealth && minion.health === minion.maxHealth,
+        "stats-text--enhanced": minion.health > minion.originalHealth && minion.health === minion.maxHealth,
+        "stats-text--worsened": minion.health < minion.maxHealth
     });
 
     return (

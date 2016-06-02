@@ -14,17 +14,20 @@
     .side {
         height: 35%;
 
+        $hoverStrength: 30px;
+        $hoverScale: 1.4;
+
         &.friendly .hand {
             .card-minion:hover, .card-spell:hover, .card-weapon:hover {
                 transition: all 500ms ease;
-                transform: translateY(-70px) scale(1.4);
+                transform: translateY(-$hoverStrength) scale($hoverScale);
             }
         }
 
         &.opponent .hand {
             .card-minion:hover, .card-spell:hover, .card-weapon:hover {
                 transition: all 500ms ease;
-                transform: translateY(70px) scale(1.4);
+                transform: translateY($hoverStrength) scale($hoverScale);
             }
         }
 
@@ -53,7 +56,7 @@
                         position: absolute;
                         margin-left: -50px;
 
-                        $translationValue: 1200px;
+                        $translationValue: 800px;
                         $angle: 4deg;
 
                         &.position-4 { transform: translateY($translationValue) rotateZ(-4*$angle) translateY(-$translationValue); z-index: 0; &:hover {z-index: 10;}}

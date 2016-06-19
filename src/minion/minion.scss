@@ -42,7 +42,7 @@
 
 	&__taunt {
 		position: absolute;
-		//z-index: -1;
+		z-index: -1;
 		height: 100%;
 	}
 
@@ -52,7 +52,7 @@
 	    left: 11.39%;
 	    top: 13.33%;
 		clip-path: ellipse(37.87% 48.12% at 50.49% 50.49%);
-		//z-index: -1; // Can this be removed somehow?
+		z-index: -1; // Can this be removed somehow?
 	}
 
 	&__overlay {

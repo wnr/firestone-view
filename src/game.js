@@ -41,7 +41,7 @@ export default React.createClass({
     },
     render: function () {
         const imageProvider = this.props.imageProvider;
-
+        const intermediateStateInfo = this.state.intermediateStateInfo;
         const game = this.state.game;
 
         if (!game) {
@@ -54,6 +54,18 @@ export default React.createClass({
 
         const friendlyPlayer = game.players[0];
         const opponentPlayer = game.players[1];
+
+        function intermediateState () {
+            if (intermediateStateInfo.entityName) {
+                return (
+                    <div className="states">
+                        <p>Entity: {intermediateStateInfo.entityName}</p>
+                        <p>Event: {intermediateStateInfo.eventName}</p>
+                    </div>
+                );
+            }
+            return (<div></div>);
+        }
 
         return (
             <div className="container">
@@ -115,11 +127,12 @@ export default React.createClass({
                         </div>
                     </div>
                     <div className="buttons-container">
+                        {intermediateState()}
                         <button className="button" onClick={this.onEndTurn}>End turn</button>
                         <br />
-                        <button className="button" onClick={this.undoInHistory}>Undo</button>
+                        <button className="button" onClick={this.undoInHistory}>Back</button>
                         <br />
-                        <button className="button" onClick={this.doInHistory}>Do</button>
+                        <button className="button" onClick={this.doInHistory}>Forward</button>
                     </div>
                 </div>
             </div>
@@ -191,7 +204,6 @@ export default React.createClass({
         }
 
         const card = this.state.selectedCard;
-        console.log(card);
         if (card && !card.isTargeting && card.type === "SPELL") {
             api.playCard({
                 gameId: this.state.game.id,
@@ -348,10 +360,19 @@ export default React.createClass({
 
         var setStateWithDelay = function (index) {
 
-            var s;
+            var s = {};
+            var intermediateStateInfo;
             if (intermediateStates[index]) {
+                var intermediateState = intermediateStates[index];
                 that.props.audioHandler.playMinionTrigger(intermediateStates[index].entityName);
-                s = {game: intermediateStates[index].state};
+                s = intermediateState.state;
+
+                    intermediateStateInfo = {
+                        entityId: intermediateState.entityId,
+                        entityName: intermediateState.entityName,
+                        eventName: intermediateState.eventName
+                    };
+
             } else {
                 s = game;
             }
@@ -362,6 +383,16 @@ export default React.createClass({
                 selectedPosition: null,
                 selectedHeroPower: null
             };
+
+            if (intermediateStateInfo) {
+                newState.intermediateStateInfo = {
+                    entityId: intermediateState.entityId,
+                    entityName: intermediateState.entityName,
+                    eventName: intermediateState.eventName
+                };
+            } else {
+                newState.intermediateStateInfo = {};
+            }
 
             for (var prop in s) {
                 if (s.hasOwnProperty(prop)) {

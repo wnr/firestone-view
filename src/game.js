@@ -69,7 +69,6 @@ export default React.createClass({
 
         return (
             <div className="container">
-                <ChooseOne game={this.state.game} />
                 <div className="game">
                     <div className="side opponent">
                         <div className="hand-area">
@@ -135,6 +134,7 @@ export default React.createClass({
                         <button className="button" onClick={this.doInHistory}>Forward</button>
                     </div>
                 </div>
+                <ChooseOne game={this.state.game} onChooseOne={this.onChooseOne} />
             </div>
         );
     },
@@ -303,6 +303,15 @@ export default React.createClass({
         }
 
     },
+    onChooseOne: function (option) {
+        api.chooseOne({
+            gameId: this.state.game.id,
+            playerId: this.state.game.playerInTurn,
+            name: option.name
+        }, (err, game) => {
+            this.resetGameState({ game: game });
+        });
+    },
     onHeroPowerClick: function (heropower) {
         if (stateUtils.isInBlockingState(this.state.game)) {
             return;
@@ -366,13 +375,11 @@ export default React.createClass({
                 var intermediateState = intermediateStates[index];
                 that.props.audioHandler.playMinionTrigger(intermediateStates[index].entityName);
                 s = intermediateState.state;
-
-                    intermediateStateInfo = {
-                        entityId: intermediateState.entityId,
-                        entityName: intermediateState.entityName,
-                        eventName: intermediateState.eventName
-                    };
-
+                intermediateStateInfo = {
+                    entityId: intermediateState.entityId,
+                    entityName: intermediateState.entityName,
+                    eventName: intermediateState.eventName
+                };
             } else {
                 s = game;
             }

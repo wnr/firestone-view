@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import classnames from "classnames";
 
 import Card from "./card";
 
@@ -18,8 +19,15 @@ export default function Hand(props) {
         );
     });
 
+    const className = classnames({
+        "hand": true,
+        "hand--fan": props.fan,
+        "hand--fan--upwards": props.fan === "upwards",
+        "hand--fan--downwards": props.fan === "downwards"
+    });
+
     return (
-        <div className="hand">
+        <div className={className}>
             <ul>
                 {cards}
             </ul>

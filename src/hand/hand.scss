@@ -1,0 +1,84 @@
+.hand {
+    $hoverStrength: 50px;
+    $hoverScale: 1.4;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    .card {
+     //   margin: 0px 5px 0 5px;
+    }
+
+    $translationValue: 800px;
+    $angle: 7deg;
+
+    @mixin fan-element-odd($position, $hover) {
+        transform: translateY($translationValue) rotateZ($position*$angle) translateY(-$translationValue);
+
+        &:hover {
+            @if $hover == up {
+                transform: translateY($translationValue) rotateZ($position*$angle) translateY(-$translationValue) translate3d(0, -$hoverStrength, 1px) scale($hoverScale);
+            } @else {
+                transform: translateY($translationValue) rotateZ($position*$angle) translateY(-$translationValue) translate3d(0, +$hoverStrength, 1px) scale($hoverScale);
+            }
+        }
+    }
+
+    @mixin fan-element-even($position, $hover) {
+        transform: translateY($translationValue) rotateZ($position*$angle + if($position >= 0, -1, 1)*$angle/2) translateY(-$translationValue);
+
+        &:hover {
+            @if $hover == up {
+                transform: translateY($translationValue) rotateZ($position*$angle + if($position >= 0, -1, 1)*$angle/2) translateY(-$translationValue) translate3d(0, -$hoverStrength, 1px) scale($hoverScale);
+            } @else {
+                transform: translateY($translationValue) rotateZ($position*$angle + if($position >= 0, -1, 1)*$angle/2) translateY(-$translationValue) translate3d(0, +$hoverStrength, 1px) scale($hoverScale);
+            }
+        }
+    }
+
+    @mixin fan($hover) {
+
+        & ul {
+            position: relative;
+            transform-style: preserve-3d;
+
+            li {
+                transition: all 500ms ease;
+                position: absolute;
+                margin-left: -75px;
+                transform: translateZ(0px);
+
+                &.position-4 { @include fan-element-odd(-4, $hover); }
+                &.position-3 { @include fan-element-odd(-3, $hover); }
+                &.position-2 { @include fan-element-odd(-2, $hover); }
+                &.position-1 { @include fan-element-odd(-1, $hover); }
+                &.position0  { @include fan-element-odd(0, $hover); }
+                &.position1  { @include fan-element-odd(1, $hover); }
+                &.position2  { @include fan-element-odd(2, $hover); }
+                &.position3  { @include fan-element-odd(3, $hover); }
+                &.position4  { @include fan-element-odd(4, $hover); }
+
+                // When there are even cards, there is no card in the middle so there is a 1 offset for position >= 0.
+                &.position-even-5 { @include fan-element-even(-5, $hover); }
+                &.position-even-4 { @include fan-element-even(-4, $hover); }
+                &.position-even-3 { @include fan-element-even(-3, $hover); }
+                &.position-even-2 { @include fan-element-even(-2, $hover); }
+                &.position-even-1 { @include fan-element-even(-1, $hover); }
+                &.position-even0  { @include fan-element-even(1, $hover); }
+                &.position-even1  { @include fan-element-even(2, $hover); }
+                &.position-even2  { @include fan-element-even(3, $hover); }
+                &.position-even3  { @include fan-element-even(4, $hover); }
+                &.position-even4  { @include fan-element-even(5, $hover); }
+            }
+
+        }
+    }
+
+    &--fan--upwards {
+        @include fan(up);
+    }
+
+    &--fan--downwards {
+        @include fan(down);
+    }
+}

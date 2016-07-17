@@ -188,8 +188,6 @@ const routes = {
             const name = decodeURIComponent(url.split("asset/image/weapon/")[1]);
             const filename = path.join(process.cwd(), weaponImagePath, name + ".png");
 
-            console.log(name, filename);
-
             fs.exists(filename, function (exists) {
                 if (exists) {
                     console.log("cache hit", filename);
@@ -214,6 +212,10 @@ const routes = {
         fn: function (req, res) {
             function getHearthcardUrl(name) {
                 var mapper = {
+                    "gem common": "card_js_templates/gem_common.png",
+                    "gem rare": "card_js_templates/gem_rare.png",
+                    "gem epic": "card_js_templates/gem_epic.png",
+                    "gem legendary": "card_js_templates/gem_legendary.png",
                     "minion frame neutral": "card_js_templates/card_minion_neutral.png",
                     "minion frame paladin": "card_js_templates/card_minion_paladin.png",
                     "minion frame warlock": "card_js_templates/card_minion_warlock.png",
@@ -225,10 +227,6 @@ const routes = {
                     "minion frame rogue": "card_js_templates/card_minion_rogue.png",
                     "minion frame shaman": "card_js_templates/card_minion_shaman.png",
                     "minion gem brackets": "card_js_templates/minion_gem_brackets.png",
-                    "gem common": "card_js_templates/gem_common.png",
-                    "gem rare": "card_js_templates/gem_rare.png",
-                    "gem epic": "card_js_templates/gem_epic.png",
-                    "gem legendary": "card_js_templates/gem_legendary.png",
                     "minion frame dragon bracket": "card_js_templates/card_minion_legendary_dragon_bracket.png",
                     "minion swirl blackrock": "card_js_templates/on_card_swirl_blackrock_minion.png",
                     "minion race": "card_js_templates/card_race.png",
@@ -243,8 +241,20 @@ const routes = {
                     "spell frame rogue": "card_js_templates/card_spell_rogue.png",
                     "spell frame shaman": "card_js_templates/card_spell_shaman.png",
                     "spell gem brackets": "card_js_templates/spell_gem_brackets.png",
-                    "spell swirl basic": "card_js_templates/on_card_swirl_basic_spell.png"
-                };
+                    "spell swirl basic": "card_js_templates/on_card_swirl_basic_spell.png",
+                    "weapon frame neutral": "card_js_templates/card_weapon_neutral.png",
+                    "weapon frame paladin": "card_js_templates/card_weapon_paladin.png",
+                    "weapon frame warlock": "card_js_templates/card_weapon_warlock.png",
+                    "weapon frame hunter": "card_js_templates/card_weapon_hunter.png",
+                    "weapon frame mage": "card_js_templates/card_weapon_mage.png",
+                    "weapon frame priest": "card_js_templates/card_weapon_priest.png",
+                    "weapon frame druid": "card_js_templates/card_weapon_druid.png",
+                    "weapon frame warrior": "card_js_templates/card_weapon_warrior.png",
+                    "weapon frame rogue": "card_js_templates/card_weapon_rogue.png",
+                    "weapon frame shaman": "card_js_templates/card_weapon_shaman.png",
+                    "weapon gem brackets": "card_js_templates/weapon_gem_brackets.png",
+                    "weapon swirl basic": "card_js_templates/on_card_swirl_basic_weapon.png"
+                }
 
                 var suburl = mapper[name];
 

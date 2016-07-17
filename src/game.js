@@ -77,6 +77,7 @@ export default React.createClass({
                                   cards={opponentPlayer.hand}
                                   onCardClick={this.onCardClick}
                                   selectedCard={this.state.selectedCard}
+                                  fan="downwards"
                             />
                         </div>
                         <div className="hero-area">
@@ -123,6 +124,7 @@ export default React.createClass({
                                   cards={friendlyPlayer.hand}
                                   onCardClick={this.onCardClick}
                                   selectedCard={this.state.selectedCard}
+                                  fan="upwards"
                             />
                         </div>
                     </div>

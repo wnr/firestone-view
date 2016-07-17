@@ -10,7 +10,7 @@
 }
 
 .card-spell, .card-minion {
-	&.playable {
+	&.glow {
         transform-style: preserve-3d;
 
 		&::before {
@@ -25,14 +25,14 @@
             transform: translateZ(-1px);
 		}
 
-		&.combo {
+		&.glow-special {
 			&::before {
 				@include orange-glow-subtle();
 				@include card-glow-shape();
                 transform: translateZ(-1px);
 			}
 
-			.combo.focused::before {
+			.glow-special.focused::before {
 				@include orange-glow-intense();
 				@include card-glow-shape();
                 transform: translateZ(-1px);

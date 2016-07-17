@@ -9,14 +9,13 @@ export default React.createClass({
         const card = this.props.card;
 
         const classType = card.class || "neutral";
-        const focused = this.props.selectedCard && this.props.selectedCard.id === card.id;
 
         const cardClassName = classNames({
             "card-minion": true,
             "fade-in": true,
-            "playable": card.playable,
-            "combo": card.combo,
-            "focused": focused
+            "glow": this.props.glow,
+            "glow-special": this.props.glowSpecial,
+            "focused": this.props.focused
         });
 
         return (

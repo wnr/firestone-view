@@ -9,25 +9,14 @@
 }
 
 .weapon {
-	&.can-use {
-		&::before {
-			@include green-glow-subtle();
-			@include weapon-glow-shape();
-		}
-
-		&.selected::before {
-			@include green-glow-intense();
-			@include weapon-glow-shape();
-		}
-	}
 }
 
 .weapon {
-
 	position: absolute;
 	left: -85%;
 	height: 65%;
 	top: 19%;
+	transform-style: preserve-3d;
 
 	&__portrait {
 		position: absolute;
@@ -35,7 +24,7 @@
 		left: 16%;
 		top: 14%;
 		clip-path: ellipse(52% 55% at 50.5% 50.5%);
-	    z-index: -1; // Can this be avoided somehow?
+		transform: translateZ(-1px);
 	}
 
 	&__frame {
@@ -49,10 +38,17 @@
 		width: 100%;
 		height: 100%;
 
-		@at-root svg#{& + __mana} {
+		@at-root svg#{& + __attack} {
 			@include stat-overlay-item();
-			top: 2%;
-			left: 30%;
+			bottom: 3%;
+			left: 2%;
 		}
+
+		@at-root svg#{& + __durability} {
+			@include stat-overlay-item();
+			bottom: 3%;
+			right: 2%;
+		}
+
 	}
 }

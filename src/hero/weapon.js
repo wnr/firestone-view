@@ -6,12 +6,9 @@ export default function Weapon(props) {
     if (!weapon) {
         return <div></div>;
     }
-    const selectedWeapon = props.selectedWeapon;
 
     const weaponClassName = classNames({
-        "weapon": true,
-        "can-use": weapon.canUse,
-        "selected": weapon === selectedWeapon
+        "weapon": true
     });
 
     return (
@@ -19,21 +16,40 @@ export default function Weapon(props) {
             <img className="weapon__portrait" draggable="false" src={"asset/image/weapon/" + weapon.name} />
             <img className="weapon__frame" draggable="false" src="asset/image/inplay_weapon.png" />
             <div className="weapon__overlay">
-                <Mana weapon={weapon} />
+                <Attack weapon={weapon} />
+                <Durability weapon={weapon} />
             </div>
 
 		</div>
 	);
 }
 
-function Mana(props) {
+function Attack(props) {
     const weapon = props.weapon;
-    const manaClassName = classNames({
+    const attackClassName = classNames({
+        "weapon__overlay__attack": true,
+        "stats-text":           weapon.attack === weapon.originalAttack,
+        "stats-text--enhanced": weapon.attack > weapon.originalAttack,
+        "stats-text--worsened": weapon.attack < weapon.originalAttack
     });
-
     return (
-        <svg className={manaClassName} viewBox="0 0 100 100">
-            <text x="50" y="50">{weapon.manaCost}</text>
+        <svg className={attackClassName} viewBox="0 0 100 100">
+            <text x="50" y="50">{weapon.attack}</text>
+        </svg>
+    );
+}
+
+function Durability(props) {
+    const weapon = props.weapon;
+    const durabilityClassName = classNames({
+        "weapon__overlay__durability": true,
+        "stats-text":           (weapon.durability === weapon.maxDurability) && (weapon.durability === weapon.originalDurability),
+        "stats-text--enhanced": (weapon.durability === weapon.maxDurability) && (weapon.durability > weapon.originalDurability),
+        "stats-text--worsened": weapon.durability < weapon.maxDurability
+    });
+    return (
+        <svg className={durabilityClassName} viewBox="0 0 100 100">
+            <text x="50" y="50">{weapon.durability}</text>
         </svg>
     );
 }

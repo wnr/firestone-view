@@ -10,14 +10,17 @@
 
 .minion {
 	&.can-attack {
+		transform-style: preserve-3d;
 		&::before {
 			@include green-glow-subtle();
 			@include minion-glow-shape();
+			transform: translateZ(-1px);
 		}
 
 		&.focused::before {
 			@include green-glow-intense();
 			@include minion-glow-shape();
+			transform: translateZ(-1px);
 		}
 	}
 
@@ -60,8 +63,8 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		left: 0px;
-		top: 0px;
+		left: 0;
+		top: 0;
 
 		&__deathrattle {
 			position: absolute;

@@ -1,0 +1,58 @@
+@import "../glow.scss";
+
+@mixin weapon-glow-shape() {
+	border-radius: 65px;
+	width: 68%;
+	height: 78%;
+	left: 16%;
+	top: 14%;
+}
+
+.weapon {
+	&.can-use {
+		&::before {
+			@include green-glow-subtle();
+			@include weapon-glow-shape();
+		}
+
+		&.selected::before {
+			@include green-glow-intense();
+			@include weapon-glow-shape();
+		}
+	}
+}
+
+.weapon {
+
+	position: absolute;
+	left: -85%;
+	height: 65%;
+	top: 19%;
+
+	&__portrait {
+		position: absolute;
+		height: 71%;
+		left: 16%;
+		top: 14%;
+		clip-path: ellipse(52% 55% at 50.5% 50.5%);
+	    z-index: -1; // Can this be avoided somehow?
+	}
+
+	&__frame {
+		height: 100%;
+	}
+
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		@at-root svg#{& + __mana} {
+			@include stat-overlay-item();
+			top: 2%;
+			left: 30%;
+		}
+	}
+}

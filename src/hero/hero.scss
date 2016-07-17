@@ -1,6 +1,7 @@
 @import "./face.scss";
 @import "./hero-power.scss";
 @import "./mana.scss";
+@import "./weapon.scss";
 @import "../glow.scss";
 
 @mixin hero-glow-shape() {
@@ -21,7 +22,7 @@ $hero-power-height: 65%;
 	.hero-mana {
 		position: absolute;
 		height: $hero-mana-height;
-		left: -65%;
+		left: 180%;
 		top: (100% - $hero-mana-height) / 2;
 	}
 

@@ -12,14 +12,16 @@ const imagePath = assetPath + "image/";
 const cardImagePath = imagePath + "card/";
 const minionCardImagePath = cardImagePath + "minion/";
 const spellCardImagePath = cardImagePath + "spell/";
-const soundPath = assetPath + "sound/"
-const minionSoundPath = soundPath + "minion/"
+const weaponImagePath = imagePath + "weapon/";
+const soundPath = assetPath + "sound/";
+const minionSoundPath = soundPath + "minion/";
 
 createDir(assetPath);
 createDir(imagePath);
 createDir(cardImagePath);
 createDir(minionCardImagePath);
 createDir(spellCardImagePath);
+createDir(weaponImagePath);
 createDir(soundPath);
 createDir(minionSoundPath);
 
@@ -180,6 +182,34 @@ const routes = {
             });
         }
     }, {
+        url: /^\/asset\/image\/weapon\//,
+        fn: function (req, res) {
+            const url = req.url;
+            const name = decodeURIComponent(url.split("asset/image/weapon/")[1]);
+            const filename = path.join(process.cwd(), weaponImagePath, name + ".png");
+
+            console.log(name, filename);
+
+            fs.exists(filename, function (exists) {
+                if (exists) {
+                    console.log("cache hit", filename);
+                    serveFile(res, "image/png", filename);
+                } else {
+                    console.log("cache miss", filename);
+                    const url = getHearthcardsPortraitImageUrl(name);
+
+                    if (!url) {
+                        console.log("Cannot find art for", name);
+                        res.statusCode = 404;
+                        res.end();
+                        return;
+                    }
+
+                    download(url, filename, serveFile.bind(null, res, "image/png"));
+                }
+            });
+        }
+    }, {
         url: /^\/asset\/image\/card\//,
         fn: function (req, res) {
             function getHearthcardUrl(name) {
@@ -214,7 +244,7 @@ const routes = {
                     "spell frame shaman": "card_js_templates/card_spell_shaman.png",
                     "spell gem brackets": "card_js_templates/spell_gem_brackets.png",
                     "spell swirl basic": "card_js_templates/on_card_swirl_basic_spell.png"
-                }
+                };
 
                 var suburl = mapper[name];
 

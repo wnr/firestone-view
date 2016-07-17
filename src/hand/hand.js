@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Card from "./card/card";
+import Card from "./card";
 
 export default function Hand(props) {
     const numberOfCards = props.cards.length;

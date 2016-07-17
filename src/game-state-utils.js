@@ -14,8 +14,18 @@ function isInChooseOneState(gameState) {
     return isInBlockingState(gameState) && gameState.gameBlocker.type === "choose-one";
 }
 
+function isInDiscoverState(gameState) {
+    return isInBlockingState(gameState) && gameState.gameBlocker.type === "discover";
+}
+
+function isCard(entity) {
+    return entity.type === "minion" || entity.type === "spell" || entity.type === "weapon";
+}
+
 export {
     isInBlockingState,
     isInChooseOneState,
-    getPlayerById
+    isInDiscoverState,
+    getPlayerById,
+    isCard
 };

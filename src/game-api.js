@@ -10,6 +10,14 @@ export function attack(data, callback) {
     ajax("attack", data, callback);
 }
 
+export function chooseOne(data, callback) {
+    ajax("chooseOne", data, callback);
+}
+
+export function discover(data, callback) {
+    ajax("discover", data, callback);
+}
+
 /**
  * data: {gameId, cardId, position, [targetId]}
  */

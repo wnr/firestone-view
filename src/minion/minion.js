@@ -11,7 +11,7 @@ export default function Minion(props) {
 
     function isPlayerTargeting() {
         // Targeting minion cards need to select a position for the minion, before a target may be chosen.
-        return selectedCard && selectedCard.isTargeting && (selectedCard.type === "SPELL" || Number.isInteger(selectedPosition));
+        return selectedCard && selectedCard.isTargeting && (selectedCard.type === "spell" || Number.isInteger(selectedPosition));
     }
 
     function isValidTargetByHeroPowerAttack() {

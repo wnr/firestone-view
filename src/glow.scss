@@ -3,7 +3,6 @@
 	position: absolute;
 	box-shadow: 0 0 $spread 8px $color;
 	background-color: $color;
-	z-index: -1;
 }
 
 @mixin _glow-subtle($color) {

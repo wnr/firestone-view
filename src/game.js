@@ -3,10 +3,11 @@ import React from "react";
 import * as api from "./game-api";
 import * as stateUtils from "./game-state-utils";
 
-import Hand from "./hand";
+import Hand from "./hand/hand";
 import Hero from "./hero/hero";
 import Battlefield from "./battlefield";
 import ChooseOne from "./choose-one/choose-one";
+import Discover from "./discover/discover";
 
 var history = [];
 var historyBackSteps = 0;
@@ -69,7 +70,6 @@ export default React.createClass({
 
         return (
             <div className="container">
-                <ChooseOne game={this.state.game} />
                 <div className="game">
                     <div className="side opponent">
                         <div className="hand-area">
@@ -135,6 +135,8 @@ export default React.createClass({
                         <button className="button" onClick={this.doInHistory}>Forward</button>
                     </div>
                 </div>
+                <ChooseOne game={this.state.game} onChooseOne={this.onChooseOne} />
+                <Discover game={this.state.game} onDiscover={this.onDiscover} />
             </div>
         );
     },
@@ -204,14 +206,14 @@ export default React.createClass({
         }
 
         const card = this.state.selectedCard;
-        if (card && !card.isTargeting && card.type === "SPELL") {
+        if (card && !card.isTargeting && card.type === "spell") {
             api.playCard({
                 gameId: this.state.game.id,
                 cardId: card.id
             }, (err, game) => {
                 this.resetGameState({ game: game });
             });
-        } else if (card && !card.isTargeting && card.type === "WEAPON") {
+        } else if (card && !card.isTargeting && card.type === "weapon") {
             api.playWeaponCard({
                 gameId: this.state.game.id,
                 cardId: card.id
@@ -261,7 +263,7 @@ export default React.createClass({
             });
         } else if (selectedCard && selectedCard.isTargeting && selectedCard.validTargetIds.indexOf(character.id) !== -1) {
             // Some card is a targetting card and the character was selected as the target
-            if (selectedCard.type === "SPELL") {
+            if (selectedCard.type === "spell") {
                 api.playCard({
                     gameId: this.state.game.id,
                     cardId: selectedCard.id,
@@ -269,7 +271,7 @@ export default React.createClass({
                 }, (err, game) => {
                     this.resetGameState({ game: game });
                 });
-            } else if(selectedCard.type === "WEAPON"){
+            } else if(selectedCard.type === "weapon"){
                 this.playWeaponCard({
                     gameId: this.state.game.id,
                     cardId: selectedCard.id,
@@ -302,6 +304,24 @@ export default React.createClass({
             });
         }
 
+    },
+    onChooseOne: function (option) {
+        api.chooseOne({
+            gameId: this.state.game.id,
+            playerId: this.state.game.playerInTurn,
+            name: option.name
+        }, (err, game) => {
+            this.resetGameState({ game: game });
+        });
+    },
+    onDiscover: function (option) {
+        api.discover({
+            gameId: this.state.game.id,
+            playerId: this.state.game.playerInTurn,
+            name: option.name
+        }, (err, game) => {
+            this.resetGameState({ game: game });
+        })
     },
     onHeroPowerClick: function (heropower) {
         if (stateUtils.isInBlockingState(this.state.game)) {
@@ -366,13 +386,11 @@ export default React.createClass({
                 var intermediateState = intermediateStates[index];
                 that.props.audioHandler.playMinionTrigger(intermediateStates[index].entityName);
                 s = intermediateState.state;
-
-                    intermediateStateInfo = {
-                        entityId: intermediateState.entityId,
-                        entityName: intermediateState.entityName,
-                        eventName: intermediateState.eventName
-                    };
-
+                intermediateStateInfo = {
+                    entityId: intermediateState.entityId,
+                    entityName: intermediateState.entityName,
+                    eventName: intermediateState.eventName
+                };
             } else {
                 s = game;
             }

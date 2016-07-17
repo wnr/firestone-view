@@ -319,7 +319,7 @@ const routes = {
                     console.log("NAME:", name.replace(".mp3", ".ogg"));
                     const preUrl = getHearthheadSoundUrl(name.replace(".mp3", ".ogg"));
 
-                    console.log('Trying to download from:', url);
+                    console.log('Trying to download from:', preUrl);
 
                     if (!preUrl) {
                         console.log("WARNING: Cannot find sound url for", name);

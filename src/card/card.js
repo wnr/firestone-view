@@ -6,10 +6,10 @@ import SpellCard from "./spell";
 
 export default React.createClass({
     render: function () {
-        if (this.props.card.type === "MINION") {
-            return <MinionCard selectedCard={this.props.selectedCard} card={this.props.card} />;
+        if (this.props.card.type === "minion") {
+            return <MinionCard {...this.props} />;
         } else {
-            return <SpellCard selectedCard={this.props.selectedCard} card={this.props.card} />;
+            return <SpellCard {...this.props} />;
         }
     }
 });

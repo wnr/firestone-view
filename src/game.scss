@@ -1,4 +1,5 @@
 @import "./choose-one/choose-one.scss";
+@import "./discover/discover.scss";
 
 .game {
     text-align: center;
@@ -59,26 +60,26 @@
                         $translationValue: 800px;
                         $angle: 4deg;
 
-                        &.position-4 { transform: translateY($translationValue) rotateZ(-4*$angle) translateY(-$translationValue); z-index: 0; &:hover {z-index: 10;}}
-                        &.position-3 { transform: translateY($translationValue) rotateZ(-3*$angle) translateY(-$translationValue); z-index: 1; &:hover {z-index: 10;}}
-                        &.position-2 { transform: translateY($translationValue) rotateZ(-2*$angle) translateY(-$translationValue); z-index: 2; &:hover {z-index: 10;}}
-                        &.position-1 { transform: translateY($translationValue) rotateZ(-1*$angle) translateY(-$translationValue); z-index: 3; &:hover {z-index: 10;}}
-                        &.position0  { z-index: 4; &:hover {z-index: 10;}}
-                        &.position1  { transform: translateY($translationValue) rotateZ($angle) translateY(-$translationValue); z-index: 5; &:hover {z-index: 10;}}
-                        &.position2  { transform: translateY($translationValue) rotateZ(2*$angle) translateY(-$translationValue); z-index: 6; &:hover {z-index: 10;}}
-                        &.position3  { transform: translateY($translationValue) rotateZ(3*$angle) translateY(-$translationValue); z-index: 7; &:hover {z-index: 10;}}
-                        &.position4  { transform: translateY($translationValue) rotateZ(4*$angle) translateY(-$translationValue); z-index: 8; &:hover {z-index: 10;}}
+                        &.position-4 { transform: translateY($translationValue) rotateZ(-4*$angle) translateY(-$translationValue); }
+                        &.position-3 { transform: translateY($translationValue) rotateZ(-3*$angle) translateY(-$translationValue); }
+                        &.position-2 { transform: translateY($translationValue) rotateZ(-2*$angle) translateY(-$translationValue); }
+                        &.position-1 { transform: translateY($translationValue) rotateZ(-1*$angle) translateY(-$translationValue); }
+                        &.position0  {}
+                        &.position1  { transform: translateY($translationValue) rotateZ($angle) translateY(-$translationValue); }
+                        &.position2  { transform: translateY($translationValue) rotateZ(2*$angle) translateY(-$translationValue); }
+                        &.position3  { transform: translateY($translationValue) rotateZ(3*$angle) translateY(-$translationValue); }
+                        &.position4  { transform: translateY($translationValue) rotateZ(4*$angle) translateY(-$translationValue); }
 
-                        &.position-even-5 { transform: translateY($translationValue) rotateZ(-5*$angle + $angle/2) translateY(-$translationValue); z-index: 0; &:hover {z-index: 10;}}
-                        &.position-even-4 { transform: translateY($translationValue) rotateZ(-4*$angle + $angle/2) translateY(-$translationValue); z-index: 1; &:hover {z-index: 10;}}
-                        &.position-even-3 { transform: translateY($translationValue) rotateZ(-3*$angle + $angle/2) translateY(-$translationValue); z-index: 2; &:hover {z-index: 10;}}
-                        &.position-even-2 { transform: translateY($translationValue) rotateZ(-2*$angle + $angle/2) translateY(-$translationValue); z-index: 3; &:hover {z-index: 10;}}
-                        &.position-even-1 { transform: translateY($translationValue) rotateZ(-1*$angle + $angle/2) translateY(-$translationValue); z-index: 4; &:hover {z-index: 10;}}
-                        &.position-even0  { transform: translateY($translationValue) rotateZ($angle - $angle/2) translateY(-$translationValue); z-index: 5; &:hover {z-index: 10;}}
-                        &.position-even1  { transform: translateY($translationValue) rotateZ(2*$angle - $angle/2) translateY(-$translationValue); z-index: 6; &:hover {z-index: 10;}}
-                        &.position-even2  { transform: translateY($translationValue) rotateZ(3*$angle - $angle/2) translateY(-$translationValue); z-index: 7; &:hover {z-index: 10;}}
-                        &.position-even3  { transform: translateY($translationValue) rotateZ(4*$angle - $angle/2) translateY(-$translationValue); z-index: 8; &:hover {z-index: 10;}}
-                        &.position-even4  { transform: translateY($translationValue) rotateZ(5*$angle - $angle/2) translateY(-$translationValue); z-index: 9; &:hover {z-index: 10;}}
+                        &.position-even-5 { transform: translateY($translationValue) rotateZ(-5*$angle + $angle/2) translateY(-$translationValue); }
+                        &.position-even-4 { transform: translateY($translationValue) rotateZ(-4*$angle + $angle/2) translateY(-$translationValue); }
+                        &.position-even-3 { transform: translateY($translationValue) rotateZ(-3*$angle + $angle/2) translateY(-$translationValue); }
+                        &.position-even-2 { transform: translateY($translationValue) rotateZ(-2*$angle + $angle/2) translateY(-$translationValue); }
+                        &.position-even-1 { transform: translateY($translationValue) rotateZ(-1*$angle + $angle/2) translateY(-$translationValue); }
+                        &.position-even0  { transform: translateY($translationValue) rotateZ($angle - $angle/2) translateY(-$translationValue); }
+                        &.position-even1  { transform: translateY($translationValue) rotateZ(2*$angle - $angle/2) translateY(-$translationValue); }
+                        &.position-even2  { transform: translateY($translationValue) rotateZ(3*$angle - $angle/2) translateY(-$translationValue); }
+                        &.position-even3  { transform: translateY($translationValue) rotateZ(4*$angle - $angle/2) translateY(-$translationValue); }
+                        &.position-even4  { transform: translateY($translationValue) rotateZ(5*$angle - $angle/2) translateY(-$translationValue); }
                     }
 
                 }

@@ -24,7 +24,7 @@ function mix(coll1, coll2) {
 
 export default function Battlefield(props) {
     var className = "battlefield";
-    if (props.selectedCard && !props.selectedCard.isTargeting && (props.selectedCard.type === "SPELL")) {
+    if (props.selectedCard && !props.selectedCard.isTargeting && (props.selectedCard.type === "spell")) {
         className = className + " targeting";
     }
 
@@ -32,7 +32,7 @@ export default function Battlefield(props) {
         <div className={className} onClick={() => props.onBattlefieldClick()}>
             <Side
                 minions={props.topMinions}
-                showPositions={!props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
+                showPositions={!props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "minion"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
                 selectedCharacter={props.selectedCharacter}
@@ -42,7 +42,7 @@ export default function Battlefield(props) {
             />
             <Side
                 minions={props.bottomMinions}
-                showPositions={props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "MINION"}
+                showPositions={props.bottomPlayerInTurn && props.selectedCard && props.selectedCard.type === "minion"}
                 onPositionClick={props.onPositionClick}
                 onMinionClick={props.onMinionClick}
                 selectedCharacter={props.selectedCharacter}

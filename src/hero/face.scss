@@ -36,6 +36,7 @@
 .hero-face {
 	position: relative;
 	height: 100%;
+    transform-style: preserve-3d;
 
 	&__frame {
 		height: 100%;
@@ -47,7 +48,7 @@
 	    top: 9%;
 	    left: 3%;
 		clip-path: polygon(0% 100%, 0 40%, 20% 10%, 30% 3%, 50% 0%, 70% 3%, 80% 10%, 100% 40%, 100% 100%);
-		z-index: -1; // Can this be removed somehow?
+        transform: translateZ(-1px);
 	}
 
 	&__overlay {

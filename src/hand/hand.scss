@@ -1,5 +1,5 @@
 .hand {
-    $hoverStrength: 30px;
+    $hoverStrength: 50px;
     $hoverScale: 1.4;
 
     margin-left: auto;
@@ -9,80 +9,76 @@
      //   margin: 0px 5px 0 5px;
     }
 
-    &--fan {
-        ul {
+    $translationValue: 800px;
+    $angle: 7deg;
+
+    @mixin fan-element-odd($position, $hover) {
+        transform: translateY($translationValue) rotateZ($position*$angle) translateY(-$translationValue);
+
+        &:hover {
+            @if $hover == up {
+                transform: translateY($translationValue) rotateZ($position*$angle) translateY(-$translationValue) translate3d(0, -$hoverStrength, 1px) scale($hoverScale);
+            } @else {
+                transform: translateY($translationValue) rotateZ($position*$angle) translateY(-$translationValue) translate3d(0, +$hoverStrength, 1px) scale($hoverScale);
+            }
+        }
+    }
+
+    @mixin fan-element-even($position, $hover) {
+        transform: translateY($translationValue) rotateZ($position*$angle + if($position >= 0, -1, 1)*$angle/2) translateY(-$translationValue);
+
+        &:hover {
+            @if $hover == up {
+                transform: translateY($translationValue) rotateZ($position*$angle + if($position >= 0, -1, 1)*$angle/2) translateY(-$translationValue) translate3d(0, -$hoverStrength, 1px) scale($hoverScale);
+            } @else {
+                transform: translateY($translationValue) rotateZ($position*$angle + if($position >= 0, -1, 1)*$angle/2) translateY(-$translationValue) translate3d(0, +$hoverStrength, 1px) scale($hoverScale);
+            }
+        }
+    }
+
+    @mixin fan($hover) {
+
+        & ul {
             position: relative;
+            transform-style: preserve-3d;
 
             li {
                 transition: all 500ms ease;
                 position: absolute;
-                margin-left: -50px;
+                margin-left: -75px;
+                transform: translateZ(0px);
 
-                $translationValue: 800px;
-                $angle: 4deg;
+                &.position-4 { @include fan-element-odd(-4, $hover); }
+                &.position-3 { @include fan-element-odd(-3, $hover); }
+                &.position-2 { @include fan-element-odd(-2, $hover); }
+                &.position-1 { @include fan-element-odd(-1, $hover); }
+                &.position0  { @include fan-element-odd(0, $hover); }
+                &.position1  { @include fan-element-odd(1, $hover); }
+                &.position2  { @include fan-element-odd(2, $hover); }
+                &.position3  { @include fan-element-odd(3, $hover); }
+                &.position4  { @include fan-element-odd(4, $hover); }
 
-                &.position-4 { transform: translateY($translationValue) rotateZ(-4*$angle) translateY(-$translationValue); }
-                &.position-3 { transform: translateY($translationValue) rotateZ(-3*$angle) translateY(-$translationValue); }
-                &.position-2 { transform: translateY($translationValue) rotateZ(-2*$angle) translateY(-$translationValue); }
-                &.position-1 { transform: translateY($translationValue) rotateZ(-1*$angle) translateY(-$translationValue); }
-                &.position0  {}
-                &.position1  { transform: translateY($translationValue) rotateZ($angle) translateY(-$translationValue); }
-                &.position2  { transform: translateY($translationValue) rotateZ(2*$angle) translateY(-$translationValue); }
-                &.position3  { transform: translateY($translationValue) rotateZ(3*$angle) translateY(-$translationValue); }
-                &.position4  { transform: translateY($translationValue) rotateZ(4*$angle) translateY(-$translationValue); }
-
-                &.position-even-5 { transform: translateY($translationValue) rotateZ(-5*$angle + $angle/2) translateY(-$translationValue); }
-                &.position-even-4 { transform: translateY($translationValue) rotateZ(-4*$angle + $angle/2) translateY(-$translationValue); }
-                &.position-even-3 { transform: translateY($translationValue) rotateZ(-3*$angle + $angle/2) translateY(-$translationValue); }
-                &.position-even-2 { transform: translateY($translationValue) rotateZ(-2*$angle + $angle/2) translateY(-$translationValue); }
-                &.position-even-1 { transform: translateY($translationValue) rotateZ(-1*$angle + $angle/2) translateY(-$translationValue); }
-                &.position-even0  { transform: translateY($translationValue) rotateZ($angle - $angle/2) translateY(-$translationValue); }
-                &.position-even1  { transform: translateY($translationValue) rotateZ(2*$angle - $angle/2) translateY(-$translationValue); }
-                &.position-even2  { transform: translateY($translationValue) rotateZ(3*$angle - $angle/2) translateY(-$translationValue); }
-                &.position-even3  { transform: translateY($translationValue) rotateZ(4*$angle - $angle/2) translateY(-$translationValue); }
-                &.position-even4  { transform: translateY($translationValue) rotateZ(5*$angle - $angle/2) translateY(-$translationValue); }
+                // When there are even cards, there is no card in the middle so there is a 1 offset for position >= 0.
+                &.position-even-5 { @include fan-element-even(-5, $hover); }
+                &.position-even-4 { @include fan-element-even(-4, $hover); }
+                &.position-even-3 { @include fan-element-even(-3, $hover); }
+                &.position-even-2 { @include fan-element-even(-2, $hover); }
+                &.position-even-1 { @include fan-element-even(-1, $hover); }
+                &.position-even0  { @include fan-element-even(1, $hover); }
+                &.position-even1  { @include fan-element-even(2, $hover); }
+                &.position-even2  { @include fan-element-even(3, $hover); }
+                &.position-even3  { @include fan-element-even(4, $hover); }
+                &.position-even4  { @include fan-element-even(5, $hover); }
             }
 
-        }
-
-        &--upwards {
-            .card-minion:hover, .card-spell:hover, .card-weapon:hover {
-                transition: all 500ms ease;
-                transform: translateY(-$hoverStrength) scale($hoverScale);
-            }
-        }
-
-        &--downwards {
-            .card-minion:hover, .card-spell:hover, .card-weapon:hover {
-                transition: all 500ms ease;
-                transform: translateY($hoverStrength) scale($hoverScale);
-            }
         }
     }
 
-/*                ul li {
-        margin-left: -40px;
-        transition: all 500ms linear;
+    &--fan--upwards {
+        @include fan(up);
     }
-    ul li.position-5 { transform: rotateZ(-20deg); margin-top: 12px; }
-    ul li.position-4 { transform: rotateZ(-16deg); margin-top: 9px; }
-    ul li.position-3 { transform: rotateZ(-12deg); margin-top: 6px; }
-    ul li.position-2 { transform: rotateZ(-8deg); margin-top: 3px;}
-    ul li.position-1 { transform: rotateZ(-4deg); margin-top: 0px;}
-    ul li.position0 { transform: rotateZ(0deg); margin-top: -3px;}
-    ul li.position1 { transform: rotateZ(4deg); margin-top: -6px;}
-    ul li.position2 { transform: rotateZ(8deg); margin-top: -9px;}
-    ul li.position3 { transform: rotateZ(12deg); margin-top: -12px;}
-    ul li.position4 { transform: rotateZ(16deg); margin-top: -15px;}*/
 
-    //ul li:nth-child(1) { transform: rotateZ(-16deg); margin-top: 12px; }
-    //ul li:nth-child(2) { transform: rotateZ(-12deg); margin-top: 9px; }
-    //ul li:nth-child(3) { transform: rotateZ(-8deg); margin-top: 6px; }
-    //ul li:nth-child(4) { transform: rotateZ(-4deg); margin-top: 3px;}
-    //ul li:nth-child(5) { transform: rotateZ(0deg); margin-top: 0px;}
-    //ul li:nth-child(6) { transform: rotateZ(4deg); margin-top: -3px;}
-    //ul li:nth-child(7) { transform: rotateZ(8deg); margin-top: -6px;}
-    //ul li:nth-child(8) { transform: rotateZ(12deg); margin-top: -9px;}
-    //ul li:nth-child(9) { transform: rotateZ(16deg); margin-top: -12px;}
-    //ul li:nth-child(10) { transform: rotateZ(20deg); margin-top: -15px;}
+    &--fan--downwards {
+        @include fan(down);
+    }
 }

@@ -12,14 +12,16 @@ const imagePath = assetPath + "image/";
 const cardImagePath = imagePath + "card/";
 const minionCardImagePath = cardImagePath + "minion/";
 const spellCardImagePath = cardImagePath + "spell/";
-const soundPath = assetPath + "sound/"
-const minionSoundPath = soundPath + "minion/"
+const weaponImagePath = imagePath + "weapon/";
+const soundPath = assetPath + "sound/";
+const minionSoundPath = soundPath + "minion/";
 
 createDir(assetPath);
 createDir(imagePath);
 createDir(cardImagePath);
 createDir(minionCardImagePath);
 createDir(spellCardImagePath);
+createDir(weaponImagePath);
 createDir(soundPath);
 createDir(minionSoundPath);
 
@@ -180,11 +182,11 @@ const routes = {
             });
         }
     }, {
-        url: /^\/asset\/image\/card\/weapon\//,
+        url: /^\/asset\/image\/weapon\//,
         fn: function (req, res) {
             const url = req.url;
-            const name = decodeURIComponent(url.split("asset/image/card/weapon/")[1]);
-            const filename = path.join(process.cwd(), minionCardImagePath, name + ".png");
+            const name = decodeURIComponent(url.split("asset/image/weapon/")[1]);
+            const filename = path.join(process.cwd(), weaponImagePath, name + ".png");
 
             fs.exists(filename, function (exists) {
                 if (exists) {

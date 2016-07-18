@@ -15,7 +15,7 @@ export default function HeroPower(props) {
 		<div className={heroPowerClassName} onClick={() => props.onClick(heroPower)}>
             <img className="hero-power__portrait" draggable="false" src={"asset/image/heropower/" + heroPower.name + ".png"} />
             <img className="hero-power__frame" draggable="false" src="asset/image/heropower-frame.png" />
-            <div className="her-power__overlay">
+            <div className="hero-power__overlay">
                 <Mana heroPower={heroPower} />
 			</div>
 		</div>

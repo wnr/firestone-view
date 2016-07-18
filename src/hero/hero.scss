@@ -1,6 +1,7 @@
 @import "./face.scss";
 @import "./hero-power.scss";
 @import "./mana.scss";
+@import "./weapon.scss";
 
 $hero-mana-height: 50%;
 $hero-power-height: 65%;
@@ -10,12 +11,12 @@ $hero-power-height: 65%;
 	display: inline-block;
 	height: 100%;
 
-	.hero-mana {
-		position: absolute;
-		height: $hero-mana-height;
-		left: -65%;
-		top: (100% - $hero-mana-height) / 2;
-	}
+    .hero-weapon {
+        position: absolute;
+        left: -85%;
+        height: 65%;
+        top: 19%;
+    }
 
 	.hero-face {
 		display: inline-block;
@@ -28,5 +29,12 @@ $hero-power-height: 65%;
 		height: $hero-power-height;
 		left: 103%;
 		top: (100% - $hero-power-height) / 2;
+	}
+
+    .hero-mana {
+		position: absolute;
+		height: $hero-mana-height;
+		left: 180%;
+		top: (100% - $hero-mana-height) / 2;
 	}
 }

@@ -11,6 +11,8 @@
 
 .hero-face {
 	&.can-attack {
+		transform-style: preserve-3d;
+
 		&::before {
 			@include green-glow-subtle();
 			@include face-glow-shape();

@@ -1,123 +1,125 @@
 @import "../glow.scss";
 
 @mixin minion-glow-shape() {
-	width: 53%;
-	height: 67%;
-	left: 24%;
-	top: 15%;
-	border-radius: 65px;
+    width: 53%;
+    height: 67%;
+    left: 24%;
+    top: 15%;
+    border-radius: 65px;
 }
 
 .minion {
-	&.can-attack {
-		&::before {
-			@include green-glow-subtle();
-			@include minion-glow-shape();
-		}
+    &.can-attack {
+        &::before {
+            @include green-glow-subtle();
+            @include minion-glow-shape();
+            transform: translateZ(-1px);
+        }
 
-		&.focused::before {
-			@include green-glow-intense();
-			@include minion-glow-shape();
-		}
-	}
+        &.focused::before {
+            @include green-glow-intense();
+            @include minion-glow-shape();
+            transform: translateZ(-1px);
+        }
+    }
 
-	&.non-valid-target {
-		filter: grayscale(100%);
-	}
+    &.non-valid-target {
+        filter: grayscale(100%);
+    }
 }
 
 .minion {
-	position: relative;
-	height: 100%;
+    position: relative;
+    height: 100%;
     transform-style: preserve-3d;
 
-	&__frame {
-		height: 100%;
-	}
+    &__frame {
+        height: 100%;
+    }
 
-	&__sleepy {
-		position: absolute;
-		height: 100%;
-		left: 0;
-	}
+    &__sleepy {
+        position: absolute;
+        height: 100%;
+        left: 0;
+    }
 
-	&__taunt {
-		position: absolute;
+    &__taunt {
+        position: absolute;
         transform: translateZ(-1px);
-		height: 100%;
-	}
+        height: 100%;
+    }
 
-	&__portrait {
-		position: absolute;
-		height: 68%;
-	    left: 11.39%;
-	    top: 13.33%;
-		clip-path: ellipse(37.87% 48.12% at 50.49% 50.49%);
+    &__portrait {
+        position: absolute;
+        height: 68%;
+        left: 11.39%;
+        top: 13.33%;
+        clip-path: ellipse(37.87% 48.12% at 50.49% 50.49%);
         transform: translateZ(-1px);
-	}
+    }
 
-	&__overlay {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		left: 0px;
-		top: 0px;
+    &__overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
 
-		&__deathrattle {
-			position: absolute;
-			height: 100%;
-			left: 0;
-		}
+        &__deathrattle {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
 
-		&__divine_shield {
-			position: absolute;
-			height: 100%;
-			left: 0;
-		}
+        &__divine_shield {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
 
-		&__enrage {
-			position: absolute;
-			height: 100%;
-			left: 0;
-		}
+        &__enrage {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
 
-		&__stealth {
-			position: absolute;
-			height: 100%;
-			left: 0;
-		}
+        &__stealth {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
 
-		&__dragon {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-		}
+        &__dragon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
 
-		&__frozen {
-			position: absolute;
-			height: 100%;
-			left: 0;
-		}
+        &__frozen {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
 
-		&__inspire {
-			position: absolute;
-			height: 100%;
-			left: 0;
-		}
+        &__inspire {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
 
-		@at-root svg#{& + __attack} {
-			@include stat-overlay-item();
-			width: 35%;
-			bottom: 10%;
-			left: 12.5%;
-		}
+        @at-root svg#{& + __attack} {
+            @include stat-overlay-item();
+            width: 35%;
+            bottom: 10%;
+            left: 12.5%;
+        }
 
-		@at-root svg#{& + __health} {
-			@include stat-overlay-item();
-			width: 35%;
-			bottom: 10%;
-		    right: 12%;
-		}
-	}
+        @at-root svg#{& + __health} {
+            @include stat-overlay-item();
+            width: 35%;
+            bottom: 10%;
+            right: 12%;
+        }
+    }
 }

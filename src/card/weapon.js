@@ -129,7 +129,7 @@ function Description(props) {
 function Attack(props) {
     const card = props.card;
     const attackClassName = classNames({
-        "card-minion__overlay__attack": true,
+        "card-weapon__overlay__attack": true,
         "stats-text":           card.attack === card.originalAttack,
         "stats-text--enhanced": card.attack > card.originalAttack,
         "stats-text--worsened": card.attack < card.originalAttack
@@ -145,10 +145,10 @@ function Attack(props) {
 function Durability(props) {
     const card = props.card;
     const className = classNames({
-        "card-minion__overlay__durability": true,
-        "stats-text":           card.health === card.originalHealth,
-        "stats-text--enhanced": card.health > card.originalHealth,
-        "stats-text--worsened": card.health < card.originalHealth
+        "card-weapon__overlay__durability": true,
+        "stats-text":           card.durability === card.originalDurability,
+        "stats-text--enhanced": card.durability > card.originalDurability,
+        "stats-text--worsened": card.durability < card.originaDurability
     });
 
     return (

@@ -25,6 +25,6 @@ var offset = 0;
 function handleResponse(data) {
     console.log(JSON.stringify(data));
     return;
-};
+}
 
 getCardIds(offset, handleResponse);

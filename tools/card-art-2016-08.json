@@ -1287,7 +1287,7 @@
     "Empowered": {
         "art": "",
         "name": "Empowered",
-        "id": "KARA_08_04e"
+        "id": "EX1_055o"
     },
     "Ancient Brewmaster": {
         "art": "gecko_auction_d",
@@ -2042,7 +2042,7 @@
     "Well Fed": {
         "art": "",
         "name": "Well Fed",
-        "id": "KAR_095e"
+        "id": "EX1_531e"
     },
     "Misdirection": {
         "art": "w3_118_d",
@@ -2884,11 +2884,6 @@
         "name": "Fireblast Rank 2",
         "id": "AT_132_MAGE"
     },
-    "Totemic Slam": {
-        "art": "shaman_power2_d",
-        "name": "Totemic Slam",
-        "id": "AT_132_SHAMAN"
-    },
     "The Silver Hand": {
         "art": "paladin_power2_d",
         "name": "The Silver Hand",
@@ -2908,11 +2903,6 @@
         "art": "hero_01a",
         "name": "Magni Bronzebeard",
         "id": "HERO_01a"
-    },
-    "Morgl the Oracle": {
-        "art": "",
-        "name": "Morgl the Oracle",
-        "id": "HERO_02a"
     },
     "Lady Liadrin": {
         "art": "hero_04a",
@@ -3099,46 +3089,6 @@
         "name": "Overclock",
         "id": "HRW02_1e"
     },
-    "Wanda Wonderhooves": {
-        "art": "",
-        "name": "Wanda Wonderhooves",
-        "id": "KARA_13_15"
-    },
-    "Susie Sizzlesong": {
-        "art": "hs8-164_m",
-        "name": "Susie Sizzlesong",
-        "id": "KARA_13_16"
-    },
-    "Mark Moonwalker": {
-        "art": "hs8-165_m",
-        "name": "Mark Moonwalker",
-        "id": "KARA_13_17"
-    },
-    "Red Riding Hood": {
-        "art": "hs8-154_m",
-        "name": "Red Riding Hood",
-        "id": "KARA_13_19"
-    },
-    "Saddened": {
-        "art": "",
-        "name": "Saddened",
-        "id": "KARA_13_19e"
-    },
-    "Party Elemental": {
-        "art": "hs7-165_m",
-        "name": "Party Elemental",
-        "id": "KARA_13_20"
-    },
-    "Mime": {
-        "art": "hs8-134_m",
-        "name": "Mime",
-        "id": "KARA_13_22"
-    },
-    "Romulo": {
-        "art": "hs8-037_m",
-        "name": "Romulo",
-        "id": "KARA_06_01"
-    },
     "Poison Cloud": {
         "art": "w4_133_d",
         "name": "Poison Cloud",
@@ -3160,9 +3110,9 @@
         "id": "NAX8_02"
     },
     "Nefarian": {
-        "art": "hs4-046_d 1",
+        "art": "w15_a158_hero_d",
         "name": "Nefarian",
-        "id": "TB_CoOpv3_Boss"
+        "id": "BRMA13_3"
     },
     "Molten Rage": {
         "art": "w14_a249_2_d",
@@ -3350,12 +3300,12 @@
         "id": "TB_ClassRandom_Warrior"
     },
     "Prioritize": {
-        "art": "w6_034_s",
+        "art": "w8_033",
         "name": "Prioritize",
         "id": "TB_CoOpBossSpell_1"
     },
     "Bomb Salvo": {
-        "art": "w5_249_s",
+        "art": "w5_249",
         "name": "Bomb Salvo",
         "id": "TB_CoOpBossSpell_2"
     },
@@ -3365,7 +3315,7 @@
         "id": "TB_CoOpBossSpell_3"
     },
     "Double Zap": {
-        "art": "w9_a146_s",
+        "art": "w9_a146",
         "name": "Double Zap",
         "id": "TB_CoOpBossSpell_5"
     },
@@ -3374,75 +3324,10 @@
         "name": "Kill the Lorewalker",
         "id": "TB_CoOpBossSpell_6"
     },
-    "Bamboozle": {
-        "art": "w9_a163_d",
-        "name": "Bamboozle",
-        "id": "TB_CoOpv3_003"
-    },
-    "Elemental Eruption": {
-        "art": "w9_a017_d",
-        "name": "Elemental Eruption",
-        "id": "TB_CoOpv3_006"
-    },
-    "Flame Missiles": {
-        "art": "w19_056a_d",
-        "name": "Flame Missiles",
-        "id": "TB_CoOpv3_007"
-    },
-    "Explosive Rune": {
-        "art": "hs8-147a_d",
-        "name": "Explosive Rune",
-        "id": "TB_CoOpv3_009"
-    },
-    "Explosive Runes": {
-        "art": "hs8-147b_d",
-        "name": "Explosive Runes",
-        "id": "TB_CoOpv3_010"
-    },
-    "Dragonscale Warrior": {
-        "art": "w15_a137_d",
-        "name": "Dragonscale Warrior",
-        "id": "TB_Coopv3_100"
-    },
-    "Freewheeling Skulker": {
-        "art": "wow_che_001_d",
-        "name": "Freewheeling Skulker",
-        "id": "TB_Coopv3_101"
-    },
-    "Team Player Enchantment": {
-        "art": "",
-        "name": "Team Player Enchantment",
-        "id": "TB_CoOpv3_101e"
-    },
-    "Getting Angry....": {
-        "art": "",
-        "name": "Getting Angry....",
-        "id": "TB_CoOpv3_BOSS2e"
-    },
-    "Enough!": {
-        "art": "",
-        "name": "Enough!",
-        "id": "TB_CoOpv3_BOSS3e"
-    },
-    "Cowed": {
-        "art": "",
-        "name": "Cowed",
-        "id": "TB_CoOpv3_BOSS4e"
-    },
-    "WHY WON'T YOU DIE!?": {
-        "art": "",
-        "name": "WHY WON'T YOU DIE!?",
-        "id": "TB_CoOpv3_BOSSe"
-    },
     "Overloaded Mechazod": {
         "art": "",
         "name": "Overloaded Mechazod",
         "id": "TB_CoOp_Mechazod2"
-    },
-    "My Deck ID": {
-        "art": "",
-        "name": "My Deck ID",
-        "id": "TB_DeckRecipe_MyDeckID"
     },
     "TB_DecreasingCardCost": {
         "art": "",
@@ -3485,7 +3370,7 @@
         "id": "TB_FactionWar_Boss_Rag"
     },
     "Swat Fly": {
-        "art": "r6_a075_d",
+        "art": "",
         "name": "Swat Fly",
         "id": "TB_FactionWar_Boss_Rag_0"
     },
@@ -3533,21 +3418,6 @@
         "art": "",
         "name": "TB_ClockworkCardDealer",
         "id": "TB_GreatCurves_01"
-    },
-    "Party Portal!": {
-        "art": "hs8-166_m",
-        "name": "Party Portal!",
-        "id": "TB_KaraPortal_001"
-    },
-    "Call Mediva": {
-        "art": "",
-        "name": "Call Mediva",
-        "id": "TB_KaraPortal_002"
-    },
-    "Saddened Hero Enchant": {
-        "art": "",
-        "name": "Saddened Hero Enchant",
-        "id": "TB_KaraPortal_003"
     },
     "Massive Runeblade": {
         "art": "r5_a100_d",
@@ -3649,11 +3519,6 @@
         "name": "Rafaam",
         "id": "TB_KTRAF_H_2"
     },
-    "Transmute your minions": {
-        "art": "",
-        "name": "Transmute your minions",
-        "id": "TB_LadyNazjar_PlayerEnch"
-    },
     "Annoy-o-Tron": {
         "art": "hs3-018_d2",
         "name": "Annoy-o-Tron",
@@ -3688,21 +3553,6 @@
         "art": "",
         "name": "Miniature",
         "id": "TB_Mini_1e"
-    },
-    "Charge!": {
-        "art": "",
-        "name": "Charge!",
-        "id": "TB_MP_01e"
-    },
-    "Repurposed": {
-        "art": "",
-        "name": "Repurposed",
-        "id": "TB_MP_02e"
-    },
-    "Quest Coin": {
-        "art": "",
-        "name": "Quest Coin",
-        "id": "TB_Murgstone_001"
     },
     "Pick Your Fate Build Around": {
         "art": "",
@@ -3885,22 +3735,42 @@
         "id": "TB_RMC_001"
     },
     "City of Stormwind": {
-        "art": "w7_109_d",
+        "art": "",
         "name": "City of Stormwind",
         "id": "TB_SPT_Boss"
     },
     "Barracks": {
-        "art": "w10_a224_d",
+        "art": "",
         "name": "Barracks",
         "id": "TB_SPT_BossHeroPower"
     },
     "Armory": {
-        "art": "ony_hlm_010_d",
+        "art": "",
         "name": "Armory",
         "id": "TB_SPT_BossWeapon"
     },
+    "Trial Clear Board": {
+        "art": "",
+        "name": "Trial Clear Board",
+        "id": "TB_SPT_ClearBoard"
+    },
+    "Trial Damage Dealt": {
+        "art": "w4_264",
+        "name": "Trial Damage Dealt",
+        "id": "TB_SPT_Damage"
+    },
+    "Trial Hero Power Used": {
+        "art": "",
+        "name": "Trial Hero Power Used",
+        "id": "TB_SPT_HeroPowerUsed"
+    },
+    "Trial Length": {
+        "art": "",
+        "name": "Trial Length",
+        "id": "TB_SPT_Length"
+    },
     "Shieldsman": {
-        "art": "w19_a279_d",
+        "art": "",
         "name": "Shieldsman",
         "id": "TB_SPT_Minion1"
     },
@@ -3909,9 +3779,9 @@
         "name": "Will of Stormwind",
         "id": "TB_SPT_Minion1e"
     },
-    "Battle Standard": {
-        "art": "w9_a148_d",
-        "name": "Battle Standard",
+    "Standard": {
+        "art": "",
+        "name": "Standard",
         "id": "TB_SPT_Minion2"
     },
     "Emboldened": {
@@ -3920,7 +3790,7 @@
         "id": "TB_SPT_Minion2e"
     },
     "Swordsman": {
-        "art": "w20_a109_d",
+        "art": "",
         "name": "Swordsman",
         "id": "TB_SPT_Minion3"
     },
@@ -3928,6 +3798,16 @@
         "art": "",
         "name": "Strength of Stormwind",
         "id": "TB_SPT_Minion3e"
+    },
+    "Trial Minions Killed": {
+        "art": "",
+        "name": "Trial Minions Killed",
+        "id": "TB_SPT_MinionKilled"
+    },
+    "Trial Minions Killed Tracker": {
+        "art": "",
+        "name": "Trial Minions Killed Tracker",
+        "id": "TB_SPT_Minions"
     },
     "Offensive Play": {
         "art": "w8_117_d",
@@ -3959,6 +3839,11 @@
         "name": "Sun Raider Phaerix",
         "id": "LOEA01_01"
     },
+    "Heroic Phaerix": {
+        "art": "",
+        "name": "Heroic Phaerix",
+        "id": "LOEA01_01h"
+    },
     "Blessings of the Sun": {
         "art": "w18_a063_d",
         "name": "Blessings of the Sun",
@@ -3983,6 +3868,11 @@
         "art": "w18_a151_d",
         "name": "Zinaar",
         "id": "LOEA02_01"
+    },
+    "Heroic Zinaar": {
+        "art": "",
+        "name": "Heroic Zinaar",
+        "id": "LOEA02_01h"
     },
     "Djinn’s Intuition": {
         "art": "hs6-052_d",
@@ -4023,6 +3913,11 @@
         "art": "",
         "name": "Temple Escape Enchant",
         "id": "LOEA04_01eh"
+    },
+    "Heroic Escape": {
+        "art": "",
+        "name": "Heroic Escape",
+        "id": "LOEA04_01h"
     },
     "Escape!": {
         "art": "w18_a193_d",
@@ -4119,6 +4014,11 @@
         "name": "Chieftain Scarvash",
         "id": "LOEA05_01"
     },
+    "Heroic Scarvash": {
+        "art": "",
+        "name": "Heroic Scarvash",
+        "id": "LOEA05_01h"
+    },
     "Trogg Hate Minions!": {
         "art": "r5_a095_d",
         "name": "Trogg Hate Minions!",
@@ -4163,6 +4063,11 @@
         "art": "hs6-073(straight)",
         "name": "Mine Shaft",
         "id": "LOEA07_02"
+    },
+    "Heroic Mine Shaft": {
+        "art": "",
+        "name": "Heroic Mine Shaft",
+        "id": "LOEA07_02h"
     },
     "Flee the Mine!": {
         "art": "hs3-014_d2",
@@ -4234,6 +4139,11 @@
         "name": "Archaedas",
         "id": "LOEA08_01"
     },
+    "Heroic Archaedas": {
+        "art": "",
+        "name": "Heroic Archaedas",
+        "id": "LOEA08_01h"
+    },
     "Lord Slitherspear": {
         "art": "w21_a137_d",
         "name": "Lord Slitherspear",
@@ -4243,6 +4153,11 @@
         "art": "hs6-101_d",
         "name": "Hungry Naga",
         "id": "LOEA09_5"
+    },
+    "Heroic Slitherspear": {
+        "art": "",
+        "name": "Heroic Slitherspear",
+        "id": "LOEA09_1H"
     },
     "Enraged!": {
         "art": "w16_a212_d",
@@ -4294,6 +4209,11 @@
         "name": "Giantfin",
         "id": "LOEA10_1"
     },
+    "Heroic Giantfin": {
+        "art": "",
+        "name": "Heroic Giantfin",
+        "id": "LOEA10_1H"
+    },
     "Mrglmrgl MRGL!": {
         "art": "w19_a222_d",
         "name": "Mrglmrgl MRGL!",
@@ -4314,6 +4234,11 @@
         "name": "Lady Naz'jar",
         "id": "LOEA12_1"
     },
+    "Heroic Naz'jar": {
+        "art": "",
+        "name": "Heroic Naz'jar",
+        "id": "LOEA12_1H"
+    },
     "Pearl of the Tides": {
         "art": "w16_a257_d",
         "name": "Pearl of the Tides",
@@ -4323,6 +4248,11 @@
         "art": "hs6-025_d2",
         "name": "Skelesaurus Hex",
         "id": "LOEA13_1"
+    },
+    "Heroic Skelesaurus": {
+        "art": "",
+        "name": "Heroic Skelesaurus",
+        "id": "LOEA13_1h"
     },
     "Ancient Power": {
         "art": "w15_a217_d",
@@ -4334,10 +4264,20 @@
         "name": "The Steel Sentinel",
         "id": "LOEA14_1"
     },
+    "Heroic Sentinel": {
+        "art": "",
+        "name": "Heroic Sentinel",
+        "id": "LOEA14_1H"
+    },
     "Platemail Armor": {
         "art": "hs6-089_d",
         "name": "Platemail Armor",
         "id": "LOEA14_2"
+    },
+    "Heroic Rafaam": {
+        "art": "",
+        "name": "Heroic Rafaam",
+        "id": "LOEA16_1H"
     },
     "Unstable Portal": {
         "art": "w2_387_d2",
@@ -4915,7 +4855,7 @@
         "id": "OG_072"
     },
     "Thistle Tea": {
-        "art": "hs7-030_d_debris",
+        "art": "hs7-030_d",
         "name": "Thistle Tea",
         "id": "OG_073"
     },
@@ -5050,7 +4990,7 @@
         "id": "OG_109"
     },
     "Darkshire Councilman": {
-        "art": "hs7-168_d_wall",
+        "art": "hs7-168_d",
         "name": "Darkshire Councilman",
         "id": "OG_113"
     },
@@ -5789,736 +5729,6 @@
         "name": "Soggoth the Slitherer",
         "id": "OG_340"
     },
-    "Prince Malchezaar": {
-        "art": "hs8-081_d",
-        "name": "Prince Malchezaar",
-        "id": "KARA_00_01"
-    },
-    "Legion": {
-        "art": "hs8-010_hp",
-        "name": "Legion",
-        "id": "KARA_00_02"
-    },
-    "Abyssal": {
-        "art": "hs8-082_m",
-        "name": "Abyssal",
-        "id": "KARA_00_02a"
-    },
-    "Brilliance": {
-        "art": "hs8-013_hp",
-        "name": "Brilliance",
-        "id": "KARA_00_04"
-    },
-    "Archmage's Insight": {
-        "art": "hs8-014_s",
-        "name": "Archmage's Insight",
-        "id": "KARA_00_05"
-    },
-    "Insightful": {
-        "art": "",
-        "name": "Insightful",
-        "id": "KARA_00_05e"
-    },
-    "Arcane Power": {
-        "art": "hs8-015_d",
-        "name": "Arcane Power",
-        "id": "KARA_00_06"
-    },
-    "Arcanely Powerful": {
-        "art": "",
-        "name": "Arcanely Powerful",
-        "id": "KARA_00_06e"
-    },
-    "Astral Portal": {
-        "art": "hs8-016_s",
-        "name": "Astral Portal",
-        "id": "KARA_00_07"
-    },
-    "Archmage's Apprentice": {
-        "art": "hs8-017_m",
-        "name": "Archmage's Apprentice",
-        "id": "KARA_00_08"
-    },
-    "Mage Armor": {
-        "art": "hs8-018_s",
-        "name": "Mage Armor",
-        "id": "KARA_00_09"
-    },
-    "Mysterious Rune": {
-        "art": "hs8-019_s",
-        "name": "Mysterious Rune",
-        "id": "KARA_00_10"
-    },
-    "Evocation": {
-        "art": "hs8-020_d",
-        "name": "Evocation",
-        "id": "KARA_00_11"
-    },
-    "Dorothee": {
-        "art": "hs8-044_m",
-        "name": "Dorothee",
-        "id": "KARA_04_01"
-    },
-    "The Crone": {
-        "art": "hs8-042_h",
-        "name": "The Crone",
-        "id": "KARA_04_01h"
-    },
-    "Twister": {
-        "art": "hs8-043_hp",
-        "name": "Twister",
-        "id": "KARA_04_02hp"
-    },
-    "Flying Monkey": {
-        "art": "hs8-138_m",
-        "name": "Flying Monkey",
-        "id": "KARA_04_05"
-    },
-    "Kindly Grandmother": {
-        "art": "hs8-002_h",
-        "name": "Kindly Grandmother",
-        "id": "KARA_05_01b"
-    },
-    "Trembling Before the Wolf": {
-        "art": "",
-        "name": "Trembling Before the Wolf",
-        "id": "KARA_05_01e"
-    },
-    "Big Bad Wolf": {
-        "art": "hs8-038_h",
-        "name": "Big Bad Wolf",
-        "id": "KARA_05_01h"
-    },
-    "Big Bad Claws": {
-        "art": "hs8-039_w",
-        "name": "Big Bad Claws",
-        "id": "KARA_05_02"
-    },
-    "Death-Marked Love": {
-        "art": "",
-        "name": "Death-Marked Love",
-        "id": "KARA_06_01e"
-    },
-    "Julianne": {
-        "art": "",
-        "name": "Julianne",
-        "id": "KARA_06_02heroic"
-    },
-    "True Love": {
-        "art": "hs8-036_d",
-        "name": "True Love",
-        "id": "KARA_06_03hp"
-    },
-    "Curator": {
-        "art": "",
-        "name": "Curator",
-        "id": "KARA_09_02"
-    },
-    "Gallery Protection": {
-        "art": "hs8-045_hp",
-        "name": "Gallery Protection",
-        "id": "KARA_07_02"
-    },
-    "Protecting the Gallery": {
-        "art": "",
-        "name": "Protecting the Gallery",
-        "id": "KARA_07_02e"
-    },
-    "Murloc Escaping!": {
-        "art": "hs8-046_s",
-        "name": "Murloc Escaping!",
-        "id": "KARA_07_03"
-    },
-    "Murlocs Escaping!": {
-        "art": "",
-        "name": "Murlocs Escaping!",
-        "id": "KARA_07_03heroic"
-    },
-    "Stampeding Beast!": {
-        "art": "hs8-048_s",
-        "name": "Stampeding Beast!",
-        "id": "KARA_07_05"
-    },
-    "Demons Loose!": {
-        "art": "hs8-049_s",
-        "name": "Demons Loose!",
-        "id": "KARA_07_06"
-    },
-    "Haywire Mech!": {
-        "art": "hs8-050_s",
-        "name": "Haywire Mech!",
-        "id": "KARA_07_07"
-    },
-    "Dragons Free!": {
-        "art": "hs8-051_s",
-        "name": "Dragons Free!",
-        "id": "KARA_07_08"
-    },
-    "Netherspite": {
-        "art": "",
-        "name": "Netherspite",
-        "id": "KARA_08_01H"
-    },
-    "Nether Rage": {
-        "art": "hs8-063_hp",
-        "name": "Nether Rage",
-        "id": "KARA_08_02"
-    },
-    "Nether Breath": {
-        "art": "hs8-068_s",
-        "name": "Nether Breath",
-        "id": "KARA_08_03"
-    },
-    "Terestian Illhoof": {
-        "art": "",
-        "name": "Terestian Illhoof",
-        "id": "KARA_09_01heroic"
-    },
-    "Many Imps!": {
-        "art": "hs8-052_s",
-        "name": "Many Imps!",
-        "id": "KARA_09_03"
-    },
-    "Icky Imp": {
-        "art": "hs8-055_m",
-        "name": "Icky Imp",
-        "id": "KARA_09_03a"
-    },
-    "Dark Pact": {
-        "art": "hs8-142_hp",
-        "name": "Dark Pact",
-        "id": "KARA_09_04"
-    },
-    "Summon Kil'rek": {
-        "art": "hs8-143_s",
-        "name": "Summon Kil'rek",
-        "id": "KARA_09_05"
-    },
-    "Shadow Volley": {
-        "art": "hs8-053_s",
-        "name": "Shadow Volley",
-        "id": "KARA_09_06"
-    },
-    "Steal Life": {
-        "art": "hs8-054_s",
-        "name": "Steal Life",
-        "id": "KARA_09_07"
-    },
-    "Kil'rek": {
-        "art": "hs8-144_m",
-        "name": "Kil'rek",
-        "id": "KARA_09_08"
-    },
-    "Nightbane": {
-        "art": "",
-        "name": "Nightbane",
-        "id": "KARA_11_01heroic"
-    },
-    "Manastorm": {
-        "art": "hs8-140_hp",
-        "name": "Manastorm",
-        "id": "KARA_11_02"
-    },
-    "Shade of Aran": {
-        "art": "",
-        "name": "Shade of Aran",
-        "id": "KARA_12_01H"
-    },
-    "Ley Lines": {
-        "art": "hs8-069_hp",
-        "name": "Ley Lines",
-        "id": "KARA_12_02"
-    },
-    "Flame Wreath": {
-        "art": "hs8-145_d",
-        "name": "Flame Wreath",
-        "id": "KARA_12_03"
-    },
-    "Nazra Wildaxe": {
-        "art": "",
-        "name": "Nazra Wildaxe",
-        "id": "KARA_13_01H"
-    },
-    "The Horde": {
-        "art": "hs8-072_hp",
-        "name": "The Horde",
-        "id": "KARA_13_02"
-    },
-    "Orc Warrior": {
-        "art": "hs8-073_m",
-        "name": "Orc Warrior",
-        "id": "KARA_13_03"
-    },
-    "Shadow Bolt Volley": {
-        "art": "hs7-121_s",
-        "name": "Shadow Bolt Volley",
-        "id": "KARA_13_11"
-    },
-    "Enfeeble": {
-        "art": "",
-        "name": "Enfeeble",
-        "id": "KARA_13_11e"
-    },
-    "Demonic Presence": {
-        "art": "hs8-150_s",
-        "name": "Demonic Presence",
-        "id": "KARA_13_12"
-    },
-    "Mediva 2": {
-        "art": "",
-        "name": "Mediva 2",
-        "id": "KARA_13_15"
-    },
-    "Mediva 1": {
-        "art": "hs8-164_m",
-        "name": "Mediva 1",
-        "id": "KARA_13_16"
-    },
-    "Mediva 3": {
-        "art": "hs8-165_m",
-        "name": "Mediva 3",
-        "id": "KARA_13_17"
-    },
-    "Atiesh": {
-        "art": "hs8-157_w",
-        "name": "Atiesh",
-        "id": "KAR_097t"
-    },
-    "Drink the Moonlight": {
-        "art": "",
-        "name": "Drink the Moonlight",
-        "id": "KAR_003a"
-    },
-    "Coalesce the Moonlight": {
-        "art": "",
-        "name": "Coalesce the Moonlight",
-        "id": "KAR_003b"
-    },
-    "Cat Trick": {
-        "art": "hs8-085_m_fade",
-        "name": "Cat Trick",
-        "id": "KAR_004"
-    },
-    "Cat in a Hat": {
-        "art": "hs8-088_m",
-        "name": "Cat in a Hat",
-        "id": "KAR_004a"
-    },
-    "Cloaked Huntress": {
-        "art": "hs8-077_d_fade",
-        "name": "Cloaked Huntress",
-        "id": "KAR_006"
-    },
-    "Babbling Book": {
-        "art": "hs8-088_m_fade",
-        "name": "Babbling Book",
-        "id": "KAR_009"
-    },
-    "Nightbane Templar": {
-        "art": "hs8-090_m_fade",
-        "name": "Nightbane Templar",
-        "id": "KAR_010"
-    },
-    "Pompous Thespian": {
-        "art": "hs8-114_m",
-        "name": "Pompous Thespian",
-        "id": "KAR_011"
-    },
-    "Purify": {
-        "art": "hs8-093_s_fade",
-        "name": "Purify",
-        "id": "KAR_013"
-    },
-    "Wicked Witchdoctor": {
-        "art": "hs8-100_m_fade",
-        "name": "Wicked Witchdoctor",
-        "id": "KAR_021"
-    },
-    "Kara Kazham!": {
-        "art": "hs8-104_s_fade01",
-        "name": "Kara Kazham!",
-        "id": "KAR_025"
-    },
-    "Candle": {
-        "art": "hs8-105_m",
-        "name": "Candle",
-        "id": "KAR_025a"
-    },
-    "Broom": {
-        "art": "hs8-106_m",
-        "name": "Broom",
-        "id": "KAR_025b"
-    },
-    "Teapot": {
-        "art": "hs8-107_m_fade01",
-        "name": "Teapot",
-        "id": "KAR_025c"
-    },
-    "Protect the King!": {
-        "art": "hs8-062_s",
-        "name": "Protect the King!",
-        "id": "KAR_026"
-    },
-    "Pawn": {
-        "art": "",
-        "name": "Pawn",
-        "id": "KAR_026t"
-    },
-    "Fool's Bane": {
-        "art": "hs8-109_w",
-        "name": "Fool's Bane",
-        "id": "KAR_028"
-    },
-    "Runic Egg": {
-        "art": "hs8-117_m_fade",
-        "name": "Runic Egg",
-        "id": "KAR_029"
-    },
-    "Cellar Spider": {
-        "art": "hs8-004_d_fade",
-        "name": "Cellar Spider",
-        "id": "KAR_030"
-    },
-    "Pantry Spider": {
-        "art": "hs8-005_d_fade",
-        "name": "Pantry Spider",
-        "id": "KAR_030a"
-    },
-    "Book Wyrm": {
-        "art": "hs8-111_m",
-        "name": "Book Wyrm",
-        "id": "KAR_033"
-    },
-    "Priest of the Feast": {
-        "art": "hs8-094_m_fade_2",
-        "name": "Priest of the Feast",
-        "id": "KAR_035"
-    },
-    "Arcane Anomaly": {
-        "art": "hs8-112_m_fade01",
-        "name": "Arcane Anomaly",
-        "id": "KAR_036"
-    },
-    "Eating": {
-        "art": "",
-        "name": "Eating",
-        "id": "KAR_036e"
-    },
-    "Avian Watcher": {
-        "art": "hs8-115_m",
-        "name": "Avian Watcher",
-        "id": "KAR_037"
-    },
-    "Secrets of Karazhan": {
-        "art": "",
-        "name": "Secrets of Karazhan",
-        "id": "KAR_037t"
-    },
-    "Moat Lurker": {
-        "art": "hs8-120_m",
-        "name": "Moat Lurker",
-        "id": "KAR_041"
-    },
-    "Moroes": {
-        "art": "hs8-008_d_fade",
-        "name": "Moroes",
-        "id": "KAR_044"
-    },
-    "Steward": {
-        "art": "hs8-121_m_fade",
-        "name": "Steward",
-        "id": "KAR_044a"
-    },
-    "Ivory Knight": {
-        "art": "hs8-092_m__fade",
-        "name": "Ivory Knight",
-        "id": "KAR_057"
-    },
-    "The Curator": {
-        "art": "hs8-078_d",
-        "name": "The Curator",
-        "id": "KAR_061"
-    },
-    "Netherspite Historian": {
-        "art": "hs8-113_m_fade01",
-        "name": "Netherspite Historian",
-        "id": "KAR_062"
-    },
-    "Spirit Claws": {
-        "art": "hs8-102_d",
-        "name": "Spirit Claws",
-        "id": "KAR_063"
-    },
-    "Menagerie Warden": {
-        "art": "hs8-084_m",
-        "name": "Menagerie Warden",
-        "id": "KAR_065"
-    },
-    "Swashburglar": {
-        "art": "hs8-097_m",
-        "name": "Swashburglar",
-        "id": "KAR_069"
-    },
-    "Ethereal Peddler": {
-        "art": "hs8-158_m_fade01",
-        "name": "Ethereal Peddler",
-        "id": "KAR_070"
-    },
-    "Maelstrom Portal": {
-        "art": "hs8-101_s_fade01",
-        "name": "Maelstrom Portal",
-        "id": "KAR_073"
-    },
-    "Moonglade Portal": {
-        "art": "hs8-083_s_fade",
-        "name": "Moonglade Portal",
-        "id": "KAR_075"
-    },
-    "Firelands Portal": {
-        "art": "hs8-089_s",
-        "name": "Firelands Portal",
-        "id": "KAR_076"
-    },
-    "Silvermoon Portal": {
-        "art": "hs8-091_s_fade",
-        "name": "Silvermoon Portal",
-        "id": "KAR_077"
-    },
-    "Silver Might": {
-        "art": "",
-        "name": "Silver Might",
-        "id": "KAR_077e"
-    },
-    "Malchezaar's Imp": {
-        "art": "hs8-007_d_fade",
-        "name": "Malchezaar's Imp",
-        "id": "KAR_089"
-    },
-    "Ironforge Portal": {
-        "art": "hs8-108_d_fade",
-        "name": "Ironforge Portal",
-        "id": "KAR_091"
-    },
-    "Medivh's Valet": {
-        "art": "hs8-087_m_fade",
-        "name": "Medivh's Valet",
-        "id": "KAR_092"
-    },
-    "Deadly Fork": {
-        "art": "hs8-098_m_fade",
-        "name": "Deadly Fork",
-        "id": "KAR_094"
-    },
-    "Sharp Fork": {
-        "art": "hs8-099_w",
-        "name": "Sharp Fork",
-        "id": "KAR_094a"
-    },
-    "Zoobot": {
-        "art": "hs8-161_d_fade",
-        "name": "Zoobot",
-        "id": "KAR_095"
-    },
-    "Medivh, the Guardian": {
-        "art": "hs8-012_m",
-        "name": "Medivh, the Guardian",
-        "id": "KAR_097"
-    },
-    "Barnes": {
-        "art": "hs8-130_m",
-        "name": "Barnes",
-        "id": "KAR_114"
-    },
-    "Incredible Impression": {
-        "art": "",
-        "name": "Incredible Impression",
-        "id": "KAR_114e"
-    },
-    "Onyx Bishop": {
-        "art": "hs8-095_m_fade01",
-        "name": "Onyx Bishop",
-        "id": "KAR_204"
-    },
-    "Silverware Golem": {
-        "art": "hs8-103_m_fade",
-        "name": "Silverware Golem",
-        "id": "KAR_205"
-    },
-    "Enchanted Raven": {
-        "art": "hs8-001_d",
-        "name": "Enchanted Raven",
-        "id": "KAR_300"
-    },
-    "Menagerie Magician": {
-        "art": "hs8-118_m_fade",
-        "name": "Menagerie Magician",
-        "id": "KAR_702"
-    },
-    "A Simple Trick": {
-        "art": "",
-        "name": "A Simple Trick",
-        "id": "KAR_702e"
-    },
-    "Arcanosmith": {
-        "art": "hs8-030_d_fade",
-        "name": "Arcanosmith",
-        "id": "KAR_710"
-    },
-    "Animated Shield": {
-        "art": "hs8-031_d",
-        "name": "Animated Shield",
-        "id": "KAR_710m"
-    },
-    "Arcane Giant": {
-        "art": "hs8-119_m_fade01",
-        "name": "Arcane Giant",
-        "id": "KAR_711"
-    },
-    "Violet Illusionist": {
-        "art": "hs8-029_d",
-        "name": "Violet Illusionist",
-        "id": "KAR_712"
-    },
-    "Magic Mirror": {
-        "art": "",
-        "name": "Magic Mirror",
-        "id": "KAR_A01_01H"
-    },
-    "Reflections": {
-        "art": "hs8-022_d",
-        "name": "Reflections",
-        "id": "KAR_A01_02"
-    },
-    "Reflection": {
-        "art": "",
-        "name": "Reflection",
-        "id": "KAR_A01_02e"
-    },
-    "Plate": {
-        "art": "hs8-023_d",
-        "name": "Plate",
-        "id": "KAR_A02_01"
-    },
-    "Spoon": {
-        "art": "hs8-024_d",
-        "name": "Spoon",
-        "id": "KAR_A02_02"
-    },
-    "Fork": {
-        "art": "hs8-025_d",
-        "name": "Fork",
-        "id": "KAR_A02_03"
-    },
-    "Knife": {
-        "art": "hs8-026_d",
-        "name": "Knife",
-        "id": "KAR_A02_04"
-    },
-    "Cup": {
-        "art": "hs8-027_m",
-        "name": "Cup",
-        "id": "KAR_A02_05"
-    },
-    "Pitcher": {
-        "art": "hs8-028_m",
-        "name": "Pitcher",
-        "id": "KAR_A02_06"
-    },
-    "Filled Up": {
-        "art": "",
-        "name": "Filled Up",
-        "id": "KAR_A02_06He"
-    },
-    "Set the Table": {
-        "art": "hs8-032_s",
-        "name": "Set the Table",
-        "id": "KAR_A02_09"
-    },
-    "Table Set": {
-        "art": "",
-        "name": "Table Set",
-        "id": "KAR_A02_09eH"
-    },
-    "Pour a Round": {
-        "art": "hs8-033_s",
-        "name": "Pour a Round",
-        "id": "KAR_A02_10"
-    },
-    "Tossing Plates": {
-        "art": "hs8-034_s",
-        "name": "Tossing Plates",
-        "id": "KAR_A02_11"
-    },
-    "Be Our Guest": {
-        "art": "hs8-041_d",
-        "name": "Be Our Guest",
-        "id": "KAR_A02_13"
-    },
-    "Black Pawn": {
-        "art": "hs8-056b_m",
-        "name": "Black Pawn",
-        "id": "KAR_A10_01"
-    },
-    "White Pawn": {
-        "art": "hs8-056a_m_premium",
-        "name": "White Pawn",
-        "id": "KAR_A10_02"
-    },
-    "Black Rook": {
-        "art": "hs8-057b_m",
-        "name": "Black Rook",
-        "id": "KAR_A10_03"
-    },
-    "White Rook": {
-        "art": "hs8-057a_m",
-        "name": "White Rook",
-        "id": "KAR_A10_04"
-    },
-    "White Bishop": {
-        "art": "hs8-058a_m",
-        "name": "White Bishop",
-        "id": "KAR_A10_05"
-    },
-    "Black Bishop": {
-        "art": "hs8-058b_m",
-        "name": "Black Bishop",
-        "id": "KAR_A10_06"
-    },
-    "Black Knight": {
-        "art": "hs8-092b_m",
-        "name": "Black Knight",
-        "id": "KAR_A10_07"
-    },
-    "White Knight": {
-        "art": "hs8-092a_m",
-        "name": "White Knight",
-        "id": "KAR_A10_08"
-    },
-    "White Queen": {
-        "art": "hs8-060a_m",
-        "name": "White Queen",
-        "id": "KAR_A10_09"
-    },
-    "Black Queen": {
-        "art": "hs8-060b_m",
-        "name": "Black Queen",
-        "id": "KAR_A10_10"
-    },
-    "Castle": {
-        "art": "hs8-153_hp",
-        "name": "Castle",
-        "id": "KAR_A10_22"
-    },
-    "Cheat": {
-        "art": "hs8-136_hp",
-        "name": "Cheat",
-        "id": "KAR_A10_33"
-    },
-    "White King": {
-        "art": "hs8-061a_h",
-        "name": "White King",
-        "id": "KAR_a10_Boss1"
-    },
     "Old Murk-Eye": {
         "art": "bestiary-final2_d",
         "name": "Old Murk-Eye",
@@ -7009,16 +6219,6 @@
         "name": "All Charge, All Windfury, All The Time",
         "id": "XXX_111e"
     },
-    "Fill Deck": {
-        "art": "",
-        "name": "Fill Deck",
-        "id": "XXX_112"
-    },
-    "Again": {
-        "art": "",
-        "name": "Again",
-        "id": "XXX_113"
-    },
     "Crash the server": {
         "art": "",
         "name": "Crash the server",
@@ -7090,7 +6290,7 @@
         "id": "PRO_001c"
     },
     "Zombie Chow": {
-        "art": "r5_a034_d",
+        "art": "r5_a038_d",
         "name": "Zombie Chow",
         "id": "FP1_001"
     },
@@ -9749,6 +8949,11 @@
         "name": "Poisoned Dagger",
         "id": "AT_132_ROGUEt"
     },
+    "Totemic Slam": {
+        "art": "shaman_power2_d",
+        "name": "Totemic Slam",
+        "id": "AT_132_SHAMAN"
+    },
     "Soul Tap": {
         "art": "warlock_power2_d",
         "name": "Soul Tap",
@@ -9764,9 +8969,9 @@
         "name": "Victory!",
         "id": "AT_133e"
     },
-    "Sabertooth Tiger": {
+    "Tiger Form": {
         "art": "hs7-071_d",
-        "name": "Sabertooth Tiger",
+        "name": "Tiger Form",
         "id": "OG_044c"
     },
     "Placeholder Card": {

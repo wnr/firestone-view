@@ -47,6 +47,7 @@ export default function Minion(props) {
             <div className="minion__overlay">
                 <Deathrattle minion={minion} />
                 <Inspire minion={minion} />
+                <Poison minion={minion} />
                 <Dragon minion={minion} />
                 <Frozen minion={minion} />
                 <Stealth minion={minion} />
@@ -112,6 +113,14 @@ function Inspire(props) {
     const minion = props.minion;
     if (minion.states.some(function (state) { return state === "INSPIRE"; })) {
         return <img className="minion__overlay__inspire" src="/asset/image/icon_inspire.png" />;
+    }
+    return <div></div>;
+}
+
+function Poison(props) {
+    const minion = props.minion;
+    if (minion.states.some(function (state) { return state === "POISON"; })) {
+        return <img className="minion__overlay__poison" src="/asset/image/icon_poisonous.png" />;
     }
     return <div></div>;
 }

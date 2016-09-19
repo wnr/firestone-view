@@ -108,6 +108,12 @@
             left: 0;
         }
 
+        &__poison {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
+
         @at-root svg#{& + __attack} {
             @include stat-overlay-item();
             width: 35%;

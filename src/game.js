@@ -83,6 +83,7 @@ export default React.createClass({
                         <div className="hero-area">
                             <Hero imageProvider={imageProvider}
                                   hero={opponentPlayer.hero}
+                                  deckSize={opponentPlayer.deckSize}
                                   secrets={opponentPlayer.activeSecrets}
                                   selectedCharacter={this.state.selectedCharacter}
                                   onHeroClick={this.onHeroClick}
@@ -110,6 +111,7 @@ export default React.createClass({
                         <div className="hero-area">
                             <Hero imageProvider={imageProvider}
                                   hero={friendlyPlayer.hero}
+                                  deckSize={friendlyPlayer.deckSize}
                                   secrets={friendlyPlayer.activeSecrets}
                                   selectedCharacter={this.state.selectedCharacter}
                                   onHeroClick={this.onHeroClick}

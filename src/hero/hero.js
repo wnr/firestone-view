@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import Deck from "./deck";
 import Face from "./face";
 import HeroPower from "./hero-power";
 import Mana from "./mana";
@@ -14,6 +15,7 @@ export default function Hero(props) {
     const selectedHeroPower = props.selectedHeroPower;
     const selectedCharacter = props.selectedCharacter;
     const selectedPosition = props.selectedPosition;
+    const deckSize = props.deckSize;
 
     return (
         <div className="hero">
@@ -29,6 +31,7 @@ export default function Hero(props) {
             />
             <HeroPower heroPower={hero.heropower} selectedHeroPower={selectedHeroPower} onClick={props.onHeroPowerClick} />
             <Mana hero={hero} />
+            <Deck deckSize={deckSize} />
         </div>
     );
 }

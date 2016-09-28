@@ -182,10 +182,10 @@ const routes = {
             });
         }
     }, {
-        url: /^\/asset\/image\/weapon\//,
+        url: /^\/asset\/image\/card\/weapon\//,
         fn: function (req, res) {
             const url = req.url;
-            const name = decodeURIComponent(url.split("asset/image/weapon/")[1]);
+            const name = decodeURIComponent(url.split("asset/image/card/weapon/")[1]);
             const filename = path.join(process.cwd(), weaponImagePath, name + ".png");
 
             fs.exists(filename, function (exists) {

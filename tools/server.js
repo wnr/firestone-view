@@ -62,6 +62,15 @@ function getHearthheadSoundUrl(audioFileName) {
             return "http://" + data.attackSoundUrl;
         }
         return;
+    } else if (audioFileName.indexOf("Death.ogg") >= 0) {
+        var minionName = audioFileName.split("Death.ogg")[0].replace(/'/g, "&#039;");
+        var data = soundData.filter(function (data) {
+            return data.name === minionName;
+        })[0];
+        if (data) {
+            return "http://" + data.deathSoundUrl;
+        }
+        return;
     } else if (audioFileName.indexOf("Trigger.ogg") >= 0) {
         var minionName = audioFileName.split("Trigger.ogg")[0].replace(/'/g, "&#039;");
         var data = soundData.filter(function (data) {
